@@ -38,7 +38,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime")
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -148,7 +148,7 @@ class Post
      *
      * @return Post
      */
-    public function setUser(\ApiBundle\Entity\User $user = null)
+    public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
 

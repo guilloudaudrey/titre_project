@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Postresponses list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for postResponse in postResponses %}
+            <tr>
+                <td><a href="{{ path('postresponse_show', { 'id': postResponse.id }) }}">{{ postResponse.id }}</a></td>
+                <td>{{ postResponse.text }}</td>
+                <td>{% if postResponse.createdAt %}{{ postResponse.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if postResponse.updatedAt %}{{ postResponse.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('postresponse_show', { 'id': postResponse.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('postresponse_edit', { 'id': postResponse.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('postresponse_new') }}">Create a new postResponse</a>
+        </li>
+    </ul>
+{% endblock %}

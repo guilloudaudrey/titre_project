@@ -107,4 +107,9 @@ class Category
     {
         return $this->posts;
     }
+
+    public function __toString(){
+        return $this->name;
+    }
 }
+
