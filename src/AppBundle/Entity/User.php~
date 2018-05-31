@@ -107,38 +107,4 @@ class User extends BaseUser
     {
         return $this->evaluations;
     }
-
-    /**
-     * Add postResponse
-     *
-     * @param \AppBundle\Entity\PostResponse $postResponse
-     *
-     * @return User
-     */
-    public function addPostResponse(\AppBundle\Entity\PostResponse $postResponse)
-    {
-        $this->post_responses[] = $postResponse;
-
-        return $this;
-    }
-
-    /**
-     * Remove postResponse
-     *
-     * @param \AppBundle\Entity\PostResponse $postResponse
-     */
-    public function removePostResponse(\AppBundle\Entity\PostResponse $postResponse)
-    {
-        $this->post_responses->removeElement($postResponse);
-    }
-
-    /**
-     * Get postResponses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostResponses()
-    {
-        return $this->post_responses;
-    }
 }
