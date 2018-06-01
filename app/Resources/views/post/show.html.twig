@@ -43,7 +43,7 @@
                 {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
             </li>
             <a href="{{ url('postresponse_up',{id: postResponse.id }) }}">Button Up</a>
-            <a href="">Button Down</a>
+            <a href="{{ url('postresponse_down',{id: postResponse.id }) }}">Button Down</a>
         {% endfor %}
     </ul>
     {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}

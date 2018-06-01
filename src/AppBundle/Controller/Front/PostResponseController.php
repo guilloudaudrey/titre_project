@@ -72,8 +72,9 @@ class PostResponseController extends Controller
                 $em = $this->getDoctrine()->getManager();
         
                 $user = $this->getUser();
+                $post = $postResponse->getPost();
         
-                $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user);
+                $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
         
                 if($eval == null){
                     //create new eval
@@ -87,10 +88,10 @@ class PostResponseController extends Controller
                     $em->persist($evaluation);
                     $em->flush();
         
-                    return $this->redirectToRoute('postresponse_show', array('id' => $postResponse->getId()));
+                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
                 }
 
-                return $this->redirectToRoute('postresponse_show', array('id' => $postResponse->getId()));                
+                return $this->redirectToRoute('post_show', array('id' => $post->getId()));                
             }
 
     /**
