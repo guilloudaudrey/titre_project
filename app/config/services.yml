@@ -41,3 +41,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+    AppBundle\EventListener\EvaluationListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+

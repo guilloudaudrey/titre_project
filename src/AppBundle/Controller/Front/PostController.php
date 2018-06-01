@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\PostResponse;
+use AppBundle\Service\PostResponseService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -73,13 +74,16 @@ class PostController extends Controller
         $deleteForm = $this->createDeleteForm($post);
 
         $postResponse = new Postresponse();
-
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
-
+        
+        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPost($post);
+      
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
+            'postResponses' => $postResponses,
         ));
     }
 

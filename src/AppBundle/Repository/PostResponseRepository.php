@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Post;
+
 /**
  * PostResponseRepository
  *
@@ -10,4 +12,14 @@ namespace AppBundle\Repository;
  */
 class PostResponseRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getByPost(Post $post) {
+        $query = $this->createQueryBuilder('pr')
+            ->where('pr.post = :post')
+            ->setParameter('post', $post)
+            ->orderBy('pr.createdAt', 'ASC')
+            ->getQuery();
+
+        return $query->execute();
+    }
 }

@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
+use AppBundle\Entity\PostResponse;
+
 /**
  * EvaluationRepository
  *
@@ -10,4 +13,17 @@ namespace AppBundle\Repository;
  */
 class EvaluationRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getByUser(User $user, PostResponse $postResponse) {
+        $query = $this->createQueryBuilder('ev')
+            ->where('ev.user = :user')
+            ->andWhere('ev.post_response = :postResponse')
+            ->setParameter('postResponse', $postResponse)
+            ->setParameter('user', $user)
+            ->orderBy('ev.createdAt', 'ASC')
+            ->getQuery();
+
+        return $query->execute();
+    }
+
 }

@@ -7,6 +7,7 @@ use AppBundle\Entity\PostResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Evaluation;
 
 /**
  * Postresponse controller.
@@ -31,6 +32,66 @@ class PostResponseController extends Controller
             'postResponses' => $postResponses,
         ));
     }
+
+    /**
+     * @Route("/{id}/up", name="postresponse_up")
+     * @Method("GET")
+     */
+    public function upVoteAction(PostResponse $postResponse){
+
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+        $post = $postResponse->getPost();
+
+        $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
+
+        if($eval == null){
+            //create new eval
+            $evaluation = new Evaluation();
+            // set post response
+            $evaluation->setPostResponse($postResponse);
+            // set user
+            $evaluation->setUser($user);
+            $evaluation->setValue(1);
+            // flush
+            $em->persist($evaluation);
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }
+        return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+    }
+
+        /**
+     * @Route("/{id}/down", name="postresponse_down")
+     * @Method("GET")
+     */
+    public function downVoteAction(PostResponse $postResponse){
+        
+                $em = $this->getDoctrine()->getManager();
+        
+                $user = $this->getUser();
+        
+                $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user);
+        
+                if($eval == null){
+                    //create new eval
+                    $evaluation = new Evaluation();
+                    // set post response
+                    $evaluation->setPostResponse($postResponse);
+                    // set user
+                    $evaluation->setUser($user);
+                    $evaluation->setValue(-1);
+                    // flush
+                    $em->persist($evaluation);
+                    $em->flush();
+        
+                    return $this->redirectToRoute('postresponse_show', array('id' => $postResponse->getId()));
+                }
+
+                return $this->redirectToRoute('postresponse_show', array('id' => $postResponse->getId()));                
+            }
 
     /**
      * Creates a new postResponse entity.
@@ -61,6 +122,23 @@ class PostResponseController extends Controller
             'postResponse' => $postResponse,
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * Finds and displays a postResponse entity.
+     *
+     * @Route("/{id}", name="postresponse_show")
+     * @Method("GET")
+     */
+    public function showResponseAction(PostResponse $postResponse, Post $post)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+                $postResponses = $em->getRepository('AppBundle:PostResponse')->findAll();
+        
+                return $this->render('postresponse/index.html.twig', array(
+                    'postResponses' => $postResponses,
+                ));
     }
 
     /**
