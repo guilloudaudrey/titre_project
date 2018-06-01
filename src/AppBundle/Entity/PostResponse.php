@@ -74,6 +74,16 @@ class PostResponse
         return $this->id;
     }
 
+    public function getScore() {
+        $score = 0;
+
+        foreach($this->evaluations as $e) {
+            $score += intval($e->getValue());
+        }
+
+        return $score;
+    }
+
     /**
      * Set text
      *

@@ -77,13 +77,15 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         
-        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPost($post);
-      
+        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
+
+        // $postResponses = $em->getRepository('AppBundle:PostResponse')->getAllByPostWithSumEvalution($post);
+
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
-            'postResponses' => $postResponses,
+            'postResponses' => $postResponses
         ));
     }
 
