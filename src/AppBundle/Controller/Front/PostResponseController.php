@@ -46,6 +46,7 @@ class PostResponseController extends Controller
 
         $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
 
+
         if($eval == null){
             //create new eval
             $evaluation = new Evaluation();
@@ -60,6 +61,16 @@ class PostResponseController extends Controller
 
             return $this->redirectToRoute('post_show', array('id' => $post->getId()));
         }
+      
+        if($eval[0]->getValue() == 1){
+            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+            //suppression de l'éval
+            $em->remove($eval_object);
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }
+
         return $this->redirectToRoute('post_show', array('id' => $post->getId()));
     }
 

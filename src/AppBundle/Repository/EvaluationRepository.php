@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\PostResponse;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * EvaluationRepository
