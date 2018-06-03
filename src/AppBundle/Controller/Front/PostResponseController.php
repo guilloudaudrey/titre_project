@@ -62,10 +62,21 @@ class PostResponseController extends Controller
             return $this->redirectToRoute('post_show', array('id' => $post->getId()));
         }
       
+        // delete the evaluation if second up vote
         if($eval[0]->getValue() == 1){
             $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
             //suppression de l'éval
             $em->remove($eval_object);
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }
+
+        // edit the value of the evaluation from -1 to 1
+        if($eval[0]->getValue() == -1){
+            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+            $eval_object->setValue(1);
+            $em->persist($eval_object);
             $em->flush();
 
             return $this->redirectToRoute('post_show', array('id' => $post->getId()));
@@ -80,30 +91,51 @@ class PostResponseController extends Controller
      */
     public function downVoteAction(PostResponse $postResponse){
         
-                $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
         
-                $user = $this->getUser();
-                $post = $postResponse->getPost();
+            $user = $this->getUser();
+            $post = $postResponse->getPost();
         
-                $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
+            $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
         
-                if($eval == null){
-                    //create new eval
-                    $evaluation = new Evaluation();
-                    // set post response
-                    $evaluation->setPostResponse($postResponse);
-                    // set user
-                    $evaluation->setUser($user);
-                    $evaluation->setValue(-1);
-                    // flush
-                    $em->persist($evaluation);
-                    $em->flush();
+            if($eval == null){
+            //create new eval
+            $evaluation = new Evaluation();
+            // set post response
+            $evaluation->setPostResponse($postResponse);
+            // set user
+            $evaluation->setUser($user);
+            $evaluation->setValue(-1);
+            // flush
+            $em->persist($evaluation);
+            $em->flush();
         
-                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
-                }
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));                
-            }
+        // delete the evaluation if second down vote
+        if($eval[0]->getValue() == -1){
+            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+            //suppression de l'éval
+            $em->remove($eval_object);
+            $em->flush();
+        
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }
+
+        // edit the value of the evaluation from 1 to -1
+        if($eval[0]->getValue() == 1){
+            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+            $eval_object->setValue(-1);
+            $em->persist($eval_object);
+            $em->flush();
+
+            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        }        
+
+
+        return $this->redirectToRoute('post_show', array('id' => $post->getId()));                
+    }
 
     /**
      * Creates a new postResponse entity.
