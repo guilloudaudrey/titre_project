@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
@@ -37,17 +37,16 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 
     /**
      * Add post
      *
-     * @param \ApiBundle\Entity\Post $post
+     * @param \AppBundle\Entity\Post $post
      *
      * @return User
      */
-    public function addPost(\ApiBundle\Entity\Post $post)
+    public function addPost(\AppBundle\Entity\Post $post)
     {
         $this->posts[] = $post;
 
@@ -57,9 +56,9 @@ class User extends BaseUser
     /**
      * Remove post
      *
-     * @param \ApiBundle\Entity\Post $post
+     * @param \AppBundle\Entity\Post $post
      */
-    public function removePost(\ApiBundle\Entity\Post $post)
+    public function removePost(\AppBundle\Entity\Post $post)
     {
         $this->posts->removeElement($post);
     }

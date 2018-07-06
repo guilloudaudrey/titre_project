@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
-    <h1>Post</h1>
+{% include 'menu.html.twig' %}
+<div class="container">
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
+                <th>Category</th>
+                <td>{{ post.category }}</td>
             </tr>
             <tr>
                 <th>Text</th>
@@ -18,16 +20,14 @@
                 <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
-                <td>{% if post.updatedAt %}{{ post.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Author</th>
+                <td>{{ post.user }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('post_index') }}">Back to the list</a>
-        </li>
+        {% if app.user == post.user and postResponses|length < 1 %}
         <li>
             <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
         </li>
@@ -36,24 +36,36 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
     <ul>
         {% for postResponse in postResponses %}
             <li>
                 {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
             </li>
+                {% if app.user != post.user and app.user != postResponse.user %}
             <a href="{{ url('postresponse_up',{id: postResponse.id }) }}">Button Up</a>
+                {% endif %}
             <span>
                 {{ postResponse.score }}
             </span>
+                {% if app.user != post.user and app.user != postResponse.user %}
             <a href="{{ url('postresponse_down',{id: postResponse.id }) }}">Button Down</a>
+                {% endif %}
         {% endfor %}
     </ul>
+
+    {% if app.user != post.user %}
     {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
+    {% else %}
+
+    {% endif %}
+                <a href="{{ path('post_index') }}" class="btn btn-info">Back to the list</a>
+</div>
 {% endblock %}
 
 

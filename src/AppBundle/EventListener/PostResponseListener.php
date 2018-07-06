@@ -7,6 +7,7 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
+
 class PostResponseListener
 {
 
@@ -17,6 +18,8 @@ class PostResponseListener
      */
     public function prePersist(LifecycleEventArgs $args)
     {
+
+
         $this->em = $args->getEntityManager();
         
                 $entity = $args->getEntity();
@@ -24,6 +27,7 @@ class PostResponseListener
                 if ($entity instanceof PostResponse){
                 $this->setCreatedAt($entity);
                 }
+
     }
 
         /**
@@ -33,11 +37,13 @@ class PostResponseListener
      */
     public function preUpdate(LifecycleEventArgs $args)
     {
+    
         $this->em = $args->getEntityManager();
         
                 $entity = $args->getEntity();
 
                 if ($entity instanceof PostResponse){
+
                     $this->setUpdatedAt($entity);
                 } 
 

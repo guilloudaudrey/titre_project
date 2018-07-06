@@ -39,9 +39,11 @@ class PostController extends Controller
      *
      * @Route("/new", name="post_new")
      * @Method({"GET", "POST"})
+     * @Security
      */
     public function newAction(Request $request)
     {
+
         $post = new Post();
         $form = $this->createForm('AppBundle\Form\PostType', $post);
         $form->handleRequest($request);
@@ -78,8 +80,6 @@ class PostController extends Controller
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         
         $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
-
-        // $postResponses = $em->getRepository('AppBundle:PostResponse')->getAllByPostWithSumEvalution($post);
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,

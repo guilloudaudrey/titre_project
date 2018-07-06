@@ -144,7 +144,7 @@ class Post
     /**
      * Set user
      *
-     * @param \ApiBundle\Entity\User $user
+     * @param \AppBundle\Entity\User $user
      *
      * @return Post
      */
@@ -158,7 +158,7 @@ class Post
     /**
      * Get user
      *
-     * @return \ApiBundle\Entity\User
+     * @return \AppBundle\Entity\User
      */
     public function getUser()
     {

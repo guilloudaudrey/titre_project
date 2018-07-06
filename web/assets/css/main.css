@@ -1,0 +1,15 @@
+.main_title {
+    font-size: 2em;
+    color: red;
+}
+
+.avatarForm {
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    border-radius: 100%;
+}
+
+.navbar {
+    display: flex;
+}

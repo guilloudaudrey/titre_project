@@ -1,6 +1,8 @@
 <div>
     {# <td><a href="{{ path('postresponse_show', { 'id': postResponse.id }) }}">{{ postResponse.id }}</a></td> #}
     <td>{{ postResponse.text }}</td>
+    <td>Auteur : {{postResponse.user }}</td>
     <td>{% if postResponse.createdAt %}{{ postResponse.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
     <td>{% if postResponse.updatedAt %}{{ postResponse.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+    {# <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> #}
 </div>

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {# <h1 class="main_title pull-right">Typo</h1> #}
+
+        <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {# <a href="{{ path('fos_user_profile_show') }}"><div class="avatarForm"></div></a> #}
+                {{  app.user.username }}</a>
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %} 
+
+{# 
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div> #}
+</nav>
+{% endblock %}

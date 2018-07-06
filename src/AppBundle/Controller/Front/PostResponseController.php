@@ -85,7 +85,7 @@ class PostResponseController extends Controller
         return $this->redirectToRoute('post_show', array('id' => $post->getId()));
     }
 
-        /**
+    /**
      * @Route("/{id}/down", name="postresponse_down")
      * @Method("GET")
      */
@@ -148,6 +148,8 @@ class PostResponseController extends Controller
         $postResponse = new Postresponse();
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         $form->handleRequest($request);
+
+        $postUser = $post->getUser();
 
         $user = $this->getUser();
         $postResponse->setUser($user);
