@@ -1,20 +1,17 @@
 {% extends 'base.html.twig' %}
 
 
-{% block body %}
+{% block content %}
 {% include 'menu.html.twig' %}
 <div class="container">
 
     <table>
         <tbody>
             <tr>
-                <th>Category</th>
-                <td>{{ post.category }}</td>
+                
+                <span class="badge badge-secondary">{{ post.category }}</span>
             </tr>
-            <tr>
-                <th>Text</th>
-                <td>{{ post.text }}</td>
-            </tr>
+                <p>{{ post.text }}</p>
             <tr>
                 <th>Createdat</th>
                 <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
@@ -27,7 +24,7 @@
     </table>
 
     <ul>
-        {% if app.user == post.user and postResponses|length < 1 %}
+        {% if postResponses|length < 1 %}
         <li>
             <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
         </li>
@@ -40,9 +37,9 @@
     </ul>
     <ul>
         {% for postResponse in postResponses %}
-            <li>
+
                 {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
-            </li>
+
                 {% if app.user != post.user and app.user != postResponse.user %}
             <a href="{{ url('postresponse_up',{id: postResponse.id }) }}">Button Up</a>
                 {% endif %}

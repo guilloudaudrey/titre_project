@@ -1,8 +1,10 @@
 <div>
-    {# <td><a href="{{ path('postresponse_show', { 'id': postResponse.id }) }}">{{ postResponse.id }}</a></td> #}
-    <td>{{ postResponse.text }}</td>
-    <td>Auteur : {{postResponse.user }}</td>
-    <td>{% if postResponse.createdAt %}{{ postResponse.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-    <td>{% if postResponse.updatedAt %}{{ postResponse.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+<ul>
+    <li>{{ postResponse.text }}</li>
+    <li>Auteur : {{postResponse.user }}</li>
+    {% if postResponse.comment %}<li class="comment">{{ postResponse.comment }}</li>{% endif %}
+    {% if postResponse.createdAt %}<li>{{ postResponse.createdAt|date('Y-m-d H:i:s') }}</li>{% endif %}
+    {% if postResponse.updatedAt %}<li>{{ postResponse.updatedAt|date('Y-m-d H:i:s') }}</li>{% endif %}
     {# <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> #}
+    </ul>
 </div>

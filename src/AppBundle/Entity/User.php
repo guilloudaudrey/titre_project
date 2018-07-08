@@ -34,6 +34,11 @@ class User extends BaseUser
      */
     private $evaluations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuizAnswer", mappedBy="user")
+     */
+    private $quizAnswers;
+
     public function __construct()
     {
         parent::__construct();
@@ -139,5 +144,39 @@ class User extends BaseUser
     public function getPostResponses()
     {
         return $this->post_responses;
+    }
+
+    /**
+     * Add quizAnswer
+     *
+     * @param \AppBundle\Entity\QuizAnswer $quizAnswer
+     *
+     * @return User
+     */
+    public function addQuizAnswer(\AppBundle\Entity\QuizAnswer $quizAnswer)
+    {
+        $this->quizAnswers[] = $quizAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Remove quizAnswer
+     *
+     * @param \AppBundle\Entity\QuizAnswer $quizAnswer
+     */
+    public function removeQuizAnswer(\AppBundle\Entity\QuizAnswer $quizAnswer)
+    {
+        $this->quizAnswers->removeElement($quizAnswer);
+    }
+
+    /**
+     * Get quizAnswers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getQuizAnswers()
+    {
+        return $this->quizAnswers;
     }
 }

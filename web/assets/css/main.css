@@ -13,3 +13,7 @@
 .navbar {
     display: flex;
 }
+
+.comment {
+    color: gray;
+}

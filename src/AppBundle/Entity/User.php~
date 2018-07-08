@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
@@ -34,20 +34,24 @@ class User extends BaseUser
      */
     private $evaluations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuizAnswer", mappedBy="user")
+     */
+    private $quizAnswers;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 
     /**
      * Add post
      *
-     * @param \ApiBundle\Entity\Post $post
+     * @param \AppBundle\Entity\Post $post
      *
      * @return User
      */
-    public function addPost(\ApiBundle\Entity\Post $post)
+    public function addPost(\AppBundle\Entity\Post $post)
     {
         $this->posts[] = $post;
 
@@ -57,9 +61,9 @@ class User extends BaseUser
     /**
      * Remove post
      *
-     * @param \ApiBundle\Entity\Post $post
+     * @param \AppBundle\Entity\Post $post
      */
-    public function removePost(\ApiBundle\Entity\Post $post)
+    public function removePost(\AppBundle\Entity\Post $post)
     {
         $this->posts->removeElement($post);
     }
@@ -106,5 +110,39 @@ class User extends BaseUser
     public function getEvaluations()
     {
         return $this->evaluations;
+    }
+
+    /**
+     * Add postResponse
+     *
+     * @param \AppBundle\Entity\PostResponse $postResponse
+     *
+     * @return User
+     */
+    public function addPostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    {
+        $this->post_responses[] = $postResponse;
+
+        return $this;
+    }
+
+    /**
+     * Remove postResponse
+     *
+     * @param \AppBundle\Entity\PostResponse $postResponse
+     */
+    public function removePostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    {
+        $this->post_responses->removeElement($postResponse);
+    }
+
+    /**
+     * Get postResponses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostResponses()
+    {
+        return $this->post_responses;
     }
 }

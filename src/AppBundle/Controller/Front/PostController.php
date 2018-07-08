@@ -8,7 +8,9 @@ use AppBundle\Entity\PostResponse;
 use AppBundle\Service\PostResponseService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Post controller.
@@ -39,7 +41,7 @@ class PostController extends Controller
      *
      * @Route("/new", name="post_new")
      * @Method({"GET", "POST"})
-     * @Security
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {

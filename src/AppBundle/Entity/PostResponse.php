@@ -60,9 +60,11 @@ class PostResponse
     private $evaluations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="post_response")
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="string", length=255, nullable=true)
      */
-    private $comments;
+    private $comment;
 
     /**
      * Get id
@@ -246,36 +248,26 @@ class PostResponse
     }
 
     /**
-     * Add comment
+     * Set comment
      *
-     * @param \AppBundle\Entity\Comment $comment
+     * @param string $comment
      *
      * @return PostResponse
      */
-    public function addComment(\AppBundle\Entity\Comment $comment)
+    public function setComment($comment)
     {
-        $this->comments[] = $comment;
+        $this->comment = $comment;
 
         return $this;
     }
 
     /**
-     * Remove comment
+     * Get comment
      *
-     * @param \AppBundle\Entity\Comment $comment
+     * @return string
      */
-    public function removeComment(\AppBundle\Entity\Comment $comment)
+    public function getComment()
     {
-        $this->comments->removeElement($comment);
-    }
-
-    /**
-     * Get comments
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getComments()
-    {
-        return $this->comments;
+        return $this->comment;
     }
 }
