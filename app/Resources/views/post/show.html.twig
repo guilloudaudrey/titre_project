@@ -1,27 +1,61 @@
 {% extends 'base.html.twig' %}
 
-
 {% block content %}
 {% include 'menu.html.twig' %}
 <div class="container">
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-2">
+            <div style="height: 60px; width: 60px; border-radius: 100%; background-color: #5eb5e0"></div>
+        </div>
+        <div class="col-md-11 col-sm-11 col-xs-10">
+            <div class="panel panel-default card-question">
+                <table>
+                    <tbody>
+                            <p>{{ post.text }}</p>
+                        <tr>
+                            <th>Createdat</th>
+                            <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Author</th>
+                            <td>{{ post.user }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <table>
-        <tbody>
-            <tr>
-                
-                <span class="badge badge-secondary">{{ post.category }}</span>
-            </tr>
-                <p>{{ post.text }}</p>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Author</th>
-                <td>{{ post.user }}</td>
-            </tr>
-        </tbody>
-    </table>
+    </div>
+
+    {% if app.user != post.user %}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+        Poster une réponse
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Create" />
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+
+    {% endif %}
+
+    <h2>{{ postResponses|length }} réponses </h2>
+    <hr class="my-4">
 
     <ul>
         {% if postResponses|length < 1 %}
@@ -37,32 +71,42 @@
     </ul>
     <ul>
         {% for postResponse in postResponses %}
-
-                {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
-
+        <div class="row">
+            <div class="col-md-1 vote_buttons">
+                <div class="row">
                 {% if app.user != post.user and app.user != postResponse.user %}
-            <a href="{{ url('postresponse_up',{id: postResponse.id }) }}">Button Up</a>
+                    <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
                 {% endif %}
-            <span>
-                {{ postResponse.score }}
-            </span>
+                </div>
+                <div class="row">
+                <span class="badge badge-info">
+                    {{ postResponse.score }}
+                </span>
+                </div>
+                <div class="row">
                 {% if app.user != post.user and app.user != postResponse.user %}
-            <a href="{{ url('postresponse_down',{id: postResponse.id }) }}">Button Down</a>
+                    <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
                 {% endif %}
+                </div>
+            </div>
+            <div class="col-md-10">
+
+                <div class="panel panel-default card_answer">
+                    {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div style="height: 60px; width: 60px; border-radius: 100%; background-color: #5eb5e0"></div>
+            </div>
+        </div>
         {% endfor %}
     </ul>
 
-    {% if app.user != post.user %}
-    {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    {% else %}
-
-    {% endif %}
                 <a href="{{ path('post_index') }}" class="btn btn-info">Back to the list</a>
 </div>
+
+
 {% endblock %}
 
 

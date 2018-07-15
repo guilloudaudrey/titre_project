@@ -44,4 +44,16 @@ services:
     AppBundle\EventListener\EvaluationListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+    AppBundle\EventListener\PostResponseVoteListener:
+        tags:
+            - { name: kernel.event_listener, event: event.event.post_response_vote, method: checkIfUserIsTheSameAsPostResponseUser }
+    AppBundle\EventListener\UserListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
 

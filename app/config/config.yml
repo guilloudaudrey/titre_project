@@ -7,10 +7,11 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    avatar_directory: '%kernel.root_dir%/../web/avatars/'
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -60,15 +61,7 @@ doctrine:
         auto_mapping: true
 
 # Swiftmailer Configuration
-swiftmailer:
-    transport: '%mailer_transport%'
-    auth_mode: '%mailer_auth_mode%'
-    host: '%mailer_host%'
-    port: '%mailer_port%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    encryption: '%mailer_encryption%'
-    spool: { type: memory }
+
 
 # FosUser Configuration
 fos_user:
@@ -77,7 +70,9 @@ fos_user:
     user_class: AppBundle\Entity\User
     service:                               # this lines
         mailer: fos_user.mailer.twig_swift # this lines
-    registration: 
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
         confirmation:
             enabled: false  
             from_email:
@@ -87,3 +82,5 @@ fos_user:
     from_email:
         address: "%mailer_user%" # variable présente dans votre parameters.yml, doit être renseigné sinon ça génère un bug
         sender_name: "%mailer_user%" # idem
+
+    registration:

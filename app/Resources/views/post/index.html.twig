@@ -3,7 +3,7 @@
 {% block content %}
 
 {% include 'menu.html.twig' %}
-            
+
         
 <div class="container">
 
@@ -13,7 +13,6 @@
             <tr>
                 <th>Text</th>
                 <th>Createdat</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,15 +20,6 @@
             <tr>
                 <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.text }}</a></td>
                 <td>{% if post.createdAt %}déposé le {{ post.createdAt|date('Y-m-d H:i:s') }} par {{ post.user }} {% endif %}</td>
-                <td>
-                    <ul>
-                        {% if app.user == post.user %}
-                        {# <li>
-                            <a href="{{ path('post_edit', { 'id': post.id }) }}">edit</a>
-                        </li> #}
-                        {% endif %}
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>

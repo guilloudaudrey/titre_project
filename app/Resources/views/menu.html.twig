@@ -1,37 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block content %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+
         {# <h1 class="main_title pull-right">Typo</h1> #}
 
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {# <a href="{{ path('fos_user_profile_show') }}"><div class="avatarForm"></div></a> #}
-                {{  app.user.username }}</a>
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
-
-        {% if app.request.hasPreviousSession %}
-            {% for type, messages in app.session.flashbag.all() %}
-                {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        {{ message }}
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{{ path('post_index') }}">WebSiteName</a>
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endif %} 
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a><span class="glyphicon glyphicon-bell"></span></a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}" >{{  app.user.username }}</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                    {% if 'ROLE_PROOFREADER' in app.user.roles %}
+                    {% else %}
+                        <a class="btn btn-info" href="{{ path('quiz_answer_new') }}">Devenir correcteur</a>
+                    {% endif %}
+            {% else %}
+                {% if not app.user %}
+                    <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}"><span class="glyphicon glyphicon-user"></span>{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                {% endif %}
+                {% if app.request.hasPreviousSession %}
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="flash-{{ type }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            {% endif %}
 
-        <button class="btn btn-info">Devenir correcteur</button>
 
-        
-        {# <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div> #}
+                </div>
 </nav>
 {% endblock %}

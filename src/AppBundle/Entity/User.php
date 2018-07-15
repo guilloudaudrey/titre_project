@@ -20,6 +20,13 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar_filename", type="string", length=255, nullable=true)
+     */
+    private $avatar_filename;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
      */
     private $posts;
@@ -34,10 +41,7 @@ class User extends BaseUser
      */
     private $evaluations;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\QuizAnswer", mappedBy="user")
-     */
-    private $quizAnswers;
+
 
     public function __construct()
     {
@@ -146,37 +150,29 @@ class User extends BaseUser
         return $this->post_responses;
     }
 
+
+
     /**
-     * Add quizAnswer
+     * Set avatarFilename
      *
-     * @param \AppBundle\Entity\QuizAnswer $quizAnswer
+     * @param string $avatarFilename
      *
      * @return User
      */
-    public function addQuizAnswer(\AppBundle\Entity\QuizAnswer $quizAnswer)
+    public function setAvatarFilename($avatarFilename)
     {
-        $this->quizAnswers[] = $quizAnswer;
+        $this->avatar_filename = $avatarFilename;
 
         return $this;
     }
 
     /**
-     * Remove quizAnswer
+     * Get avatarFilename
      *
-     * @param \AppBundle\Entity\QuizAnswer $quizAnswer
+     * @return string
      */
-    public function removeQuizAnswer(\AppBundle\Entity\QuizAnswer $quizAnswer)
+    public function getAvatarFilename()
     {
-        $this->quizAnswers->removeElement($quizAnswer);
-    }
-
-    /**
-     * Get quizAnswers
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getQuizAnswers()
-    {
-        return $this->quizAnswers;
+        return $this->avatar_filename;
     }
 }

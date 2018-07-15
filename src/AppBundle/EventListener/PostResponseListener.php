@@ -18,16 +18,12 @@ class PostResponseListener
      */
     public function prePersist(LifecycleEventArgs $args)
     {
-
-
         $this->em = $args->getEntityManager();
-        
-                $entity = $args->getEntity();
-        
-                if ($entity instanceof PostResponse){
-                $this->setCreatedAt($entity);
-                }
+        $entity = $args->getEntity();
 
+        if ($entity instanceof PostResponse){
+            $this->setCreatedAt($entity);
+        }
     }
 
         /**
@@ -46,8 +42,6 @@ class PostResponseListener
 
                     $this->setUpdatedAt($entity);
                 } 
-
-
     }
 
     public function setCreatedAt(PostResponse $postResponse){
@@ -56,8 +50,8 @@ class PostResponseListener
     }
 
     public function setUpdatedAt(Post $postResponse){
-        
-        $post->setUpdatedAt(new \DateTime());
+
+        $postResponse->setUpdatedAt(new \DateTime());
     }
 
 

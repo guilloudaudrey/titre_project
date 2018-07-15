@@ -1,4 +1,5 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% include 'menu.html.twig' %}
 <div class="container col-lg-4 col-offset-6 centered">
     <div class="card card-container">
         <h1>{{ 'Inscription' }}</h1>
@@ -15,7 +16,9 @@
                     <div class="form-group">
                         {{ form_label(form.plainPassword) }}
                         {{ form_widget(form.plainPassword)}}
+                        {{ form_row(form.avatar_filename)}}
                     </div>
+
                     <div>
                         <input class="btn btn-primary centered" type="submit" value="{{ 'registration.submit'|trans }}" />
                     </div>

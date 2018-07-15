@@ -1,3 +1,7 @@
+body{
+    padding-top: 80px;
+}
+
 .main_title {
     font-size: 2em;
     color: red;
@@ -10,10 +14,33 @@
     border-radius: 100%;
 }
 
-.navbar {
-    display: flex;
-}
+
 
 .comment {
     color: gray;
+
+}
+
+.card-question {
+    padding: 20px;
+    background: #d4e2f9 !important;
+    border-color: #d4e2f9 !important;
+    margin-bottom: 20px;
+}
+
+.card_answer{
+    margin-bottom: 20px;
+}
+
+.navbar{
+    margin-bottom: 20px;
+
+}
+
+.navbar a:visited {
+color: white;
+}
+
+.vote_buttons{
+    text-align: center;
 }

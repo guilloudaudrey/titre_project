@@ -4,11 +4,14 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Post;
 use AppBundle\Entity\PostResponse;
+use AppBundle\Event\PostResponseVoteEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Evaluation;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Postresponse controller.
@@ -37,6 +40,7 @@ class PostResponseController extends Controller
     /**
      * @Route("/{id}/up", name="postresponse_up")
      * @Method("GET")
+     * @Security("has_role('ROLE_PROOFREADER')")
      */
     public function upVoteAction(PostResponse $postResponse){
 
@@ -89,53 +93,60 @@ class PostResponseController extends Controller
     /**
      * @Route("/{id}/down", name="postresponse_down")
      * @Method("GET")
+     * @Security("has_role('ROLE_PROOFREADER')")
      */
     public function downVoteAction(PostResponse $postResponse){
-        
-            $em = $this->getDoctrine()->getManager();
-        
-            $user = $this->getUser();
-            $post = $postResponse->getPost();
-        
-            $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
-        
-            if($eval == null){
-            //create new eval
-            $evaluation = new Evaluation();
-            // set post response
-            $evaluation->setPostResponse($postResponse);
-            // set user
-            $evaluation->setUser($user);
-            $evaluation->setValue(-1);
-            // flush
-            $em->persist($evaluation);
-            $em->flush();
-        
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
-        }
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        $post = $postResponse->getPost();
 
-        // delete the evaluation if second down vote
-        if($eval[0]->getValue() == -1){
-            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-            //suppression de l'éval
-            $em->remove($eval_object);
-            $em->flush();
-        
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
-        }
+            if ($user != $postResponse->getUser()) {
+                $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
 
-        // edit the value of the evaluation from 1 to -1
-        if($eval[0]->getValue() == 1){
-            $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-            $eval_object->setValue(-1);
-            $em->persist($eval_object);
-            $em->flush();
+                $event = new PostResponseVoteEvent($postResponse);
+                $this->get('event_dispatcher')->dispatch(PostResponseVoteEvent::POST_RESPONSE_VOTE, $event);
+                if ($eval == null) {
+                    //create new eval
+                    $evaluation = new Evaluation();
 
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
-        }        
+                    // set post response
+                    $evaluation->setPostResponse($postResponse);
 
+                    // set user
+                    $evaluation->setUser($user);
+                    $evaluation->setValue(-1);
 
-        return $this->redirectToRoute('post_show', array('id' => $post->getId()));                
+                    // flush
+                    $em->persist($evaluation);
+                    $em->flush();
+
+                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                }
+
+                // delete the evaluation if second down vote
+                if ($eval[0]->getValue() == -1) {
+                    $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+                    //suppression de l'éval
+                    $em->remove($eval_object);
+                    $em->flush();
+
+                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                }
+
+                // edit the value of the evaluation from 1 to -1
+                if ($eval[0]->getValue() == 1) {
+                    $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+                    $eval_object->setValue(-1);
+                    $em->persist($eval_object);
+                    $em->flush();
+
+                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                }
+            } else {
+                throw new \Exception('vous ne pouvez pas vous auto-évaluer');
+            }
+
+        return $this->redirectToRoute('post_show', array('id' => $post->getId()));
     }
 
     /**
@@ -147,29 +158,36 @@ class PostResponseController extends Controller
      */
     public function newAction(Request $request, Post $post)
     {
-        $postResponse = new Postresponse();
-        $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
-        $form->handleRequest($request);
+            $postResponse = new Postresponse();
+            $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
+            $form->handleRequest($request);
 
-        $postUser = $post->getUser();
+            $postUser = $post->getUser();
 
-        $user = $this->getUser();
-        $postResponse->setUser($user);
+            $user = $this->getUser();
+            $postResponse->setUser($user);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $postResponse->setPost($post);
-        
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($postResponse);
-            $em->flush();
+            try {
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $postResponse->setPost($post);
 
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
-        }
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($postResponse);
+                    $em->flush();
 
-        return $this->render('postresponse/new.html.twig', array(
-            'postResponse' => $postResponse,
-            'form' => $form->createView(),
-        ));
+                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                }
+
+            }catch (AccessDeniedHttpException $e){
+
+                var_dump('aaaa');
+                die;
+            }
+            return $this->render('postresponse/new.html.twig', array(
+                'postResponse' => $postResponse,
+                'form' => $form->createView(),
+            ));
+
     }
 
     /**

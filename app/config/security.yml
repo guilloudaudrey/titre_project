@@ -2,6 +2,7 @@
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
+    access_denied_url: /quizanswer/new
 
     role_hierarchy:
         ROLE_PROOFREADER: ROLE_USER
