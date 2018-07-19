@@ -24,7 +24,7 @@ class User extends BaseUser
      *
      * @ORM\Column(name="avatar_filename", type="string", length=255, nullable=true)
      */
-    private $avatar_filename;
+    protected $avatar_filename;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")

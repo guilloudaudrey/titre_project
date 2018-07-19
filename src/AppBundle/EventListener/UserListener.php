@@ -11,12 +11,17 @@ use FOS\UserBundle\Model\User as BaseUser;
 
 class UserListener{
 
+    private $targetDirectory;
+
+    public function __construct($targetDirectory)
+    {
+        $this->targetDirectory = $targetDirectory;
+    }
     /**
-     * On pre persist entity User
-     *
-     * @param PrePersistEventArgs $args
+     * On post persist entity User
+     * @param PostPersistEventArgs $args
      */
-    public function prePersist(LifecycleEventArgs $args)
+    public function postPersist(LifecycleEventArgs $args)
     {
         $this->em = $args->getEntityManager();
         $entity = $args->getEntity();
@@ -28,11 +33,13 @@ class UserListener{
             $fileName = $entity->getId().'.'.$file->guessExtension();
 
             $file->move(
-                '%kernel.root_dir%/../web/avatars/',
+                $this->targetDirectory,
                 $fileName
             );
 
             $entity->setAvatarFilename($fileName);
+            $this->em->persist($entity);
+            $this->em->flush();
         }
     }
 }

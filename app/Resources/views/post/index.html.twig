@@ -1,30 +1,32 @@
 {% extends 'base.html.twig' %}
-         
+
 {% block content %}
-
+    {% block head %}
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% endblock %}
 {% include 'menu.html.twig' %}
-
-        
-<div class="container">
-
-
-    <table>
-        <thead>
-            <tr>
-                <th>Text</th>
-                <th>Createdat</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="banner" style="background-image:url('{{asset('/images/banner/') }}')"></div>
+    <div class="container">
+    <div class="row index_create_post_button">
+    <a class="btn btn-info " href="{{ path('post_new') }}">Create a new post</a>
+    </div>
+        <div class="row" >
         {% for post in posts %}
-            <tr>
-                <td><a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.text }}</a></td>
-                <td>{% if post.createdAt %}déposé le {{ post.createdAt|date('Y-m-d H:i:s') }} par {{ post.user }} {% endif %}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="col-xs-6 col-md-3 ">
+                    <span class="glyphicon glyphicon-question-sign"></span>
+                    <a href="{{ path('post_show', { 'id': post.id }) }}" class="thumbnail">
+                        {{ post.text }}
+                        {% if post.createdAt %}déposé le {{ post.createdAt|date('Y-m-d H:i:s') }} par {{ post.user }}{% endif %}
+                    </a>
+                   <span>{{ post.postResponses|length }}</span>
+                    <span class="glyphicon glyphicon-comment"></span>
+                </div>
 
-    <a class="btn btn-info" href="{{ path('post_new') }}">Create a new post</a>
+        {% endfor %}
+        </div>
+
+
+
 </div>
 {% endblock %}

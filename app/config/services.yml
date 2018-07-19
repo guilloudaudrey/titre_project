@@ -49,7 +49,8 @@ services:
             - { name: kernel.event_listener, event: event.event.post_response_vote, method: checkIfUserIsTheSameAsPostResponseUser }
     AppBundle\EventListener\UserListener:
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
+        arguments: ['%kernel.root_dir%/../web/avatars/']
 
 
     app.form.registration:

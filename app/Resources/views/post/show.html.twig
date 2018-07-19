@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    {% block head %}
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endblock %}
 {% include 'menu.html.twig' %}
 <div class="container">
     <div class="row">
         <div class="col-md-1 col-sm-1 col-xs-2">
-            <div style="height: 60px; width: 60px; border-radius: 100%; background-color: #5eb5e0"></div>
+            <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
         </div>
         <div class="col-md-11 col-sm-11 col-xs-10">
             <div class="panel panel-default card-question">
@@ -27,7 +31,27 @@
 
     </div>
 
+
+    {% if errorMessage  %}
+        <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+    {% endif %}
+    <ul>
+        {% if postResponses|length < 1 %}
+            <li>
+                <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        {% endif %}
+    </ul>
+
+    {% if app.user %}
     {% if app.user != post.user %}
+
+        {% if app.user.getPostResponses|length < 0 %}
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
         Poster une réponse
@@ -50,25 +74,51 @@
                 </div>
             </div>
         </div>
-    {% else %}
+            {% else %}
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                    Poster une réponse
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                               Vous avez déjà posté une correction.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
 
     {% endif %}
+    {% else %}
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+            Poster une réponse
+        </button>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                       Connectez-vous !
 
-    <h2>{{ postResponses|length }} réponses </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
     <hr class="my-4">
 
-    <ul>
-        {% if postResponses|length < 1 %}
-        <li>
-            <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-        {% endif %}
-    </ul>
     <ul>
         {% for postResponse in postResponses %}
         <div class="row">
@@ -96,12 +146,11 @@
                 </div>
             </div>
             <div class="col-md-1">
-                <div style="height: 60px; width: 60px; border-radius: 100%; background-color: #5eb5e0"></div>
+                <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~postResponse.user.getAvatarFilename()) }}')"></div>
             </div>
         </div>
         {% endfor %}
     </ul>
-
 
                 <a href="{{ path('post_index') }}" class="btn btn-info">Back to the list</a>
 </div>

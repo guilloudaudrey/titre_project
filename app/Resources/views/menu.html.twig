@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block content %}
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -8,13 +9,21 @@
 
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="{{ path('post_index') }}">WebSiteName</a>
+                        <a class="navbar-brand" href="{{ path('post_index') }}">typo</a>
                     </div>
                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <button style="background-image:url('{{asset('/avatars/'~app.user.getAvatarFilename()) }}')" href="#" class="dropdown-toggle avatar_menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('fos_user_profile_show') }}" >Mon profil</a>
+                                </li>
+                                <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a><span class="glyphicon glyphicon-bell"></span></a></li>
-                        <li><a href="{{ path('fos_user_profile_show') }}" >{{  app.user.username }}</a></li>
-                        <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                     </ul>
                     {% if 'ROLE_PROOFREADER' in app.user.roles %}
                     {% else %}

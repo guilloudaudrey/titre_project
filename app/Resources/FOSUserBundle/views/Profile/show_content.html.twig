@@ -1,7 +1,14 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig' %}
 
+{% block content %}
 <div class="fos_user_user_show">
 <h1>Mon compte</h1>
+
+    <div class="avatar_profile" style="background-image:url('{{asset('/avatars/'~user.getAvatarFilename()) }}')"></div>
     <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
     <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+
+
 </div>
+{% endblock %}

@@ -73,7 +73,7 @@ class PostController extends Controller
      * @Route("/{id}", name="post_show")
      * @Method("GET")
      */
-    public function showAction(Post $post)
+    public function showAction(Post $post, $errormessage = null)
     {
         $deleteForm = $this->createDeleteForm($post);
 
@@ -87,7 +87,8 @@ class PostController extends Controller
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
-            'postResponses' => $postResponses
+            'postResponses' => $postResponses,
+            'errorMessage' => $errormessage
         ));
     }
 
