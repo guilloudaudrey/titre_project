@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Evaluation;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Doctrine\ORM\Event\LifecycleEventArgs;
-use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -161,7 +159,7 @@ class PostResponseController extends Controller
 
                 $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
                 'post' => $post,
-                'errormessage' => "erreur test"
+                'errormessage' => "Vous ne pouvez pas vous auto-évaluer !"
                 ));
 
                 return $response;
@@ -215,9 +213,9 @@ class PostResponseController extends Controller
     public function showResponseAction(PostResponse $postResponse, Post $post)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
                 $postResponses = $em->getRepository('AppBundle:PostResponse')->findAll();
-        
+
                 return $this->render('postresponse/index.html.twig', array(
                     'postResponses' => $postResponses,
                 ));

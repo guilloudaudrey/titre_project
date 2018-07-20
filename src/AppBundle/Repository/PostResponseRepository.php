@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Evaluation;
 use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\User;
 
 /**
  * PostResponseRepository
@@ -19,6 +20,18 @@ class PostResponseRepository extends \Doctrine\ORM\EntityRepository
         $query = $this->createQueryBuilder('pr')
             ->where('pr.post = :post')
             ->setParameter('post', $post)
+            ->orderBy('pr.createdAt', 'ASC')
+            ->getQuery();
+
+        return $query->execute();
+    }
+
+    public function getByPostandByUser(Post $post, User $user) {
+        $query = $this->createQueryBuilder('pr')
+            ->where('pr.post = :post')
+            ->andWhere('pr.user = :user')
+            ->setParameter('post', $post)
+            ->setParameter('user', $user)
             ->orderBy('pr.createdAt', 'ASC')
             ->getQuery();
 

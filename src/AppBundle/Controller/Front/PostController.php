@@ -82,13 +82,15 @@ class PostController extends Controller
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         
         $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
+        $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
 
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
             'postResponses' => $postResponses,
-            'errorMessage' => $errormessage
+            'errorMessage' => $errormessage,
+            'postResponseByUser' => $postResponseByUser
         ));
     }
 
