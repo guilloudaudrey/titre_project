@@ -8,53 +8,49 @@
 {% include 'menu.html.twig' %}
 <div class="container">
     <div class="row">
-        <div class="col-md-1 col-sm-1 col-xs-2">
+        <div class="col-md-1 col-sm-1 col-xs-1">
             <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
+            <div >{{ post.user }}</div>
         </div>
-        <div class="col-md-11 col-sm-11 col-xs-10">
+        <div class="col-md-11 col-sm-11 col-xs-11">
             <div class="panel panel-default card-question">
-                <table>
-                    <tbody>
-                            <p>{{ post.text }}</p>
-                        <tr>
-                            <th>Createdat</th>
-                            <td>{% if post.createdAt %}{{ post.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        </tr>
-                        <tr>
-                            <th>Author</th>
-                            <td>{{ post.user }}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p>{{ post.text }}</p>
+                <div style="display: flex" class="pull-right">
+                    {% if postResponses|length < 1 %}
+                        <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
+
+
+                        {{ form_start(delete_form) }}
+                        <input  class="btn btn-default btn-sm" type="submit" value="Supprimer">
+                        {{ form_end(delete_form) }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="panel">
+                <div >Posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</div>
+
+
             </div>
         </div>
-
     </div>
 
 
     {% if errorMessage  %}
         <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> {{ errorMessage }}</div>
     {% endif %}
-    <ul>
-        {% if postResponses|length < 1 %}
-            <li>
-                <a href="{{ path('post_edit', { 'id': post.id }) }}">Edit</a>
-            </li>
-            <li>
-                {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-                {{ form_end(delete_form) }}
-            </li>
-        {% endif %}
-    </ul>
+
+
+
+
 
     {% if app.user %}
     {% if app.user != post.user %}
-{% if postResponseByUser is empty %}
+    {% if postResponseByUser is empty %}
+        {% if post.status != "closed" %}
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-        Poster une réponse
+        <span class="glyphicon glyphicon-pencil"></span> Poster une réponse
         </button>
 
         <!-- Modal -->
@@ -74,22 +70,27 @@
                 </div>
             </div>
         </div>
-
-{% endif %}
+        {% endif %}
+    {% endif %}
     {% endif %}
     {% else %}
+    {% if post.status != "closed" %}
         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-            Poster une réponse
+            <span class="glyphicon glyphicon-pencil"></span> Poster une réponse
         </button>
+        {% else %}
+            <div class="alert alert-success" role="alert">
+                Une solution a déjà été apportée !
+            </div>
+    {% endif %}
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                     </div>
                     <div class="modal-body">
-                       Connectez-vous !
+                        <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a>!
 
                     </div>
                 </div>
@@ -102,14 +103,22 @@
 
     <ul>
         {% for postResponse in postResponses %}
+
         <div class="row">
+            <div class="col-md-1 ">
+            {% if postResponse.score >= 3 %}
+                <span class="glyphicon glyphicon-ok" ></span>
+            {% endif %}
+            </div>
             <div class="col-md-1 vote_buttons">
                 <div class="row">
+
                 {% if app.user != post.user and app.user != postResponse.user %}
                     <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
                 {% endif %}
                 </div>
                 <div class="row">
+
                 <span class="badge badge-info">
                     {{ postResponse.score }}
                 </span>
@@ -120,7 +129,7 @@
                 {% endif %}
                 </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-8">
 
                 <div class="panel panel-default card_answer">
                     {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
@@ -133,7 +142,7 @@
         {% endfor %}
     </ul>
 
-                <a href="{{ path('post_index') }}" class="btn btn-info">Back to the list</a>
+                <a href="{{ path('post_index') }}" >Back to the list</a>
 </div>
 
 

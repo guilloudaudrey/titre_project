@@ -44,6 +44,8 @@ services:
     AppBundle\EventListener\EvaluationListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
+
     AppBundle\EventListener\PostResponseVoteListener:
         tags:
             - { name: kernel.event_listener, event: event.event.post_response_vote, method: checkIfUserIsTheSameAsPostResponseUser }

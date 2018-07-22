@@ -52,6 +52,7 @@ class PostController extends Controller
 
         $user = $this->getUser();
         $post->setUser($user);
+        $post->setStatus('active');
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -80,10 +81,12 @@ class PostController extends Controller
         $postResponse = new Postresponse();
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
+        $postResponseByUser = null;
         
         $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
-        $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
-
+        if($this->getUser()) {
+            $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
+        }
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),

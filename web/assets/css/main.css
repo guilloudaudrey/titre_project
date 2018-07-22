@@ -21,7 +21,7 @@ body{
 
 .card-question {
     padding: 20px;
-    background: #d4e2f9 !important;
+    background: lightblue !important;
     border-color: #d4e2f9 !important;
     margin-bottom: 20px;
 }
@@ -88,13 +88,34 @@ text-align: center;
 .navbar-brand{
     font-family: 'Homemade Apple', cursive;
     font-size: 3em !important;
-    color: #5eb5e0 !important;
+    color: lightblue !important;
 
 }
 
-/*indes
+/*index
  */
 .glyphicon.glyphicon-question-sign{
     font-size: 50px;
+}
+
+.glyphicon.glyphicon-ok{
+    color: green !important;
+    font-size: 50px;
+}
+
+.resolved{
+    color: green;
+}
+
+.not_resolved{
+    color: red;
+}
+
+.recent_questions_title{
+    font-family: 'Homemade Apple', cursive;
+    text-align: right;
+    margin-bottom: 30px;
+    border-bottom: lightgray solid 2px;
+
 }
 

@@ -6,12 +6,17 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         {% endblock %}
 {% include 'menu.html.twig' %}
-    <div class="banner" style="background-image:url('{{asset('/images/banner/') }}')"></div>
+
     <div class="container">
     <div class="row index_create_post_button">
-    <a class="btn btn-info " href="{{ path('post_new') }}">Create a new post</a>
-    </div>
+        <div style="height: 100px; background-color: lightblue">
+    <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+        </div>
+        </div>
+            <h1 class="recent_questions_title">questions récentes</h1>
         <div class="row" >
+
+
         {% for post in posts %}
                 <div class="col-xs-6 col-md-3 ">
                     <span class="glyphicon glyphicon-question-sign"></span>
@@ -21,7 +26,14 @@
                     </a>
                    <span>{{ post.postResponses|length }}</span>
                     <span class="glyphicon glyphicon-comment"></span>
+                    {% if post.status == "active" %}
+                            <span class="not_resolved"> Non résolu</span>
+                        {% else %}
+                            <span class="resolved">Résolu</span>
+                     {% endif %}
                 </div>
+
+
 
         {% endfor %}
         </div>
