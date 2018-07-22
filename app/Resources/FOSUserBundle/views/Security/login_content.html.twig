@@ -1,26 +1,41 @@
+
 {% trans_default_domain 'FOSUserBundle' %}
 {% include 'menu.html.twig' %}
 {% if error %}
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<div class="container">
-    <h1>Connectez-vous !</h1>
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-        {% if csrf_token %}
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-        {% endif %}
+<div class="container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+    <div class="panel panel-info ">
+        <div class="panel-heading">
+            <h1 class="panel-title">Connectez-vous</h1>
+        </div>
+        <div class="panel-body">
+            <form action="{{ path("fos_user_security_check") }}" method="post">
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
 
-        <label for="username">{{ 'security.login.username'|trans }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
-
-        <label for="password">{{ 'security.login.password'|trans }}</label>
-        <input type="password" id="password" name="_password" required="required" autocomplete="current-password" />
-
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-
-        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-    </form>
-    <h2>Ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous !</a></h2>
+                <div class="input-group">
+                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+                </div>
+                <div class="input-group">
+                    <label for="password">{{ 'security.login.password'|trans }}</label>
+                    <input class="form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
+                </div>
+                <div class="input-group">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+                <div>
+                <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+        <p>Ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a></p>
+        </div>
+    </div>
 </div>
+
