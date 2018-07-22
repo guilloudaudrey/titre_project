@@ -22,6 +22,13 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    protected $city;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="avatar_filename", type="string", length=255, nullable=true)
      */
     protected $avatar_filename;
@@ -174,5 +181,29 @@ class User extends BaseUser
     public function getAvatarFilename()
     {
         return $this->avatar_filename;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

@@ -12,6 +12,7 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('avatar_filename', FileType::class);
+        $builder->add('city');
     }
 
     public function getParent()

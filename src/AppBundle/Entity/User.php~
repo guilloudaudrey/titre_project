@@ -22,9 +22,16 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="text", type="string", length=255)
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
      */
-    private $avatar_filename;
+    protected $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar_filename", type="string", length=255, nullable=true)
+     */
+    protected $avatar_filename;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="user")
@@ -151,4 +158,28 @@ class User extends BaseUser
     }
 
 
+
+    /**
+     * Set avatarFilename
+     *
+     * @param string $avatarFilename
+     *
+     * @return User
+     */
+    public function setAvatarFilename($avatarFilename)
+    {
+        $this->avatar_filename = $avatarFilename;
+
+        return $this;
+    }
+
+    /**
+     * Get avatarFilename
+     *
+     * @return string
+     */
+    public function getAvatarFilename()
+    {
+        return $this->avatar_filename;
+    }
 }

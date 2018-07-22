@@ -55,6 +55,11 @@ services:
         arguments: ['%kernel.root_dir%/../web/avatars/']
 
 
+    adresses_service:
+        class : AppBundle\Service\adresseUtils
+        public: true
+
+
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:

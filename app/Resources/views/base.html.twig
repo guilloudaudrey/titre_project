@@ -14,7 +14,14 @@
         {% block content %}{% endblock %}
         <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
 
+            function activatePlacesSearch() {
+                var input = document.getElementById('city_input');
+                var autocomplete = new google.maps.places.Autocomplete(input)
+            }
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
         {% block javascripts %}
         {% endblock %}
     </body>
