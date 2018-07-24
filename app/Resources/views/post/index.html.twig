@@ -13,24 +13,33 @@
         </div>
     </div>
         <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
-        <h1 class="recent_questions_title">questions récentes</h1>
+        <h1 class="recent_questions_title">demandes récentes</h1>
         <div class="row" >
 
 
         {% for post in posts %}
-                <div class="col-xs-6 col-md-3 ">
-                    <span class="glyphicon glyphicon-question-sign"></span>
-                    <a href="{{ path('post_show', { 'id': post.id }) }}" class="thumbnail">
-                        {{ post.text }}
-                        {% if post.createdAt %}déposé le {{ post.createdAt|date('Y-m-d H:i:s') }} par {{ post.user }}{% endif %}
-                    </a>
-                   <span>{{ post.postResponses|length }}</span>
-                    <span class="glyphicon glyphicon-comment"></span>
-                    {% if post.status == "active" %}
-                            <span class="not_resolved"> Non résolu</span>
-                        {% else %}
-                            <span class="resolved">Résolu</span>
-                     {% endif %}
+                <div class="col-xs-8 col-md-3 ">
+                    <div class="thumbnail post_thumbnail">
+                        <div>
+                        <span class="glyphicon glyphicon-question-sign"></span>
+                        </div>
+                        <a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.text[:50] }}...</a>
+                        <p class="date_and_user">{% if post.createdAt %}posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</br>
+                               par {{ post.user }}{% endif %}
+                            <p>
+
+                        <div class="panel-footer">
+                            <span>{{ post.postResponses|length }}</span>
+                            <span class="glyphicon glyphicon-comment"></span>
+                            {% if post.status == "active" %}
+                                <span class="not_resolved"> Non résolu</span>
+                            {% else %}
+                                <span class="resolved">Résolu</span>
+                            {% endif %}
+                        </p>
+                        </div>
+                    </div>
+
                 </div>
         {% endfor %}
         </div>

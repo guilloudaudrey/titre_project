@@ -32,6 +32,7 @@ body{
 
 .navbar{
     margin-bottom: 20px;
+    padding-top: 5px;
 
 }
 
@@ -95,7 +96,7 @@ text-align: center;
 /*index
  */
 .glyphicon.glyphicon-question-sign{
-    font-size: 50px;
+    font-size: 40px;
 }
 
 .glyphicon.glyphicon-ok{
@@ -103,12 +104,12 @@ text-align: center;
     font-size: 50px;
 }
 
-.resolved{
-    color: green;
-}
 
-.not_resolved{
-    color: red;
+.not_resolved, .resolved{
+    color: grey;
+    font-weight: bold;
+    text-align: right;
+    margin-left: 5px;
 }
 
 .recent_questions_title{
@@ -117,5 +118,15 @@ text-align: center;
     margin-bottom: 30px;
     border-bottom: lightgray solid 2px;
 
+}
+
+.date_and_user{
+    font-size: 0.8em;
+    text-align: right;
+    margin-top: 5px;
+}
+
+.thumbnail.post_thumbnail{
+    padding: 15px;
 }
 
