@@ -25,10 +25,6 @@
                         </li>
                         <li><a><span class="glyphicon glyphicon-bell"></span></a></li>
                     </ul>
-                    {% if 'ROLE_PROOFREADER' in app.user.roles %}
-                    {% else %}
-                        <a class="btn btn-info" href="{{ path('quiz_answer_new') }}">Devenir correcteur</a>
-                    {% endif %}
             {% else %}
                 {% if not app.user %}
                     <ul class="nav navbar-nav navbar-right">
