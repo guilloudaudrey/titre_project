@@ -1,5 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+    <small style="text-align: center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-right"><a href="{{ path('fos_user_security_login') }}">login existing account?</a></small>
 {% endblock fos_user_content %}
+

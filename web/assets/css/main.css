@@ -104,9 +104,15 @@ text-align: center;
     font-size: 50px;
 }
 
+.resolved{
+    color: forestgreen;
+    font-weight: bold;
+    text-align: right;
+    margin-left: 5px;
+}
 
-.not_resolved, .resolved{
-    color: grey;
+.not_resolved{
+    color: darkorange;
     font-weight: bold;
     text-align: right;
     margin-left: 5px;
@@ -127,7 +133,28 @@ text-align: center;
 }
 
 .thumbnail.post_thumbnail{
-    padding: 15px;
+
 }
+
+
+/*show
+ */
+
+.label.label-info{
+    font-size: 1.5em;
+    margin-top: 5px;
+}
+
+.voteup{
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.votedown{
+    margin-top: 10px;
+    font-size: 1.5em;
+}
+
+
 
 

@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Postresponse creation</h1>
-
-    {{ form_start(form) }}
+{% block content %}
+    {% include 'menu.html.twig' %}
+    <div class="container">
+        <h1>Réponse</h1>
+        {{ post.text }}
+        {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
-
+    </div>
     <ul>
         <li>
-            <a href="{{ path('postresponse_index') }}">Back to the list</a>
+            <a href="{{ path('postresponse_index') }}">Retour</a>
         </li>
     </ul>
 {% endblock %}

@@ -6,6 +6,7 @@ use AppBundle\Entity\PostResponse;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 
 
@@ -24,6 +25,12 @@ class PostResponseListener
 
         if ($entity instanceof PostResponse){
             $this->setCreatedAt($entity);
+
+            $post_user = $entity->getPost()->getUser();
+
+            if ($post_user == $entity->getUser()){
+                throw new Exception('');
+            }
         }
     }
 

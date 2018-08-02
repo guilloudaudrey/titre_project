@@ -18,8 +18,6 @@
                 <div style="display: flex" class="pull-right">
                     {% if postResponses|length < 1 %}
                         <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
-
-
                         {{ form_start(delete_form) }}
                         <input  class="btn btn-default btn-sm" type="submit" value="Supprimer">
                         {{ form_end(delete_form) }}
@@ -28,8 +26,6 @@
             </div>
             <div class="panel">
                 <div >Posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</div>
-
-
             </div>
         </div>
     </div>
@@ -40,102 +36,69 @@
     {% endif %}
 
 
-    {% if app.user %}
-    {% if app.user != post.user %}
-    {% if postResponseByUser is empty %}
+    {% if app.user  %}
         {% if post.status != "closed" %}
+        {% if app.user != post.user %}
+            {% if postResponseByUser is empty %}
 
-        <!-- Button trigger modal -->
+                    {% if 'ROLE_PROOFREADER' in app.user.roles %}
+                        <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+                    {% else %}
+                        <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
+                    {% endif %}
 
-            {% if 'ROLE_PROOFREADER' in app.user.roles %}
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-                    <span class="glyphicon glyphicon-pencil"></span> Poster une réponse
-                </button>
             {% else %}
-                <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
+                <div class="alert alert-warning" role="alert">Vous avez déjà posté une réponse.</div>
             {% endif %}
-
-
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}
-                        {{ form_widget(form) }}
-                        <input type="submit" value="Create" />
-                        {{ form_end(form) }}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
         {% endif %}
-    {% endif %}
-    {% endif %}
-    {% else %}
-    {% if post.status != "closed" %}
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">
-            <span class="glyphicon glyphicon-pencil"></span> Poster une réponse
-        </button>
-        {% else %}
-            <div class="alert alert-success" role="alert">
-                Une solution a déjà été apportée !
-            </div>
-    {% endif %}
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a> ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a>!
+            {% else %}
+                <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+        {% endif %}
 
-                    </div>
-                </div>
-            </div>
-        </div>
+    {% else %}
+        {% if post.status != "closed" %}
+            <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+        {% else %}
+            <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+        {% endif %}
     {% endif %}
 
     <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
     <hr class="my-4">
 
+
     <ul>
         {% for postResponse in postResponses %}
-
         <div class="row">
             <div class="col-md-1 ">
-            {% if postResponse.score >= 3 %}
-                <span class="glyphicon glyphicon-ok" ></span>
-            {% endif %}
+                {% if postResponse.score >= 3 %}
+                    <span class="glyphicon glyphicon-ok" ></span>
+                {% endif %}
             </div>
+
             <div class="col-md-1 vote_buttons">
-                <div class="row">
-
-                {% if app.user != post.user and app.user != postResponse.user %}
-                    <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                {% if post.status != "closed" %}
+                    <div class="row voteup">
+                        {% if app.user != post.user and app.user != postResponse.user %}
+                            <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                        {% endif %}
+                    </div>
                 {% endif %}
+                <div class="row ">
+                    <span class="label label-info">
+                        {{ postResponse.score }}
+                    </span>
                 </div>
-                <div class="row">
-
-                <span class="badge badge-info">
-                    {{ postResponse.score }}
-                </span>
-                </div>
-                <div class="row">
-                {% if app.user != post.user and app.user != postResponse.user %}
-                    <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                {% if post.status != "closed" %}
+                    <div class="row votedown">
+                        {% if app.user != post.user and app.user != postResponse.user %}
+                            <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                        {% endif %}
+                    </div>
                 {% endif %}
-                </div>
             </div>
-            <div class="col-md-8">
 
+            <div class="col-md-8">
                 <div class="panel panel-default card_answer">
                     {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
                 </div>
@@ -146,8 +109,7 @@
         </div>
         {% endfor %}
     </ul>
-
-                <a href="{{ path('post_index') }}" >Back to the list</a>
+    <a href="{{ path('post_index') }}" >Back to the list</a>
 </div>
 
 

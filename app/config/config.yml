@@ -85,4 +85,4 @@ fos_user:
         address: "%mailer_user%" # variable présente dans votre parameters.yml, doit être renseigné sinon ça génère un bug
         sender_name: "%mailer_user%" # idem
 
-    registration:
+

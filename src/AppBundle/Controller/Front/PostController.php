@@ -19,6 +19,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class PostController extends Controller
 {
+
+
     /**
      * Lists all post entities.
      *
@@ -157,4 +159,6 @@ class PostController extends Controller
             ->getForm()
         ;
     }
+
+
 }

@@ -34,9 +34,6 @@
                 <div>
                 <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                 </div>
-                {% if app.request.get('_route') != app.request.headers.get('referer') %}
-                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
-                {% endif %}
 
             </form>
         </div>

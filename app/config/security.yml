@@ -15,11 +15,14 @@ security:
 
     firewalls:
         main:
-            pattern: ^/
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 use_referer: true
+                always_use_default_target_path: false
+
+            pattern: ^/
+
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
 

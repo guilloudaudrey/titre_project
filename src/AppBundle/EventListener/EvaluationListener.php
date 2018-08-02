@@ -26,6 +26,7 @@ class EvaluationListener
             $postresponse_user = $entity->getPostResponse()->getUser();
 
             if ($postresponse_user == $entity->getUser()){
+
                throw new Exception('');
             }
         }

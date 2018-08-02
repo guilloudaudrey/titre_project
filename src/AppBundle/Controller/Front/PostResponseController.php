@@ -184,9 +184,12 @@ class PostResponseController extends Controller
             $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
             $form->handleRequest($request);
 
+
             $user = $this->getUser();
+            $post_user = $post->getUser();
             $postResponse->setUser($user);
 
+            if($user != $post_user) {
                 if ($form->isSubmitted() && $form->isValid()) {
                     $postResponse->setPost($post);
 
@@ -197,10 +200,14 @@ class PostResponseController extends Controller
                     return $this->redirectToRoute('post_show', array('id' => $post->getId()));
                 }
 
-            return $this->render('postresponse/new.html.twig', array(
-                'postResponse' => $postResponse,
-                'form' => $form->createView(),
-            ));
+                return $this->render('postresponse/new.html.twig', array(
+                    'postResponse' => $postResponse,
+                    'form' => $form->createView(),
+                    'post' => $post
+                ));
+            }else{
+                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+            }
 
     }
 
