@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {% block head %}
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% endblock %}
+    {% include 'menu.html.twig' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1 col-sm-1 col-xs-1">
+                <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
+                <div >{{ post.user }}</div>
+            </div>
+            <div class="col-md-11 col-sm-11 col-xs-11">
+                <div class="panel panel-default card-question">
+                    <p>{{ post.text }}</p>
+                    <div style="display: flex" class="pull-right">
+                        {% if postResponses|length < 1 %}
+                            <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
+                            {{ form_start(delete_form) }}
+                            <input  class="btn btn-default btn-sm" type="submit" value="Supprimer">
+                            {{ form_end(delete_form) }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="panel">
+                    <div >Posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</div>
+                </div>
+            </div>
+        </div>
+
+
+        {% if errorMessage  %}
+            <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> {{ errorMessage }}</div>
+        {% endif %}
+
+
+        {% if app.user  %}
+            {% if post.status != "closed" %}
+                {% if app.user != post.user %}
+                    {% if postResponseByUser is empty %}
+
+                        {% if 'ROLE_PROOFREADER' in app.user.roles %}
+                            <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+                        {% else %}
+                            <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
+                        {% endif %}
+
+                    {% else %}
+                        <div class="alert alert-warning" role="alert">Vous avez répondu à ce sujet.</div>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+            {% endif %}
+
+        {% else %}
+            {% if post.status != "closed" %}
+                <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+            {% else %}
+                <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+            {% endif %}
+        {% endif %}
+
+        <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
+        <hr class="my-4">
+
+
+        <ul>
+            {% for postResponse in postResponses %}
+                <div class="row">
+                    <div class="col-md-1 ">
+                        {% if postResponse.score >= 3 %}
+                            <span class="glyphicon glyphicon-ok" ></span>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-1 vote_buttons">
+                        {% if post.status != "closed" %}
+                            <div class="row voteup">
+                                {% if app.user != post.user and app.user != postResponse.user %}
+                                    <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        <div class="row ">
+                    <span class="label label-info">
+                        {{ postResponse.score }}
+                    </span>
+                        </div>
+                        {% if post.status != "closed" %}
+                            <div class="row votedown">
+                                {% if app.user != post.user and app.user != postResponse.user %}
+                                    <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="panel panel-default card_answer">
+                            {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~postResponse.user.getAvatarFilename()) }}')"></div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+        <a href="{{ path('post_index') }}" >Back to the list</a>
+    </div>
+
+
+{% endblock %}
+
+

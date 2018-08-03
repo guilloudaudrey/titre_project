@@ -9,4 +9,3 @@ fos_user:
 #     path: /register
 #     controller: AppBundle\Controller\RegistrationController::registerAction
 
-

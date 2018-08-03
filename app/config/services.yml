@@ -66,4 +66,3 @@ services:
             - { name: form.type, alias: app_user_registration }
 
 
-

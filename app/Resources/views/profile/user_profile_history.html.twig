@@ -1,0 +1,29 @@
+<h2>Historique</h2>
+<div class="row ">
+    <div class="col-lg-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Demandes</h3>
+            </div>
+            {% for post in user.posts%}
+                <div class="panel-body">
+                    <a href="{{ path('post_show', { 'id': post.id }) }}" >{{ post.text }}</a>
+                    {{ post.createdAt|date('Y-m-d') }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Réponses</h3>
+            </div>
+            {% for postResponse in user.postresponses%}
+                <div class="panel-body">
+                    <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text }}</a>
+                    {{ postResponse.createdAt|date('Y-m-d') }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

@@ -2,80 +2,42 @@
 {% extends 'base.html.twig' %}
 {% block content %}
 <div class="container">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            <h3 class="panel-title">{{ user.username }}</h3>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <div class="avatar_profile" style="background-image:url('{{asset('/avatars/'~user.getAvatarFilename()) }}')"></div> </div>
+    {% include 'profile/user_profile_infos.html.twig' %}
+    {% include 'profile/user_profile_history.html.twig' %}
 
-                <div class=" col-md-9 col-lg-9 ">
-                    <table class="table table-user-information">
-                        <tbody>
-                        <tr>
-                            <td>Date d'inscrition</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                        <tr>
-                            <td>Pays</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Ville</td>
-                            <td></td>
-                        </tr>
-
-                        <tr>
-                        <tr>
-                            <td>Nombre de demandes</td>
-                            <td>{{ user.getPosts|length }}</td>
-                        </tr>
-                        <tr>
-                            <td>Nombre de réponses</td>
-                            <td>{{ user.getPostResponses|length }}</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer">
-            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info">Modifier le profil</a>
-        </div>
-
-    </div>
-    <h2>Historique</h2>
+    <h2>Notifications</h2>
     <div class="row ">
         <div class="col-lg-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Demandes</h3>
+                    <h3 class="panel-title">Suivi de mes demandes</h3>
                 </div>
-                {% for post in user.posts%}
-                    <div class="panel-body">
-                        <a href="{{ path('post_show', { 'id': post.id }) }}" >{{ post.text }}</a>
-                        {{ post.createdAt|date('Y-m-d') }}
-                    </div>
-                {% endfor %}
+                <div class="panel-body">
+                    {% for post in user.getPosts %}
+                        {% for postresponse in post.getPostResponses  %}
+                                <p>Réponse de {{ postresponse.user }} :</p>
+                                <p><a href="{{ path('post_show', { 'id': post.id }) }}" >{{ postresponse.text }}</a></p>
+                                <p>{{ postresponse.createdAt|date('Y-m-d H:i:s') }}</p>
+                            {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Réponses</h3>
+                    <h3 class="panel-title">Suivi des évaluations reçues</h3>
                 </div>
-                {% for postResponse in user.postresponses%}
-                    <div class="panel-body">
-                        <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text }}</a>
-                        {{ postResponse.createdAt|date('Y-m-d') }}
-                    </div>
-                {% endfor %}
+                <div class="panel-body">
+                    {% for postresponse in user.getPostResponses %}
+                        {% for evaluation in postresponse.getEvaluations %}
+                            <p>
+                                <span><a href="{{ path('post_show', { 'id': postresponse.getPost.id }) }}" >{{ evaluation.value }} point</a></span>
+                                <span>{{ evaluation.createdAt|date('Y-m-d H:i:s') }}</span>
+                            </p>
+                            {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>

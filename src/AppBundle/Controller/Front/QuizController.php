@@ -2,14 +2,28 @@
 
 namespace AppBundle\Controller\Front;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class QuizController extends Controller {
+
+    private $eventDispatcher;
+    private $formFactory;
+    private $userManager;
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
 
 
     /**
@@ -22,15 +36,16 @@ class QuizController extends Controller {
      */
     public function createQuizAnswer(){
 
-
-
         return $this->render('quizanswer/new.html.twig');
     }
+
+
+
 
     /**
      * Give the proofreader role to the user.
      *
-     * @Route("/quizanswer/proof_reader_role", name="proof_reader_role")
+     * @Route("/proof_reader_role", name="proof_reader_role")
      */
     public function giveProofreaderRole(Request $request){
 
@@ -47,7 +62,10 @@ class QuizController extends Controller {
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->get('security.token_storage')->setToken($token);
 
-        return $this->redirectToRoute('post_index');
+
+return $this->redirectToRoute('post_index');
+
+
 
     }
 

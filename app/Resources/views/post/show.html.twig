@@ -35,33 +35,9 @@
         <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> {{ errorMessage }}</div>
     {% endif %}
 
-
-    {% if app.user  %}
-        {% if post.status != "closed" %}
-        {% if app.user != post.user %}
-            {% if postResponseByUser is empty %}
-
-                    {% if 'ROLE_PROOFREADER' in app.user.roles %}
-                        <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
-                    {% else %}
-                        <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
-                    {% endif %}
-
-            {% else %}
-                <div class="alert alert-warning" role="alert">Vous avez déjà posté une réponse.</div>
-            {% endif %}
-        {% endif %}
-            {% else %}
-                <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
-        {% endif %}
-
-    {% else %}
-        {% if post.status != "closed" %}
-            <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
-        {% else %}
+        {% if post.status == "closed" %}
             <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
         {% endif %}
-    {% endif %}
 
     <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
     <hr class="my-4">
@@ -77,25 +53,11 @@
             </div>
 
             <div class="col-md-1 vote_buttons">
-                {% if post.status != "closed" %}
-                    <div class="row voteup">
-                        {% if app.user != post.user and app.user != postResponse.user %}
-                            <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-                        {% endif %}
-                    </div>
-                {% endif %}
                 <div class="row ">
                     <span class="label label-info">
                         {{ postResponse.score }}
                     </span>
                 </div>
-                {% if post.status != "closed" %}
-                    <div class="row votedown">
-                        {% if app.user != post.user and app.user != postResponse.user %}
-                            <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
-                        {% endif %}
-                    </div>
-                {% endif %}
             </div>
 
             <div class="col-md-8">

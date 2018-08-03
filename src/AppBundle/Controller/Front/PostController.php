@@ -100,6 +100,36 @@ class PostController extends Controller
     }
 
     /**
+     * Finds and displays a post entity.
+     *
+     * @Route("/{id}", name="post_proofreader_show")
+     * @Method("GET")
+     * @Security("has_role('ROLE_PROOFREADER')")
+     */
+    public function showProofreaderAction(Post $post, $errormessage = null)
+    {
+        $deleteForm = $this->createDeleteForm($post);
+
+        $postResponse = new Postresponse();
+        $em = $this->getDoctrine()->getManager();
+        $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
+        $postResponseByUser = null;
+
+        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
+        if($this->getUser()) {
+            $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
+        }
+        return $this->render('post/show.html.twig', array(
+            'post' => $post,
+            'delete_form' => $deleteForm->createView(),
+            'form' => $form->createView(),
+            'postResponses' => $postResponses,
+            'errorMessage' => $errormessage,
+            'postResponseByUser' => $postResponseByUser
+        ));
+    }
+
+    /**
      * Displays a form to edit an existing post entity.
      *
      * @Route("/{id}/edit", name="post_edit")

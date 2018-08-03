@@ -206,7 +206,8 @@ class PostResponseController extends Controller
                     'post' => $post
                 ));
             }else{
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                throw new Exception('vous ne pouvez pas répondre à votre propre post');
+                //return $this->redirectToRoute('post_show', array('id' => $post->getId()));
             }
 
     }

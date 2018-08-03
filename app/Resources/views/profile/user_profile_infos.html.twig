@@ -1,0 +1,51 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ user.username }}</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-3 col-lg-3 " align="center"> <div class="avatar_profile" style="background-image:url('{{asset('/avatars/'~user.getAvatarFilename()) }}')"></div> </div>
+
+            <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                    <tbody>
+                    <tr>
+                        <td>Date d'inscrition</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Statut</td>
+                        <td>
+                            {% if 'ROLE_PROOFREADER' in user.roles %}
+                               utilisateur / correcteur
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ville</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                    <tr>
+                        <td>Nombre de demandes</td>
+                        <td>{{ user.getPosts|length }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nombre de réponses</td>
+                        <td>{{ user.getPostResponses|length }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info">Modifier le profil</a>
+    </div>
+</div>

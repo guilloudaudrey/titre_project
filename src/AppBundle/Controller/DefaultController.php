@@ -20,4 +20,5 @@ class DefaultController extends Controller
         return $this->redirectToRoute('post_index');
         
     }
+
 }
