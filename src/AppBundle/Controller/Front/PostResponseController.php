@@ -71,7 +71,7 @@ class PostResponseController extends Controller
                 $em->persist($evaluation);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // delete the evaluation if second up vote
@@ -81,7 +81,7 @@ class PostResponseController extends Controller
                 $em->remove($eval_object);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // edit the value of the evaluation from -1 to 1
@@ -91,13 +91,13 @@ class PostResponseController extends Controller
                 $em->persist($eval_object);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
         }catch (Exception $exception){
 
         }
 
-        return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+        return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
     }
 
     /**
@@ -133,7 +133,7 @@ class PostResponseController extends Controller
                 $em->persist($evaluation);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // delete the evaluation if second down vote
@@ -143,7 +143,7 @@ class PostResponseController extends Controller
                 $em->remove($eval_object);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // edit the value of the evaluation from 1 to -1
@@ -153,7 +153,7 @@ class PostResponseController extends Controller
                 $em->persist($eval_object);
                 $em->flush();
 
-                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
             } catch (Exception $exception){
 
@@ -167,7 +167,7 @@ class PostResponseController extends Controller
 
             }
 
-            return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+            return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
 
     }
 
@@ -197,7 +197,7 @@ class PostResponseController extends Controller
                     $em->persist($postResponse);
                     $em->flush();
 
-                    return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
                 }
 
                 return $this->render('postresponse/new.html.twig', array(

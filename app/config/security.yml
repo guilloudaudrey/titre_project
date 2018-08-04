@@ -19,7 +19,7 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
                 use_referer: true
-                always_use_default_target_path: false
+
 
             pattern: ^/
 

@@ -7,54 +7,50 @@
         {% endblock %}
 {% include 'menu.html.twig' %}
 
-    <div class="container">
-    <div class="row index_create_post_button">
-        <div style="height: 100px; background-color: lightblue">
+    <div class="container-fluid">
+    <div class="row index_create_post_button" >
+        <div style="height: 200px;  background-color: lightgray; ">
         </div>
     </div>
-        <div class="button_new_post">
+        <div class="container">
+        <div class="row buttons_action">
             <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+            {% if app.user %}
+                {% if 'ROLE_PROOFREADER' in app.user.roles %}
+                {% else %}
+                    <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
+                {% endif %}
+            {% endif %}
         </div>
-   {% if app.user %}
-        {% if 'ROLE_PROOFREADER' in app.user.roles %}
-        {% else %}
-            <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
-        {% endif %}
-        {% endif %}
-
         <div class="row">
-            <div class="form-group col-md-4 pull-right">
+            <div class="form-group col-md-4 pull-right modal_post">
                 <select class="form-control">
-                    <option value="">Du plus récent au plus ancien</option>
-                    <option value="">Du plus ancien au plus récent</option>
-                    <option value="">Sujets non résolus</option>
-                    <option value="">Sujets résolus</option>
+                    <option>Du plus récent au plus ancien</option>
+                    <option>Du plus ancien au plus récent</option>
+                    <option>Sujets non résolus</option>
+                    <option>Sujets résolus</option>
                 </select>
             </div>
         </div>
 
         <div class="row" >
+
             <hr>
-            {% for post in posts|sort|reverse[:8] %}
+            {% for post in posts|sort|reverse %}
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 ">
                     <div class="thumbnail post_thumbnail">
                         <span class="glyphicon glyphicon-question-sign"></span>
 
                         {% if app.user %}
                         {% if 'ROLE_PROOFREADER' in app.user.roles %}
-
-                            <a href="{{ path('post_show', { 'id': post.id }) }}">{{ post.text[:50] }}...</a>
+                            <a href="{{ path('post_proofreader_show', { 'id': post.id }) }}">{{ post.text[:50] }}...</a>
                             {% else %}
-
                                 <a href="" data-toggle="modal" data-target="#myModal{{ loop.index }}">{{ post.text[:50] }}...</a>
                         {% endif %}
                         {% else %}
 
                             <a href="" data-toggle="modal" data-target="#myModal{{ loop.index }}" value="{{ post.id }}">{{ post.text[:50] }}...</a>
-
-
                         {% endif %}
-
                         <p class="date_and_user">{% if post.createdAt %}posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</br>par {{ post.user }}{% endif %}
 
                         <div class="panel-footer">
@@ -76,35 +72,26 @@
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content col-lg-5 col-lg-offset-3">
 
-                    <div class="modal-header">
+                    <!--  <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
-                    </div>
+                    </div>-->
 
                     <div class="modal-body">
-                        <a href="{{ path('post_show', { 'id': post.id }) }}">Consulter</a>
-                        <a href="#" class="btn btn-info">Some text in the modal.</a>
+                        <a href="{{ path('post_show', { 'id': post.id }) }}" class="btn btn-default">Consulter</a>
+                        <a href="{{ path('post_proofreader_show', { 'id': post.id }) }}" class="btn btn-info">Contribuer</a>
                     </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-
                 </div>
             </div>
         </div>
-
-
-
-
             {% endfor %}
+            <div class="text-center">{{ knp_pagination_render(posts) }}</div>
+        </div>
         </div>
     </div>
 
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
 
 
 

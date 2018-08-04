@@ -27,11 +27,18 @@ class PostController extends Controller
      * @Route("/", name="post_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('AppBundle:Post')->findAll();
+        $postslist = $em->getRepository('AppBundle:Post')->findAll();
+
+
+        $posts  = $this->get('knp_paginator')->paginate(
+            $postslist,
+            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
+            8/*nbre d'éléments par page*/
+        );
 
         return $this->render('post/index.html.twig', array(
             'posts' => $posts,
@@ -102,7 +109,7 @@ class PostController extends Controller
     /**
      * Finds and displays a post entity.
      *
-     * @Route("/{id}", name="post_proofreader_show")
+     * @Route("/proofreader/{id}", name="post_proofreader_show")
      * @Method("GET")
      * @Security("has_role('ROLE_PROOFREADER')")
      */
@@ -119,7 +126,7 @@ class PostController extends Controller
         if($this->getUser()) {
             $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
         }
-        return $this->render('post/show.html.twig', array(
+        return $this->render('post/show_proofreader.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),

@@ -39,7 +39,16 @@ class QuizController extends Controller {
         return $this->render('quizanswer/new.html.twig');
     }
 
+    private function getTargetUrlFromSession(SessionInterface $session)
+    {
+        $key = sprintf('_security.%s.target_path', $this->tokenStorage->getToken()->getProviderKey());
 
+        if ($session->has($key)) {
+            return $session->get($key);
+        }
+
+        return null;
+    }
 
 
     /**
@@ -63,7 +72,13 @@ class QuizController extends Controller {
         $this->get('security.token_storage')->setToken($token);
 
 
-return $this->redirectToRoute('post_index');
+
+        if($this->getTargetUrlFromSession($request->getSession()) != null) {
+            return $this->redirect($this->getTargetUrlFromSession($request->getSession()));
+        }else{
+            //return $this->redirectToRoute('post_index');
+            return $this->redirect($request->headers->get('referer'));
+        }
 
 
 
