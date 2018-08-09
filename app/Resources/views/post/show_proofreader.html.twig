@@ -7,7 +7,7 @@
     {% endblock %}
     {% include 'menu.html.twig' %}
     <div class="container">
-        <div class="row">
+        <div class="row user_question">
             <div class="col-md-1 col-sm-1 col-xs-1">
                 <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
                 <div >{{ post.user }}</div>

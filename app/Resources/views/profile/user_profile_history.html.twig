@@ -5,12 +5,16 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Demandes</h3>
             </div>
-            {% for post in user.posts%}
+            {% for post in posts%}
                 <div class="panel-body">
-                    <a href="{{ path('post_show', { 'id': post.id }) }}" >{{ post.text }}</a>
+                    <a href="{{ path('post_show', { 'id': post.id }) }}" >{{ post.text[:50] }}...</a>
                     {{ post.createdAt|date('Y-m-d') }}
+
                 </div>
             {% endfor %}
+            <div class="row">
+                <div class="text-center">{{ knp_pagination_render(posts) }}</div>
+            </div>
         </div>
     </div>
     <div class="col-lg-6">
@@ -18,12 +22,15 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Réponses</h3>
             </div>
-            {% for postResponse in user.postresponses%}
+            {% for postResponse in postResponses%}
                 <div class="panel-body">
-                    <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text }}</a>
+                    <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text[:50] }}...</a>
                     {{ postResponse.createdAt|date('Y-m-d') }}
                 </div>
             {% endfor %}
+            <div class="row">
+                <div class="text-center">{{ knp_pagination_render(posts) }}</div>
+            </div>
         </div>
     </div>
 </div>

@@ -1,49 +1,13 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% extends 'base.html.twig' %}
 {% block content %}
-<div class="container">
+<div class="container profile_container">
     {% include 'profile/user_profile_infos.html.twig' %}
     {% include 'profile/user_profile_history.html.twig' %}
-
-    <h2>Notifications</h2>
-    <div class="row ">
-        <div class="col-lg-6">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Suivi de mes demandes</h3>
-                </div>
-                <div class="panel-body">
-                    {% for post in user.getPosts %}
-                        {% for postresponse in post.getPostResponses  %}
-                                <p>Réponse de {{ postresponse.user }} :</p>
-                                <p><a href="{{ path('post_show', { 'id': post.id }) }}" >{{ postresponse.text }}</a></p>
-                                <p>{{ postresponse.createdAt|date('Y-m-d H:i:s') }}</p>
-                            {% endfor %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Suivi des évaluations reçues</h3>
-                </div>
-                <div class="panel-body">
-                    {% for postresponse in user.getPostResponses %}
-                        {% for evaluation in postresponse.getEvaluations %}
-                            <p>
-                                <span><a href="{{ path('post_show', { 'id': postresponse.getPost.id }) }}" >{{ evaluation.value }} point</a></span>
-                                <span>{{ evaluation.createdAt|date('Y-m-d H:i:s') }}</span>
-                            </p>
-                            {% endfor %}
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
+    <div id="chart_div"></div>
 
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 {% endblock %}

@@ -41,6 +41,7 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+            - { name: kernel.event.listener, event: post_response_vote, method: beforeForm }
     AppBundle\EventListener\EvaluationListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
@@ -55,14 +56,12 @@ services:
         arguments: ['%kernel.root_dir%/../web/avatars/']
 
 
-    adresses_service:
-        class : AppBundle\Service\adresseUtils
-        public: true
-
-
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
 
+    AppBundle\Controller\ProfileController:
+        arguments:
+            $formFactory: '@fos_user.profile.form.factory'
 

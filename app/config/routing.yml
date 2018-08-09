@@ -9,3 +9,6 @@ fos_user:
 #     path: /register
 #     controller: AppBundle\Controller\RegistrationController::registerAction
 
+fos_user_profile_show:
+    path: /profile
+    controller: AppBundle\Controller\ProfileController::showAction

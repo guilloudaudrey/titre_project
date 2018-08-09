@@ -14,7 +14,7 @@
     </div>
         <div class="container">
         <div class="row buttons_action">
-            <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+            <a class="btn btn-info btn-lg " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
             {% if app.user %}
                 {% if 'ROLE_PROOFREADER' in app.user.roles %}
                 {% else %}
@@ -58,9 +58,9 @@
                                 <span>{{ post.postResponses|length }}</span>
                                 <span class="glyphicon glyphicon-comment"></span>
                             {% if post.status == "active" %}
-                                <span class="not_resolved"> Non résolu</span>
+                            <span class="label label-default"> Non résolu</span>
                             {% else %}
-                                <span class="resolved">Résolu</span>
+                                <span class="label label-info">Résolu</span>
                             {% endif %}
                             </p>
                         </div>
@@ -86,9 +86,11 @@
             </div>
         </div>
             {% endfor %}
+        </div>
+        <div class="row">
             <div class="text-center">{{ knp_pagination_render(posts) }}</div>
         </div>
-        </div>
+    </div>
     </div>
 
 

@@ -5,6 +5,8 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\PostResponse;
 use AppBundle\Event\PostResponseVoteEvent;
+use AppBundle\Exception\PostClosedException;
+use AppBundle\Exception\SamePostUserEvalUserException;
 use Doctrine\Common\EventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -55,8 +57,6 @@ class PostResponseController extends Controller
         $post = $postResponse->getPost();
 
         $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
-
-
         try {
 
             if ($eval == null) {
@@ -94,8 +94,17 @@ class PostResponseController extends Controller
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
         }catch (Exception $exception){
-
+            throw $exception;
         }
+        catch (PostClosedException $exception)
+        {
+            throw $exception;
+        }
+        catch (SamePostUserEvalUserException $exception)
+        {
+            throw $exception;
+        }
+
 
         return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
     }
@@ -154,17 +163,33 @@ class PostResponseController extends Controller
                 $em->flush();
 
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-            }
+                }
             } catch (Exception $exception){
 
                 $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
-                'post' => $post,
-                'errormessage' => "Vous ne pouvez pas vous auto-évaluer !"
+                    'post' => $post,
+                    'errormessage' => "Vous ne pouvez pas vous auto-évaluer."
                 ));
 
                 return $response;
+            }
 
+            catch (PostClosedException $exception)
+            {
+                $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
+                    'post' => $post,
+                    'errormessage' => "Vous ne pouvez plus évaluer ce post."));
 
+                return $response;
+            }
+
+            catch (SamePostUserEvalUserException $exception)
+            {
+                $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
+                    'post' => $post,
+                    'errormessage' => "Vous ne pouvez pas évaluer une réponse à votre question."));
+
+                return $response;
             }
 
             return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
@@ -180,36 +205,42 @@ class PostResponseController extends Controller
      */
     public function newAction(Request $request, Post $post)
     {
+
             $postResponse = new Postresponse();
             $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
             $form->handleRequest($request);
 
-
             $user = $this->getUser();
             $post_user = $post->getUser();
             $postResponse->setUser($user);
+            $em = $this->getDoctrine()->getManager();
+            $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
 
-            if($user != $post_user) {
-                if ($form->isSubmitted() && $form->isValid()) {
-                    $postResponse->setPost($post);
+            if(($user != $post_user) && ($post->getStatus() != 'closed') && ($postResponseByUser < 1)) {
+                try{
+                    if ($form->isSubmitted() && $form->isValid()) {
+                        $postResponse->setPost($post);
 
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($postResponse);
-                    $em->flush();
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($postResponse);
+                        $em->flush();
 
-                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+                        return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+                    }
+                }catch (PostClosedException $exception){
+                    throw $exception;
                 }
-
                 return $this->render('postresponse/new.html.twig', array(
                     'postResponse' => $postResponse,
                     'form' => $form->createView(),
                     'post' => $post
                 ));
+
+
             }else{
-                throw new Exception('vous ne pouvez pas répondre à votre propre post');
+                throw new Exception('Action non autorisée');
                 //return $this->redirectToRoute('post_show', array('id' => $post->getId()));
             }
-
     }
 
     /**
@@ -299,6 +330,7 @@ class PostResponseController extends Controller
      */
     private function createDeleteForm(PostResponse $postResponse)
     {
+
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('postresponse_delete', array('id' => $postResponse->getId())))
             ->setMethod('DELETE')

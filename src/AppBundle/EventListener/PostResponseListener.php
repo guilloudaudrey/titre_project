@@ -5,8 +5,10 @@ use AppBundle\AppBundle;
 use AppBundle\Entity\PostResponse;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use AppBundle\Exception\PostClosedException;
 
 
 
@@ -29,7 +31,11 @@ class PostResponseListener
             $post_user = $entity->getPost()->getUser();
 
             if ($post_user == $entity->getUser()){
-                throw new Exception('');
+                throw new Exception('Vous ne pouvez pas répondre à votre propre message');
+            }
+
+            if($entity->getPost()->getStatus() == 'closed'){
+                throw new PostClosedException('vous ne pouvez plus répondre cette demande');
             }
         }
     }

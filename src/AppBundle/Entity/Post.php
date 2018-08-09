@@ -241,6 +241,8 @@ class Post
      */
     public function getPostResponses()
     {
+
+
         return $this->post_responses;
     }
 
