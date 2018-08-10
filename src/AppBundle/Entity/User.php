@@ -206,4 +206,8 @@ class User extends BaseUser
     {
         return $this->city;
     }
+
+    public function getFirstLetterOfUserName(){
+        return $this->username[0];
+    }
 }

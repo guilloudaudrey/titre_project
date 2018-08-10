@@ -47,19 +47,51 @@ body{
     height: 200px;
     width: 200px;
     border-radius: 100%;
-border: lightgrey 2px solid;
+    border: lightgrey 1px solid;
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    background-color: white;
+    font-size: 10em;
+    color: white;
+}
+
+.avatar_profile_letter{
+    height: 200px;
+    width: 200px;
+    border-radius: 100%;
+    border: yellow 2px solid;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    background-color: yellow;
+    font-size: 10em;
+    color: white;
+}
+
+.avatar_menu-letter{
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: yellow 1px solid;
+    background-repeat: no-repeat;
+    background-color: yellow;
+    background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 2em;
+    color: #222;
 }
 
 .avatar_menu{
     height: 40px;
     width: 40px;
     border-radius: 100%;
-    border: gray 1px solid;
     background-repeat: no-repeat;
     background-color: white;
     background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 2em;
+    color: white;
 }
 
 .avatar_post_author{

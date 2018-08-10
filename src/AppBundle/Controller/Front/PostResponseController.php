@@ -216,7 +216,7 @@ class PostResponseController extends Controller
             $em = $this->getDoctrine()->getManager();
             $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
 
-            if(($user != $post_user) && ($post->getStatus() != 'closed') && ($postResponseByUser < 1)) {
+            if(($user != $post_user) && ($post->getStatus() != 'closed') && (count($postResponseByUser) < 1)) {
                 try{
                     if ($form->isSubmitted() && $form->isValid()) {
                         $postResponse->setPost($post);

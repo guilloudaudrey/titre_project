@@ -28,18 +28,21 @@ class UserListener{
 
         if ($entity instanceof BaseUser){
 
+
             $file = $entity->getAvatarFilename();
 
-            $fileName = $entity->getId().'.'.$file->guessExtension();
+            if($file != null) {
+                $fileName = $entity->getId() . '.' . $file->guessExtension();
 
-            $file->move(
-                $this->targetDirectory,
-                $fileName
-            );
+                $file->move(
+                    $this->targetDirectory,
+                    $fileName
+                );
 
-            $entity->setAvatarFilename($fileName);
-            $this->em->persist($entity);
-            $this->em->flush();
+                $entity->setAvatarFilename($fileName);
+                $this->em->persist($entity);
+                $this->em->flush();
+            }
         }
     }
 }
