@@ -17,6 +17,8 @@ class UserListener{
     {
         $this->targetDirectory = $targetDirectory;
     }
+
+
     /**
      * On post persist entity User
      * @param PostPersistEventArgs $args
@@ -28,6 +30,7 @@ class UserListener{
 
         if ($entity instanceof BaseUser){
 
+            $this->setCreatedAt($entity);
 
             $file = $entity->getAvatarFilename();
 
@@ -44,5 +47,10 @@ class UserListener{
                 $this->em->flush();
             }
         }
+    }
+
+    public function setCreatedAt(BaseUser $user){
+
+        $user->setCreatedAt(new \DateTime());
     }
 }

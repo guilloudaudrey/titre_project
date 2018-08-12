@@ -48,6 +48,12 @@ class User extends BaseUser
      */
     private $evaluations;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
 
 
     public function __construct()
@@ -181,5 +187,33 @@ class User extends BaseUser
     public function getAvatarFilename()
     {
         return $this->avatar_filename;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    public function getFirstLetterOfUserName(){
+        return $this->username[0];
     }
 }

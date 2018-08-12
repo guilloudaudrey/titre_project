@@ -75,6 +75,7 @@ class QuizController extends Controller {
 
         if($this->getTargetUrlFromSession($request->getSession()) != null) {
             return $this->redirect($this->getTargetUrlFromSession($request->getSession()));
+
         }else{
             //return $this->redirectToRoute('post_index');
             return $this->redirect($request->headers->get('referer'));

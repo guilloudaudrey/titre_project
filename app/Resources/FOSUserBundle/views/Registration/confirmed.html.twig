@@ -3,8 +3,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+    {% include 'menu.html.twig' %}
+
+    <div class="container register-container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+        <div class="panel panel-info ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Confirmation d'inscription</h3>
+            </div>
+                <div class="panel-body">
+                    <p>Félicitations {{user.username}}, votre compte est maintenant activé !</p>
+                    {% if targetUrl %}
+
+                        <p><a class="btn btn-info" href="{{ targetUrl }}">Continuer</a></p>
+
+                    {% else %}
+
+                        <p><a class="btn btn-info" href="{{ path('post_index') }}" >Continuer</a></p>
+
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+
+
+                    {% endblock fos_user_content %}

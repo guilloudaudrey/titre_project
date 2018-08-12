@@ -15,12 +15,12 @@
         <div class="container">
         <div class="row buttons_action">
             <a class="btn btn-info btn-lg " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
-            {% if app.user %}
+            <!--{% if app.user %}
                 {% if 'ROLE_PROOFREADER' in app.user.roles %}
                 {% else %}
                     <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
                 {% endif %}
-            {% endif %}
+            {% endif %}-->
         </div>
         <div class="row">
             <div class="form-group col-md-4 pull-right modal_post">

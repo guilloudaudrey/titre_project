@@ -19,7 +19,7 @@
                     <tbody>
                     <tr>
                         <td>Date d'inscrition</td>
-                        <td>{{ user.email }}</td>
+                        <td>{{ user.createdAt|date('Y-m-d') }}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <td>Ville</td>
-                        <td></td>
+                        <td>{{ user.city }}</td>
                     </tr>
 
                     <tr>
@@ -54,7 +54,9 @@
         </div>
     </div>
     <div class="panel-footer">
-        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info">Modifier le profil</a>
+        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info" href="{{ path('fos_user_profile_edit') }}">Modifier les infos du profil</a>
+        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-info" href="{{ path('fos_user_change_password') }}">Changer le mot de passe</a>
+
     </div>
 
 
