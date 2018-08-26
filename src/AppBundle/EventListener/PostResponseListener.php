@@ -63,7 +63,7 @@ class PostResponseListener
         $postResponse->setCreatedAt(new \DateTime());
     }
 
-    public function setUpdatedAt(Post $postResponse){
+    public function setUpdatedAt(PostResponse $postResponse){
 
         $postResponse->setUpdatedAt(new \DateTime());
     }

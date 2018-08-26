@@ -152,4 +152,8 @@ class Evaluation
     {
         return $this->post_response;
     }
+
+    public function __toString() {
+        return 'eval';
+    }
 }

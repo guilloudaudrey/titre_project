@@ -12,3 +12,8 @@ fos_user:
 fos_user_profile_show:
     path: /profile
     controller: AppBundle\Controller\ProfileController::showAction
+
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type:     annotation
+    prefix:   /admin

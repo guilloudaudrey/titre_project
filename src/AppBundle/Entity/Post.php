@@ -69,7 +69,7 @@ class Post
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post", cascade={"remove"})
      */
     private $post_responses;
 
@@ -292,5 +292,9 @@ class Post
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function __toString() {
+        return $this->text;
     }
 }

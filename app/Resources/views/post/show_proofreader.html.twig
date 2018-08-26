@@ -18,9 +18,32 @@
                     <div style="display: flex" class="pull-right">
                         {% if postResponses|length < 1 %}
                             <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
-                            {{ form_start(delete_form) }}
-                            <input  class="btn btn-default btn-sm" type="submit" value="Supprimer">
-                            {{ form_end(delete_form) }}
+                            <!-- Trigger the modal with a button -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
+
+                            <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Suppression</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Confirmez-vous la suppression ?</p>
+                                        </div>
+                                        <div class="modal-footer footer_delete">
+                                            {{ form_start(delete_form) }}
+                                            <input  class="btn btn-default" type="submit" value="Oui">
+                                            {{ form_end(delete_form) }}
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -75,24 +98,22 @@
                             <span class="glyphicon glyphicon-ok" ></span>
                         {% endif %}
                     </div>
-
                     <div class="col-md-1 vote_buttons">
+
                         {% if post.status != "closed" %}
-                            <div class="row voteup">
+                            <div class=" voteup">
                                 {% if app.user != post.user and app.user != postResponse.user %}
-                                    <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                                    <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span id="plus{{ postResponse.getId() }}" class="glyphicon glyphicon-plus blue-none"></span></a>
                                 {% endif %}
                             </div>
                         {% endif %}
-                        <div class="row ">
-                    <span class="label label-info">
-                        {{ postResponse.score }}
-                    </span>
-                        </div>
+                            <span class="label label-info">
+                                {{ postResponse.score }}
+                            </span>
                         {% if post.status != "closed" %}
-                            <div class="row votedown">
+                            <div class=" votedown">
                                 {% if app.user != post.user and app.user != postResponse.user %}
-                                    <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+                                    <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span id="minus{{ postResponse.getId() }}" class="glyphicon glyphicon-minus"></span></a>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -109,8 +130,30 @@
                 </div>
             {% endfor %}
         </ul>
-        <a href="{{ path('post_index') }}" >Back to the list</a>
+        <a href="{{ path('homepage') }}" >Back to the list</a>
     </div>
+
+    <script>
+        {% for postResponse in postResponses %}
+            {% for evaluation in app.user.getEvaluations() %}
+                {% if evaluation.getValue == 1 %}
+                    {% if evaluation.getPostResponse().getId() == postResponse.getId() %}
+                        $(document).ready(function() {
+                                $('#plus{{ postResponse.getId }}').css('cssText', 'color: lightblue !important');
+                        })
+
+                    {% endif %}
+                {% else %}
+                    {% if evaluation.getPostResponse().getId() == postResponse.getId() %}
+                    $(document).ready(function() {
+                        $('#minus{{ postResponse.getId }}').css('cssText', 'color: lightblue !important');
+                    })
+
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </script>
 
 
 {% endblock %}

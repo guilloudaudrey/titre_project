@@ -1,0 +1,62 @@
+<h2>Statistiques</h2>
+<div class="charts col-lg-12">
+        <div class="col-lg-6 col-xs-12 col-sm-12" id="chart_div"></div>
+        <div class="col-lg-6 col-xs-12 col-sm-12" id="chart2_div"></div>
+</div>
+
+<script>
+
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+
+
+    function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            ['Demandes', {{ user.getPosts|length }}],
+            ['Réponses', {{ user.getPostResponses|length }}],
+        ]);
+
+        var data2 = new google.visualization.DataTable();
+        data2.addColumn('string', 'Topping');
+        data2.addColumn('number', 'Slices');
+        data2.addRows([
+            ['Demandes closes', {{ (user.getPosts|length) - (postsActive|length) }}],
+            ['Demandes en cours', {{ postsActive|length }}],
+        ]);
+
+
+        // Set chart options
+        var options = {
+            'title': 'Mes demandes / Mes réponses',
+            'width': 300,
+            'height': 300,
+            'colors': ['#8fcad8', '#318fa5', '#e8effc']
+        };
+
+        var options2 = {
+            'title': 'Demandes en cours / Demandes closes',
+            'width': 300,
+            'height': 300,
+            'colors': ['#8fcad8', '#318fa5', '#e8effc']
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart2_div'));
+        chart2.draw(data2, options2);
+    }
+
+</script>

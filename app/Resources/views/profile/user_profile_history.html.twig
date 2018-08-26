@@ -5,6 +5,11 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Demandes</h3>
             </div>
+            {% if posts is empty %}
+            <div class="panel-body">
+                <p>Aucune demande</p>
+            </div>
+            {% else %}
             {% for post in posts%}
                 <div class="panel-body">
                     <a href="{{ path('post_show', { 'id': post.id }) }}" >{{ post.text[:50] }}...</a>
@@ -12,6 +17,7 @@
 
                 </div>
             {% endfor %}
+            {% endif %}
             <div class="row">
                 <div class="text-center">{{ knp_pagination_render(posts) }}</div>
             </div>
@@ -22,12 +28,19 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Réponses</h3>
             </div>
+            {% if postResponses is empty %}
+                <div class="panel-body">
+                    <p>Aucune réponse</p>
+                </div>
+                {% else %}
+
             {% for postResponse in postResponses%}
                 <div class="panel-body">
                     <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text[:50] }}...</a>
                     {{ postResponse.createdAt|date('Y-m-d') }}
                 </div>
             {% endfor %}
+            {% endif %}
             <div class="row">
                 <div class="text-center">{{ knp_pagination_render(posts) }}</div>
             </div>

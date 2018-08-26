@@ -102,3 +102,41 @@ knp_paginator:
         pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
+
+
+easy_admin:
+    list:
+        actions: ['edit', '-delete']
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            list:
+                title: "Utilisateurs"
+            form:
+                fields:
+                    - username
+                    - email
+                    - roles
+                    - city
+                    - avatar_filename
+        Post:
+            class: AppBundle\Entity\Post
+            list:
+                title: "Posts"
+            form:
+                fields:
+                    - text
+                    - status
+                    - comment
+                    - user
+                    - category
+        PostResponse:
+            class: AppBundle\Entity\PostResponse
+            list:
+                title: "Réponses"
+            form:
+                fields:
+                    - text
+                    - comment
+                    - user
+                    - post

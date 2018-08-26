@@ -15,15 +15,13 @@
     <body>
 
         {% block content %}
-
-
         {% endblock %}
 
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
             <script src = "https://www.gstatic.com/charts/loader.js"></script>
-            <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+            <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
 
             <script>
 
@@ -32,7 +30,7 @@
                     var autocomplete = new google.maps.places.Autocomplete(input)
                 }
             </script>
-            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
+           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
 
         {% endblock %}
     </body>

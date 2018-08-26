@@ -9,28 +9,19 @@
 
     <div class="container-fluid">
     <div class="row index_create_post_button" >
-        <div style="height: 200px;  background-color: lightgray; ">
+        <div style="height: 280px;  background-color: darkcyan;">
+            <p>Une hésitation sur la bonne orthographe de votre phrase ? <br>Demandez à la communauté Typo de vous relire !</p>
         </div>
     </div>
         <div class="container">
         <div class="row buttons_action">
-            <a class="btn btn-info btn-lg " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+            <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
             <!--{% if app.user %}
                 {% if 'ROLE_PROOFREADER' in app.user.roles %}
                 {% else %}
                     <a class="btn btn-default" href="{{ path('quiz_answer_new') }}"><span class="glyphicon glyphicon-edit"></span> Devenir correcteur</a>
                 {% endif %}
             {% endif %}-->
-        </div>
-        <div class="row">
-            <div class="form-group col-md-4 pull-right modal_post">
-                <select class="form-control">
-                    <option>Du plus récent au plus ancien</option>
-                    <option>Du plus ancien au plus récent</option>
-                    <option>Sujets non résolus</option>
-                    <option>Sujets résolus</option>
-                </select>
-            </div>
         </div>
 
         <div class="row" >
@@ -45,11 +36,11 @@
                         {% if 'ROLE_PROOFREADER' in app.user.roles %}
                             <a href="{{ path('post_proofreader_show', { 'id': post.id }) }}">{{ post.text[:50] }}...</a>
                             {% else %}
-                                <a href="" data-toggle="modal" data-target="#myModal{{ loop.index }}">{{ post.text[:50] }}...</a>
+                                <a class="post_link" href="" data-toggle="modal" data-target="#myModal{{ loop.index }}">{{ post.text[:50] }}...</a>
                         {% endif %}
                         {% else %}
 
-                            <a href="" data-toggle="modal" data-target="#myModal{{ loop.index }}" value="{{ post.id }}">{{ post.text[:50] }}...</a>
+                            <a class="post_link" href="" data-toggle="modal" data-target="#myModal{{ loop.index }}" value="{{ post.id }}">{{ post.text[:50] }}...</a>
                         {% endif %}
                         <p class="date_and_user">{% if post.createdAt %}posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</br>par {{ post.user }}{% endif %}
 

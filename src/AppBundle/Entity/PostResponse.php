@@ -55,7 +55,7 @@ class PostResponse
     private $post;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="post_response")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="post_response", cascade={"remove"})
      */
     private $evaluations;
 
@@ -269,5 +269,9 @@ class PostResponse
     public function getComment()
     {
         return $this->comment;
+    }
+
+    public function __toString() {
+        return $this->text;
     }
 }

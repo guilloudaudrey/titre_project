@@ -3,6 +3,7 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Evaluation;
 use AppBundle\Exception\PostClosedException;
+use AppBundle\Exception\SamePostResponseUserEvalUserException;
 use AppBundle\Exception\SamePostUserEvalUserException;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -29,9 +30,8 @@ class EvaluationListener
             $postresponse_user = $entity->getPostResponse()->getUser();
             $post_user = $entity->getPostResponse()->getPost()->getUser();
 
-
             if ($postresponse_user == $entity->getUser()){
-               throw new Exception('vous ne pouvez pas vous auto-évaluer');
+               throw new SamePostResponseUserEvalUserException('vous ne pouvez pas vous auto-évaluer');
             }
 
             if ($post_user == $entity->getUser()){

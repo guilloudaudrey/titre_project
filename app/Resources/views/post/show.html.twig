@@ -7,6 +7,8 @@
     {% endblock %}
 {% include 'menu.html.twig' %}
 <div class="container">
+
+
     <div class="row user_question">
         <div class="col-md-1 col-sm-1 col-xs-1">
             <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
@@ -53,11 +55,6 @@
         </div>
     </div>
 
-
-    {% if errorMessage  %}
-        <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-warning-sign"></span> {{ errorMessage }}</div>
-    {% endif %}
-
         {% if post.status == "closed" %}
             <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
         {% endif %}
@@ -94,7 +91,7 @@
         </div>
         {% endfor %}
     </ul>
-    <a href="{{ path('post_index') }}" >Back to the list</a>
+    <a href="{{ path('homepage') }}" >Back to the list</a>
 </div>
 
 

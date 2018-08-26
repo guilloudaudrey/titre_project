@@ -29,7 +29,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Post", mappedBy="category", cascade={"remove"})
      */
     private $posts;
 

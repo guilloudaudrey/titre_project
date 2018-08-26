@@ -51,11 +51,18 @@ class ProfileController extends Controller
 
         $postslist = $user->getPosts();
         $postResponsesList = $user->getPostResponses();
-$responsesToPostList = [];
+        $responsesToPostList = [];
+        $em = $this->getDoctrine()->getManager();
+        $postsActive = $em->getRepository('AppBundle:Post')->findBy(array(
+            'status' => 'active',
+            'user' => $user->getId()));
 
-foreach($postslist as $post){
-    $responsesToPostList[] = $post->getPostResponses();
-}
+
+
+
+        foreach($postslist as $post){
+            $responsesToPostList[] = $post->getPostResponses();
+        }
 
 
         $responsesToPost  = $this->get('knp_paginator')->paginate(
@@ -81,7 +88,8 @@ foreach($postslist as $post){
             'user' => $user,
             'posts' => $posts,
             'postResponses' => $postResponses,
-            'reponsesToPost' => $responsesToPost
+            'reponsesToPost' => $responsesToPost,
+            'postsActive' => $postsActive
         ));
     }
 }

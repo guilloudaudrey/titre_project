@@ -6,6 +6,7 @@ use AppBundle\Entity\Post;
 use AppBundle\Entity\PostResponse;
 use AppBundle\Event\PostResponseVoteEvent;
 use AppBundle\Exception\PostClosedException;
+use AppBundle\Exception\SamePostResponseUserEvalUserException;
 use AppBundle\Exception\SamePostUserEvalUserException;
 use Doctrine\Common\EventArgs;
 use Doctrine\ORM\Events;
@@ -93,7 +94,7 @@ class PostResponseController extends Controller
 
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
-        }catch (Exception $exception){
+        }catch (SamePostResponseUserEvalUserException $exception){
             throw $exception;
         }
         catch (PostClosedException $exception)
@@ -164,36 +165,26 @@ class PostResponseController extends Controller
 
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
                 }
-            } catch (Exception $exception){
+            } catch (SamePostResponseUserEvalUserException $exception){
+                throw $exception;
+               // $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
+                 //   'post' => $post,
+                   // 'errormessage' => "Vous ne pouvez pas vous auto-évaluer."
+                //));
 
-                $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
-                    'post' => $post,
-                    'errormessage' => "Vous ne pouvez pas vous auto-évaluer."
-                ));
-
-                return $response;
+                //return $response;
             }
-
             catch (PostClosedException $exception)
             {
-                $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
-                    'post' => $post,
-                    'errormessage' => "Vous ne pouvez plus évaluer ce post."));
-
-                return $response;
+                throw $exception;
             }
 
             catch (SamePostUserEvalUserException $exception)
             {
-                $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
-                    'post' => $post,
-                    'errormessage' => "Vous ne pouvez pas évaluer une réponse à votre question."));
-
-                return $response;
+                throw $exception;
             }
 
             return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-
     }
 
     /**
@@ -235,11 +226,8 @@ class PostResponseController extends Controller
                     'form' => $form->createView(),
                     'post' => $post
                 ));
-
-
             }else{
                 throw new Exception('Action non autorisée');
-                //return $this->redirectToRoute('post_show', array('id' => $post->getId()));
             }
     }
 

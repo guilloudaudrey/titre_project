@@ -24,7 +24,7 @@ class PostController extends Controller
     /**
      * Lists all post entities.
      *
-     * @Route("/", name="post_index")
+     * @Route("/", name="homepage")
      * @Method("GET")
      */
     public function indexAction(Request $request)
@@ -178,7 +178,7 @@ class PostController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('post_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
