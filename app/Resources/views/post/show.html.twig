@@ -12,47 +12,27 @@
     <div class="row user_question">
         <div class="col-md-1 col-sm-1 col-xs-1">
             <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
-            <div >{{ post.user }}</div>
+            <div class="avatar_pseudo">{{ post.user }}</div>
         </div>
-        <div class="col-md-11 col-sm-11 col-xs-11">
-            <div class="panel panel-default card-question">
+        <div class="col-md-10 col-sm-10 col-xs-11">
+            <div class="panel panel-info">
+                <div class="panel-body">
+            <!--<div class="panel panel-default card-question">-->
                 <p>{{ post.text }}</p>
                 <div style="display: flex" class="pull-right">
                     {% if postResponses|length < 1 %}
                         <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
                         <!-- Trigger the modal with a button -->
                         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
-
-                        <!-- Modal -->
-                        <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Suppression</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Confirmez-vous la suppression ?</p>
-                                    </div>
-                                    <div class="modal-footer footer_delete">
-                                            {{ form_start(delete_form) }}
-                                            <input  class="btn btn-default" type="submit" value="Oui">
-                                            {{ form_end(delete_form) }}
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        {% include('post/modal_delete_post.html.twig') %}
                     {% endif %}
                 </div>
             </div>
-            <div class="panel">
+            <div class="panel-footer panel-footer-question">
                 <div >Posté le {{ post.createdAt|date('Y-m-d H:i:s') }}</div>
             </div>
         </div>
+    </div>
     </div>
 
         {% if post.status == "closed" %}

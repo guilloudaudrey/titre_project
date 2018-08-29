@@ -5,42 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fb5032f-ab41-47c6-b12a-8a8955895f62" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/typo_project_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/typo_project_2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/confirmed.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/post/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/edit.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/post/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/new.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/profile/user_profile_history.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/profile/user_profile_history.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/profile/user_profile_infos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/profile/user_profile_infos.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Front/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Front/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Front/PostResponseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Front/PostResponseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Front/QuizController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Front/QuizController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/PostResponse.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/PostResponse.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/EventListener/EvaluationListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/EventListener/EvaluationListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/EventListener/PostResponseListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/EventListener/PostResponseListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/EventListener/PostResponseVoteListener.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/AppBundle/Controller/DefaultControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/AppBundle/Controller/DefaultControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/js/main.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,29 +24,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="card_post.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="32" selection-start-line="1" selection-start-column="3" selection-end-line="2" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="165">
+              <caret line="11" column="33" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show_proofreader.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig">
+      <file leaf-file-name="prototype-post-response-show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="148" column="33" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+            <state relative-caret-position="150">
+              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Evaluation.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php">
+      <file leaf-file-name="modal_delete_post.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/post/modal_delete_post.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-806">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -84,8 +72,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+            <state relative-caret-position="231">
+              <caret line="337" column="24" selection-start-line="337" selection-start-column="24" selection-end-line="337" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -94,22 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>post_index</find>
-      <find>show</find>
-      <find>h1</find>
-      <find>h2</find>
-      <find>a</find>
-      <find>bell</find>
-      <find>avata</find>
-      <find>grey</find>
-      <find>gre</find>
-      <find>index_create_post_button</find>
-      <find>PostResponseVoteListener</find>
-      <find>error</find>
-      <find>repos</find>
-      <find>reposi</find>
-      <find>menu</find>
-      <find>before</find>
       <find>paginator</find>
       <find>inclu</find>
       <find>script</find>
@@ -120,10 +92,26 @@
       <find>vot</find>
       <find>get</find>
       <find>for</find>
-      <find>for</find>
       <find>suppri</find>
-      <find>length</find>
       <find>vote</find>
+      <find>length</find>
+      <find>banner</find>
+      <find>text</find>
+      <find>butt</find>
+      <find>image</find>
+      <find>font-family: 'Homemade Apple', cursive;</find>
+      <find>font-family: 'Homemade Apple', cursive</find>
+      <find>consul</find>
+      <find>close</find>
+      <find>index</find>
+      <find>post_</find>
+      <find>deco</find>
+      <find>ima</find>
+      <find>card</find>
+      <find>text-de</find>
+      <find>post</find>
+      <find>white</find>
+      <find>panel-bo</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/vendor/friendsofsymfony</dir>
@@ -136,10 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login_content.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Exception/PostClosedException.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Exception/SamePostUserEvalUserException.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Event/PostResponseVoteEvent.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventListener/UserListener.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/RegistrationController.php" />
@@ -169,24 +153,28 @@
         <option value="$PROJECT_DIR$/app/Resources/views/profile/user_profile_infos.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Exception/SamePostResponseUserEvalUserException.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventListener/EvaluationListener.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Front/PostResponseController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ProfileController.php" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Profile/show_content.html.twig" />
         <option value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/list.html.twig" />
         <option value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/menu.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/menu.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/easy_admin/list.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventListener/PostResponseListener.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/easy_admin/edit.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/profile/user_profile_history.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/profile/user_profile_stats.html.twig" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/modal_show_post.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/profile/user_profile_stats.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/modal_delete_post.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" />
         <option value="$PROJECT_DIR$/web/assets/css/main.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
       </list>
     </option>
   </component>
@@ -297,6 +285,21 @@
               <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="FOSUserBundle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="FOSUserBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -306,6 +309,22 @@
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="post" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="postresponse" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="profile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
@@ -342,6 +361,19 @@
               <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="typo_project_2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="typo_project_2" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="banner" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -431,18 +463,23 @@
       <workItem from="1534321890857" duration="9847000" />
       <workItem from="1535116142515" duration="13782000" />
       <workItem from="1535186859168" duration="15244000" />
-      <workItem from="1535272460514" duration="11707000" />
+      <workItem from="1535272460514" duration="17516000" />
+      <workItem from="1535354922512" duration="587000" />
+      <workItem from="1535391755000" duration="6675000" />
+      <workItem from="1535454719574" duration="1438000" />
+      <workItem from="1535483452901" duration="3063000" />
+      <workItem from="1535528509232" duration="600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="343857000" />
+    <option name="totallyTimeSpent" value="362029000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16015936" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20956175" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -481,24 +518,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/EventListener/UserListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Front/UserController.php" />
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -683,24 +702,10 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/paginator.html.twig" />
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle/src/Resources/views/default/list.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="136" column="90" selection-start-line="136" selection-start-column="90" selection-end-line="136" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -743,9 +748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="33" column="40" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="40" />
-          <folding>
-            <element signature="e#69#111#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -756,10 +758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/profile/user_profile_stats.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="49" column="22" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+        <state relative-caret-position="1080">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
         </state>
       </provider>
     </entry>
@@ -770,31 +772,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
+        <state relative-caret-position="293">
+          <caret line="140" column="2" selection-start-line="140" selection-start-column="2" selection-end-line="142" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Evaluation.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/modal_show_post.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-806">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        <state relative-caret-position="330">
+          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/profile/user_profile_stats.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="51" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="41" selection-end-line="11" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/modal_delete_post.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="32" selection-start-line="1" selection-start-column="3" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="33" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        <state relative-caret-position="231">
+          <caret line="337" column="24" selection-start-line="337" selection-start-column="24" selection-end-line="337" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show_proofreader.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="148" column="33" selection-start-line="148" selection-start-column="33" selection-end-line="148" selection-end-column="33" />
+        <state relative-caret-position="75">
+          <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
         </state>
       </provider>
     </entry>
