@@ -124,6 +124,7 @@ body{
 }
 
 .avatar_post_author{
+    margin: auto;
     height: 60px;
     width: 60px;
     border-radius: 100%;
@@ -132,6 +133,7 @@ body{
     background-color: white;
     background-size: cover;
 }
+
 
 /*banner*/
 
@@ -154,7 +156,7 @@ text-align: center;
 }
 
 .image_banner{
-    190px;
+
 
 }
 
@@ -262,6 +264,10 @@ a.post_link:hover{
 
 }
 
+a.post_link:active{
+    text-decoration: none;
+
+}
 
 
 .buttons_action{
@@ -301,7 +307,7 @@ a.post_link:hover{
  */
 
 .label-eval{
-    font-size: 1.5em;
+    font-size: 1em !important;
     margin-top: 5px;
 }
 
@@ -344,10 +350,27 @@ margin-top: 50px;
 
 .avatar_pseudo{
     font-family: "Homemade Apple";
+    color: #5bc0de;
+    font-size: 1.5em;
+}
+
+.avatar_pseudo_container{
+    margin-top: 5px;
 }
 
 .panel-footer-question{
     background-color: lightblue !important;
+}
+
+.panel_footer_postresponse{
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel_footer_postresponse_author{
+    font-family: "Homemade Apple";
+    color: #5bc0de;
+    font-weight: bold;
 }
 
 /*
@@ -363,4 +386,38 @@ margin-top: 50px;
 
 .btn_profile_edit{
     margin-bottom: 4px !important;
+}
+
+
+.panel {
+    position:relative;
+}
+.panel>.panel-heading:after,.panel>.panel-heading:before{
+    position:absolute;
+    top:11px;left:-16px;
+    right:100%;
+    width:0;
+    height:0;
+    display:block;
+    content:" ";
+    border-color:transparent;
+    border-style:solid solid outset;
+    pointer-events:none;
+}
+.panel>.panel-heading:after{
+    border-width:7px;
+    border-right-color:#f7f7f7;
+    margin-top:1px;
+    margin-left:2px;
+}
+.panel>.panel-heading:before{
+    border-right-color:#ddd;
+    border-width:8px;
+}
+
+.user-photo{
+    border-radius: 100% !important;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
 }

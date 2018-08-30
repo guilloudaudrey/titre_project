@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7fb5032f-ab41-47c6-b12a-8a8955895f62" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/assets/css/main.css" afterDir="false" />
@@ -24,15 +22,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="card_post.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig">
           <provider selected="true" editor-type-id="text-editor">
@@ -45,26 +34,30 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="360">
+              <caret line="45" column="65" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="65" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prototype-post-response-show.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="panel_user_question.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/post/panel_user_question.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="87" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prototype-post-response-show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="modal_delete_post.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/post/modal_delete_post.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            <state relative-caret-position="120">
+              <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -72,8 +65,8 @@
       <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/assets/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="337" column="24" selection-start-line="337" selection-start-column="24" selection-end-line="337" selection-end-column="24" />
+            <state relative-caret-position="336">
+              <caret line="135" selection-start-line="135" selection-end-line="135" />
             </state>
           </provider>
         </entry>
@@ -82,13 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>paginator</find>
-      <find>inclu</find>
-      <find>script</find>
-      <find>jq</find>
-      <find>easy</find>
-      <find>head</find>
-      <find>footer</find>
       <find>vot</find>
       <find>get</find>
       <find>for</find>
@@ -112,6 +98,13 @@
       <find>post</find>
       <find>white</find>
       <find>panel-bo</find>
+      <find>avatar_post_author</find>
+      <find>user_question</find>
+      <find>label-eva</find>
+      <find>:hover</find>
+      <find>label-eval</find>
+      <find>ava</find>
+      <find>avatar_pos</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/vendor/friendsofsymfony</dir>
@@ -124,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Event/PostResponseVoteEvent.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EventListener/UserListener.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/RegistrationController.php" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/ChangePassword/change_password_content.html.twig" />
@@ -171,10 +163,11 @@
         <option value="$PROJECT_DIR$/app/Resources/views/profile/user_profile_stats.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/post/modal_delete_post.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" />
-        <option value="$PROJECT_DIR$/web/assets/css/main.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/panel_user_question.html.twig" />
+        <option value="$PROJECT_DIR$/web/assets/css/main.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/post/show.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig" />
       </list>
     </option>
   </component>
@@ -468,18 +461,20 @@
       <workItem from="1535391755000" duration="6675000" />
       <workItem from="1535454719574" duration="1438000" />
       <workItem from="1535483452901" duration="3063000" />
-      <workItem from="1535528509232" duration="600000" />
+      <workItem from="1535528509232" duration="5537000" />
+      <workItem from="1535561214877" duration="2416000" />
+      <workItem from="1535613439431" duration="3315000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="362029000" />
+    <option name="totallyTimeSpent" value="372697000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20956175" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21593626" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
@@ -518,13 +513,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Category.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -807,6 +795,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/post/card_post.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -814,31 +809,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/assets/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="39" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+        <state relative-caret-position="336">
+          <caret line="135" selection-start-line="135" selection-end-line="135" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/post/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="360">
+          <caret line="45" column="65" selection-start-line="45" selection-start-column="56" selection-end-line="45" selection-end-column="65" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/assets/css/main.css">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/post/panel_user_question.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="337" column="24" selection-start-line="337" selection-start-column="24" selection-end-line="337" selection-end-column="24" />
+        <state relative-caret-position="60">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="87" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/postresponse/prototype-post-response-show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
+        <state relative-caret-position="120">
+          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
         </state>
       </provider>
     </entry>
