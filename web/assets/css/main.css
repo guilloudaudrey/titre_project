@@ -227,7 +227,8 @@ text-align: center;
 
 .glyphicon.glyphicon-ok{
     color: green !important;
-    font-size: 50px;
+    font-size: 2em;
+    margin-bottom: 40px;
 }
 
 .resolved{
