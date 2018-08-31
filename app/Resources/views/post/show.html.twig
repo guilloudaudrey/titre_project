@@ -21,7 +21,7 @@
 
         {% for postResponse in postResponses %}
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row_post_response">
                 <div class="col-md-1 col-sm-1 col-xs-2">
                     <div class="col-md-12 col-sm-12 col-xs-12 ">
                         {% if postResponse.score >= 3 %}
@@ -43,9 +43,9 @@
                 </div>
 
 
-                <div class="col-md-1 col-sm-1 col-xs-12 hidden-xs">
+                <div class="col-md-1 col-sm-1 col-xs-12 hidden-xs ">
                     <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~postResponse.user.getAvatarFilename()) }}')"></div>
-                    <div class="avatar_pseudo" style="text-align: center">{{ postResponse.user }}</div>
+                    <!--<div class="avatar_pseudo" style="text-align: center">{{ postResponse.user }}</div>-->
                 </div>
             </div>
         {% endfor %}

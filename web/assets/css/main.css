@@ -40,6 +40,7 @@ body{
 
 .vote_buttons{
     text-align: center;
+    margin-bottom: 40px;
 
 }
 
@@ -125,6 +126,7 @@ body{
 
 .avatar_post_author{
     margin: auto;
+    margin-bottom: 22px;
     height: 60px;
     width: 60px;
     border-radius: 100%;
@@ -132,6 +134,11 @@ body{
     background-repeat: no-repeat;
     background-color: white;
     background-size: cover;
+}
+
+.row_post_response{
+    display: flex;
+    align-items: flex-end;
 }
 
 
@@ -306,9 +313,9 @@ a.post_link:active{
 /*show
  */
 
-.label-eval{
+.label.label-eval{
     font-size: 1em !important;
-    margin-top: 5px;
+
 }
 
 .voteup{
@@ -350,8 +357,8 @@ margin-top: 50px;
 
 .avatar_pseudo{
     font-family: "Homemade Apple";
-    color: #5bc0de;
-    font-size: 1.5em;
+
+    font-size: 0.9em;
 }
 
 .avatar_pseudo_container{

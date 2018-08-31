@@ -1,12 +1,16 @@
 <div class="panel-body">
     <p>{{ postResponse.text }}</p>
-    {% if postResponse.comment %}<p class="comment">Commentaire :</p><p class="comment">{{ postResponse.comment }}</p>{% endif %}
+    {% if postResponse.comment %}
+        <p data-toggle="collapse" data-parent="#accordion" href="#collapse{{ postResponse.id }}" class="comment">Commentaire <span class="glyphicon glyphicon-chevron-down"></span> </p>
+            <p id="collapse{{ postResponse.id }}" class="panel-collapse collapse out comment">{{ postResponse.comment }}
+        </p>
+    {% endif %}
 
     {# <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> #}
 </div>
 <div class="panel-footer panel_footer_postresponse">
     <div>Posté le {{ postResponse.createdAt|date('Y-m-d H:i:s') }}</div>
-    <div class="hidden-md hidden-lg hidden-sm">
+    <div >
         <span>par </span>
         <span class="panel_footer_postresponse_author">{{ postResponse.getUser() }}</span>
     </div>
