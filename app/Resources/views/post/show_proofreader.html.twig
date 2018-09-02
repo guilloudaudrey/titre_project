@@ -4,7 +4,7 @@
 
 {% block content %}
 
-        <div class="container container_full_page">
+        <div class="container container_full_page" style="padding-bottom:60px">
             <div class="user_question">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 avatar_pseudo_container">
@@ -36,7 +36,9 @@
             {% if post.status != "closed" %}
                 {% if app.user != post.user %}
                     {% if postResponseByUser is empty %}
+                        <div class="container_button_create_post">
                         <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+                        </div>
                     {% else %}
                         <div class="alert alert-warning" role="alert">Vous avez répondu à cette demande.</div>
                     {% endif %}

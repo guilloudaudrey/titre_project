@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostResponseType extends AbstractType
 {
@@ -14,8 +15,10 @@ class PostResponseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('text')
-        ->add('comment');
+        ->add('text',  TextareaType::class, array(
+            'attr' => array('cols' => '5', 'rows' => '4')))
+        ->add('comment',  TextareaType::class, array(
+            'attr' => array('cols' => '5', 'rows' => '4')));
     }/**
      * {@inheritdoc}
      */

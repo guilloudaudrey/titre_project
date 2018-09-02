@@ -1,7 +1,7 @@
-body{
+html, body{
     padding:0;
-    height:100vh;
-    padding-top: 50px;
+    height:100%;
+    padding-top: 20px;
     margin: 0;
 }
 
@@ -14,8 +14,6 @@ footer {
     position:absolute;
     bottom:0;
     width:100%;
-    height:60px;   /* Height of the footer */
-    background:#6cf;
 }
 
 
@@ -192,10 +190,6 @@ text-align: center;
     font-weight: bold;
 }
 
-.image_banner{
-
-
-}
 
 .banner{
     height: 190px;
@@ -345,10 +339,32 @@ a.post_link:active{
     margin-bottom: 50px;
 }
 
+.container_new_post{
+    margin-top: 60px;
+}
+
 /*show
  */
 
+.post_reminder{
+    background: #EDEFF1;
+    border-radius: 6px;
+    padding: 10px;
 
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+
+.container_new_post_response{
+    margin-top: 60px;
+}
+
+.container_button_create_post{
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
 
 
 .label.label-eval{
@@ -372,9 +388,13 @@ a.post_link:active{
 }
 
 .login_container{
-margin-top: 50px;
-
+    height: auto;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-color: #5bc0de;
 }
+
 
 
 .register-container{
@@ -439,8 +459,7 @@ margin-top: 50px;
 
 .footer {
     background: #EDEFF1;
-    height: auto;
-    padding-bottom: 17px;
+    height: 60px;
     position: relative;
     width: 100%;
     border-bottom: 1px solid #CCCCCC;

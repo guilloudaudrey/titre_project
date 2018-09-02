@@ -1,12 +1,22 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    <div class="container col-lg-12 container_full_page">
-    <h1>Post creation</h1>
+
+    <div class="container col-lg-12 container_new_post">
+        <div class="container">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+            <h1 class="panel-title">Nouvelle demande</h1>
+            </div>
+            <div class="panel-body">
+
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
+    </div>
+        </div>
+    </div>
     </div>
 
 {% endblock %}

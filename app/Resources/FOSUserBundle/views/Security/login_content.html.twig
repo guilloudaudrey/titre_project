@@ -1,15 +1,10 @@
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-
-
-
-<!--<div class="container-fluid big " style="background: url('{{asset('images/abc.jpg')}}')">-->
-<div class="col-lg-12">
-<div class="container login_container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3" >
+<div class="container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12"  >
 
     <div class="panel panel-info ">
-        <div class="panel-heading">
+        <div class="panel-heading panel-heading-login">
             <h1 class="panel-title">Connectez-vous</h1>
         </div>
         <div class="panel-body">
@@ -34,7 +29,7 @@
                 <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </div>
                 <div>
-                <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                 </div>
 
             </form>
@@ -44,5 +39,4 @@
         </div>
     </div>
 </div>
-</div>
-<!--</div>-->
+

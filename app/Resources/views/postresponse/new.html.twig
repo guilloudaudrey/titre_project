@@ -1,18 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block content %}
 
-    <div class="container">
-        <h1>Réponse</h1>
+    <div class="container container_new_post_response">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">Nouvelle réponse </h1>
+            </div>
+            <div class="panel-body">
+                <p>Phrase à corriger : </p>
+                <div class="post_reminder">
         {{ post.text }}
+                </div>
         {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
     {{ form_end(form) }}
     </div>
-    <ul>
-        <li>
-            <a href="{{ path('postresponse_index') }}">Retour</a>
-        </li>
-    </ul>
+        </div>
+
+    </div>
 {% endblock %}
