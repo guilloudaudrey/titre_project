@@ -9,7 +9,6 @@
             {% if postResponse.getEvaluations()|length < 1 %}
                 <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('postresponse_edit', { 'id': postResponse.id }) }}">Modifier</a>
                 <!-- Trigger the modal with a button -->
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
 
             {% endif %}
         {% endif %}

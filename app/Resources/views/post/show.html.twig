@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="container container_full_page" style="padding-bottom:60px">
+    <div class="container container_post_responses" style="padding-bottom:60px">
         {% include('post/panel_user_question.html.twig') %}
         {% if post.status == "closed" %}
             <div class="alert alert-success" role="alert">Une solution a été apportée !</div>

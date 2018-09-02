@@ -346,6 +346,10 @@ a.post_link:active{
 /*show
  */
 
+.container_post_responses{
+    padding-bottom: 50px;
+}
+
 .post_reminder{
     background: #EDEFF1;
     border-radius: 6px;
@@ -395,16 +399,12 @@ a.post_link:active{
 }
 
 .login_container{
-    height: auto;
-    display: flex;
-    align-items: center;
-    background-size: cover;
-    background-color: #5bc0de;
+margin-top: 60px;
 }
 
 
 
-.register-container{
+.register_container{
     margin-top: 50px;
 }
 

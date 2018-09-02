@@ -306,8 +306,11 @@ class PostResponseController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('postresponse_index');
+        return $this->redirectToRoute('post_proofreader_show', array('id' => $postResponse->getPost()->getId()));
     }
+
+
+
 
     /**
      * Creates a form to delete a postResponse entity.

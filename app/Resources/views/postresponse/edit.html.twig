@@ -11,6 +11,12 @@
         {{ form_widget(edit_form) }}
         <input class="btn btn-info" type="submit" value="Edit" />
     {{ form_end(edit_form) }}
+
+                {{ form_start(delete_form) }}
+                {{ form_widget(delete_form) }}
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal_delete_post_response">Supprimer</button>
+                {% include 'postresponse/modal_delete_post_reponse.html.twig' %}
+                {{ form_end(delete_form) }}
             </div>
     </div>
         <a class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': postResponse.getPost().getId() }) }}">Annuler</a>
