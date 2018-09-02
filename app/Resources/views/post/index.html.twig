@@ -1,13 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block content %}
-    {% block head %}
-        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        {% endblock %}
-
-    {% include 'menu.html.twig' %}
-    <div class="container-fluid" style="margin: 0">
+    <div class="container-fluid" style="padding-bottom:60px">
 
             <div class="row index_create_post_button" >
                 <!--<div class="banner_div" style="height: 280px;  background-image:url('{{ asset('images/banner/note.jpg') }}')">-->
@@ -15,31 +9,32 @@
 
                     <!--<img class="image_note" src="{{ asset('images/banner/note.png') }}">-->
                     <div class="text_banner">
-                    <p class="text_p">Une hésitation sur votre orthographe ? <br>Demandez à la communauté <span class="typo_word">
-                       typo</span><br>de vous relire !</p>
-                </div>
+                        <p class="text_p">Une hésitation sur votre orthographe ? <br>Demandez à la communauté <span class="typo_word">
+                                typo</span><br>de vous relire !</p>
+
+                    </div>
                 </div>
             </div>
 
 
-<div class="container">
-        <div class="row" >
-            <div class="row buttons_action">
-                <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+        <div class="container main_container_index">
+            <div class="row" >
+                <div class="row buttons_action">
+                    <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+                </div>
+                <div>
+                    <hr>
+                    {% for post in posts|sort|reverse %}
+                        {% include 'post/card_post.html.twig' %}
+                        {% include 'post/modal_show_post.html.twig' %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="text-center">{{ knp_pagination_render(posts) }}</div>
+                </div>
             </div>
-            <hr>
-            {% for post in posts|sort|reverse %}
-                {% include 'post/card_post.html.twig' %}
-                {% include 'post/modal_show_post.html.twig' %}
-            {% endfor %}
-        </div>
-
-        <div class="row">
-            <div class="text-center">{{ knp_pagination_render(posts) }}</div>
         </div>
     </div>
-    </div>
-
 
 <script>
     {% for post in posts|sort|reverse %}
@@ -51,8 +46,4 @@
     {% endfor %}
 </script>
 
-
-
-
-{% include 'footer.html.twig' %}
 {% endblock %}

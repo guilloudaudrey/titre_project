@@ -3,7 +3,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block content %}
-    {% include 'menu.html.twig' %}
+
     {% trans_default_domain 'FOSUserBundle' %}
 <div class="container edit_info_user_container">
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}

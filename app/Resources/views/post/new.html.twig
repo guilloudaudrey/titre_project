@@ -1,7 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% block content %}
-    {% include 'menu.html.twig' %}
-    <div class="container">
+    <div class="container col-lg-12 container_full_page">
     <h1>Post creation</h1>
 
     {{ form_start(form) }}
@@ -9,9 +8,5 @@
         <input type="submit" value="Create" />
     {{ form_end(form) }}
     </div>
-    <ul>
-        <li>
-            <a href="{{ path('homepage') }}">Back to the list</a>
-        </li>
-    </ul>
+
 {% endblock %}

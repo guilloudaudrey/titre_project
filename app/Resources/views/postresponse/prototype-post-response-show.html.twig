@@ -9,9 +9,9 @@
     {# <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> #}
 </div>
 <div class="panel-footer panel_footer_postresponse">
-    <div>Posté le {{ postResponse.createdAt|date('Y-m-d H:i:s') }}</div>
+    <div><span class="hidden-xs">Posté le</span>  {{ postResponse.createdAt|date('y-m-d à H:i') }}</div>
     <div >
-        <span>par </span>
+        <span class="hidden-xs">par </span>
         <span class="panel_footer_postresponse_author">{{ postResponse.getUser() }}</span>
     </div>
 </div>

@@ -1,0 +1,27 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row_post_response">
+    <div class="col-md-1 col-sm-1 col-xs-2">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            {% if postResponse.score >= 3 %}
+                <span class="glyphicon glyphicon-ok" ></span>
+            {% endif %}
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12 vote_buttons">
+            <span class="label label-info label-eval">
+                {{ postResponse.score }}
+            </span>
+        </div>
+    </div>
+
+    <div class="col-md-10 col-sm-10 col-xs-10">
+        <div class="panel panel-default card_answer">
+            {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
+        </div>
+    </div>
+
+
+    <div class="col-md-1 col-sm-1 hidden-xs ">
+        <div class="avatar_post_response_author" style="background-image:url('{{asset('/avatars/'~postResponse.user.getAvatarFilename()) }}')"></div>
+        <!--<div class="avatar_pseudo" style="text-align: center">{{ postResponse.user }}</div>-->
+    </div>
+</div>

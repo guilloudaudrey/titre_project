@@ -1,9 +1,12 @@
 
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% include 'menu.html.twig' %}
 
-{% block content %}
+    {% block content %}
+        {% block fos_user_content %}{% endblock %}
 
-    {% block fos_user_content %}{% endblock %}
-{% endblock %}
+    {% endblock %}
+    {% include 'footer.html.twig' %}
+
 {% endblock %}

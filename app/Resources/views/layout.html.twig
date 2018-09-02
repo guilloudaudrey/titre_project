@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <div class="big_container">
+        <div>
+            {% include 'menu.html.twig' %}
+        </div>
+        {% block content %}
+        {% endblock %}
+        {% include 'footer.html.twig' %}
+    </div>
+{% endblock %}

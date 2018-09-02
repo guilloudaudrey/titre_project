@@ -5,13 +5,9 @@
 {% trans_default_domain _entity_config.translation_domain %}
 {% set _trans_parameters = { '%entity_name%': _entity_config.name|trans, '%entity_label%': _entity_config.label|trans, '%entity_id%': _entity_id } %}
 
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 {% block content %}
-    {% block head %}
-        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    {% endblock %}
-    {% include 'menu.html.twig' %}
+
     <div class="container">
 
 
@@ -31,7 +27,7 @@
             _entity_config: _entity_config,
         }, with_context = false) }}
     {% endblock delete_form %}
-    {% include('footer.html.twig') %}
+
 {% endblock %}
 
 

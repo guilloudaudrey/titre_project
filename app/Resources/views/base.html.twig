@@ -4,36 +4,50 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#317EFB"/>
         <title>{% block title %}Typo{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
             <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+            <link rel="manifest" href="{{ asset('manifest.json') }}">
+            <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
     </head>
-    <body>
+    {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src = "https://www.gstatic.com/charts/loader.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+        <!--<script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('{{ asset('service-worker.js') }}')
+                    .then(function(registration) {
+                        console.log('Registration successful, scope is:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service worker registration failed, error:', error);
+                    });
+            }
+            </script>-->
+        <script>
 
-        {% block content %}
-        {% endblock %}
+            function activatePlacesSearch() {
+                var input = document.getElementById('city_input');
+                var autocomplete = new google.maps.places.Autocomplete(input)
+            }
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
 
-        {% block javascripts %}
-            <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
-            <script src = "https://www.gstatic.com/charts/loader.js"></script>
-            <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
--->
+    {% endblock %}
 
-            <script>
+    {% block body %}{% endblock %}
 
-                function activatePlacesSearch() {
-                    var input = document.getElementById('city_input');
-                    var autocomplete = new google.maps.places.Autocomplete(input)
-                }
-            </script>
-           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
 
-        {% endblock %}
-    </body>
+
+
+
 </html>
