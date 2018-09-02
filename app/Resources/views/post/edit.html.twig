@@ -1,21 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Post edit</h1>
+    <div class="container container_post_edit">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">Modification de la demande</h1>
+            </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('homepage') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <div class="panel-body">
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <input class="btn btn-info" type="submit" value="Modifier" />
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+        <a  class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': post.id }) }}">Annuler</a>
+    </div>
 {% endblock %}

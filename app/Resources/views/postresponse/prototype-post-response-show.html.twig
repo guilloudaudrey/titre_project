@@ -4,6 +4,16 @@
         <p data-toggle="collapse" data-parent="#accordion" href="#collapse{{ postResponse.id }}" class="comment">Commentaire <span class="glyphicon glyphicon-chevron-down"></span> </p>
             <p id="collapse{{ postResponse.id }}" class="panel-collapse collapse out comment">{{ postResponse.comment }}
         </p>
+    <div style="display: flex" class="pull-right">
+        {% if app.user == postResponse.user %}
+            {% if postResponse.getEvaluations()|length < 1 %}
+                <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('postresponse_edit', { 'id': postResponse.id }) }}">Modifier</a>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
+
+            {% endif %}
+        {% endif %}
+    </div>
     {% endif %}
 
     {# <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> #}
@@ -14,4 +24,5 @@
         <span class="hidden-xs">par </span>
         <span class="panel_footer_postresponse_author">{{ postResponse.getUser() }}</span>
     </div>
+
 </div>

@@ -355,6 +355,13 @@ a.post_link:active{
     margin-bottom: 10px;
 }
 
+.container_post_edit{
+    margin-top: 60px;
+}
+
+.container_post_response_edit{
+    margin-top: 60px;
+}
 
 .container_new_post_response{
     margin-top: 60px;

@@ -1,21 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block body %}
-    <h1>Postresponse edit</h1>
-
+{% block content %}
+    <div class="container container_post_response_edit">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h1 class="panel-title">Postresponse edit</h1>
+            </div>
+            <div class="panel-body">
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input class="btn btn-info" type="submit" value="Edit" />
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('postresponse_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            </div>
+    </div>
+        <a class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': postResponse.getPost().getId() }) }}">Annuler</a>
+    </div>
 {% endblock %}
