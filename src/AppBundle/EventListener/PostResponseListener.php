@@ -34,7 +34,7 @@ class PostResponseListener
                 throw new Exception('Vous ne pouvez pas répondre à votre propre message');
             }
 
-            if($entity->getPost()->getStatus() == 'closed'){
+            if($entity->getPost()->getStatus() == 'closed' or $entity->getPost()->getStatus() == 'noErrors'){
                 throw new PostClosedException('vous ne pouvez plus répondre cette demande');
             }
         }

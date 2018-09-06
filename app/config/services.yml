@@ -51,7 +51,10 @@ services:
         tags:
             - { name: doctrine.event_listener, event: postPersist }
         arguments: ['%kernel.root_dir%/../web/avatars/']
-
+    AppBundle\EventListener\EvaluationPostListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: postPersist }
 
     app.form.registration:
         class: AppBundle\Form\RegistrationType

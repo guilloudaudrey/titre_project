@@ -28,6 +28,7 @@ class Post
      */
     private $text;
 
+
     /**
      * @var string
      *
@@ -58,7 +59,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -69,7 +70,12 @@ class Post
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation_post", mappedBy="post", cascade={"remove"})
+     */
+    private $post_evaluations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post", cascade={"remove"})
      */
     private $post_responses;
 
@@ -202,6 +208,7 @@ class Post
     {
         return $this->category;
     }
+
     /**
      * Constructor
      */
@@ -241,6 +248,8 @@ class Post
      */
     public function getPostResponses()
     {
+
+
         return $this->post_responses;
     }
 
@@ -267,4 +276,36 @@ class Post
     {
         return $this->comment;
     }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Post
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function __toString()
+    {
+        return $this->text;
+    }
+
+
+
 }

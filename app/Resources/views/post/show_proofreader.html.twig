@@ -33,9 +33,17 @@
             </div>
         </div>
 
-            {% if post.status != "closed" %}
+            {% if post.status != 'closed' and post.status != 'noErrors' %}
                 {% if app.user != post.user %}
                     {% if postResponseByUser is empty %}
+                        <div class="container_button_no_errors">
+                            <a class="btn btn-default " href="{{ path('post_up', {id : post.id}) }}"><span class="glyphicon glyphicon-eye-open"></span> Il n'y a pas d'erreurs</a>
+                            {% if post.getScore() > 0 %}
+                                <span class="label label-warning label_eval_post">
+                                    {{ post.getScore() }}
+                                </span>
+                            {% endif %}
+                        </div>
                         <div class="container_button_create_post">
                         <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
                         </div>
@@ -44,7 +52,11 @@
                     {% endif %}
                 {% endif %}
             {% else %}
-                <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+                {% if post.status == "closed" %}
+                    <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
+                {% elseif post.status == "noErrors" %}
+                    <div class="alert alert-success" role="alert">Aucune erreur n'a été relevée !</div>
+                {% endif %}
             {% endif %}
 
         <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
@@ -59,7 +71,7 @@
                             {% endif %}
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 vote_buttons">
-                            {% if post.status != "closed" %}
+                            {% if post.status != "closed" and post.status != "noErrors" %}
                                 <div class=" voteup">
                                     {% if app.user != post.user and app.user != postResponse.user %}
                                         <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span id="plus{{ postResponse.getId() }}" class="glyphicon glyphicon-plus blue-none"></span></a>
@@ -69,7 +81,7 @@
                                 <span class="label label-info">
                                     {{ postResponse.score }}
                                 </span>
-                            {% if post.status != "closed" %}
+                            {% if post.status != "closed" and post.status != "noErrors" %}
                                 <div class=" votedown">
                                     {% if app.user != post.user and app.user != postResponse.user %}
                                         <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span id="minus{{ postResponse.getId() }}" class="glyphicon glyphicon-minus"></span></a>

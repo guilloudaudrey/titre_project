@@ -38,7 +38,7 @@ class EvaluationListener
                 throw new SamePostUserEvalUserException('vous ne pouvez pas évaluer des réponses à votre question');
             }
 
-            if($entity->getPostResponse()->getPost()->getStatus() == 'closed'){
+            if($entity->getPostResponse()->getPost()->getStatus() == 'closed' or $entity->getPostResponse()->getPost()->getStatus() =='noErrors'){
                 throw new PostClosedException('vous ne pouvez plus évaluer cette réponse');
             }
         }

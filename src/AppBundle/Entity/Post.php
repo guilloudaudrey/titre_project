@@ -28,6 +28,7 @@ class Post
      */
     private $text;
 
+
     /**
      * @var string
      *
@@ -58,7 +59,7 @@ class Post
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="posts")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 
@@ -67,6 +68,11 @@ class Post
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EvaluationPost", mappedBy="post", cascade={"remove"})
+     */
+    private $post_evaluations;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post", cascade={"remove"})
@@ -202,6 +208,7 @@ class Post
     {
         return $this->category;
     }
+
     /**
      * Constructor
      */
@@ -294,7 +301,56 @@ class Post
         return $this->status;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->text;
+    }
+
+    /**
+     * Add postEvaluation
+     *
+     * @param \AppBundle\Entity\EvaluationPost $postEvaluation
+     *
+     * @return Post
+     */
+    public function addPostEvaluation(\AppBundle\Entity\EvaluationPost $postEvaluation)
+    {
+        $this->post_evaluations[] = $postEvaluation;
+
+        return $this;
+    }
+
+    /**
+     * Remove postEvaluation
+     *
+     * @param \AppBundle\Entity\EvaluatioPost $postEvaluation
+     */
+    public function removePostEvaluation(\AppBundle\Entity\EvaluationPost $postEvaluation)
+    {
+        $this->post_evaluations->removeElement($postEvaluation);
+    }
+
+    /**
+     * Get postEvaluations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostEvaluations()
+    {
+        return $this->post_evaluations;
+    }
+
+    /**
+     * @return int
+     */
+
+    public function getScore() {
+        $score = 0;
+
+        foreach($this->post_evaluations as $e) {
+            $score += intval($e->getValue());
+        }
+
+        return $score;
     }
 }

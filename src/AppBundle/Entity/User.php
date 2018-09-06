@@ -52,6 +52,11 @@ class User extends BaseUser
     private $evaluations;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\EvaluationPost", mappedBy="user", cascade={"remove"})
+     */
+    private $post_evaluations;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -253,4 +258,38 @@ class User extends BaseUser
     }
 
 
+
+    /**
+     * Add postEvaluation
+     *
+     * @param \AppBundle\Entity\EvaluationPost $postEvaluation
+     *
+     * @return User
+     */
+    public function addPostEvaluation(\AppBundle\Entity\EvaluationPost $postEvaluation)
+    {
+        $this->post_evaluations[] = $postEvaluation;
+
+        return $this;
+    }
+
+    /**
+     * Remove postEvaluation
+     *
+     * @param \AppBundle\Entity\EvaluationPost $postEvaluation
+     */
+    public function removePostEvaluation(\AppBundle\Entity\EvaluationPost $postEvaluation)
+    {
+        $this->post_evaluations->removeElement($postEvaluation);
+    }
+
+    /**
+     * Get postEvaluations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostEvaluations()
+    {
+        return $this->post_evaluations;
+    }
 }

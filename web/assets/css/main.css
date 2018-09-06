@@ -346,6 +346,14 @@ a.post_link:active{
 /*show
  */
 
+.buttons_edit_post_response{
+    display: flex;
+}
+
+.button_delete_post_response{
+    margin-left: 5px;
+}
+
 .container_post_responses{
     padding-bottom: 50px;
 }
@@ -374,13 +382,23 @@ a.post_link:active{
 .container_button_create_post{
     width: 100%;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 5px;
 }
 
+.container_button_no_errors{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
 
 .label.label-eval{
     font-size: 1em !important;
 
+}
+
+.label_eval_post{
+    font-size: 1.3em !important;
+    background-color: lightgrey !important;
 }
 
 .voteup{
@@ -552,4 +570,12 @@ font-weight: bold;
 }
 
 
+/**proofreader status**/
 
+.proofreader_confirmation_panel{
+    margin-top: 60px;
+}
+
+.registration_confirmed_container{
+    margin-top: 60px;
+}

@@ -38,7 +38,7 @@
 
 <script>
     {% for post in posts|sort|reverse %}
-    {% if post.status == "closed" %}
+    {% if post.status == "closed" or post.status =="noErrors" %}
     $(document).ready(function() {
         $('.question-sign{{ post.getId }}').css('cssText', 'color: #5bc0de !important');
     })

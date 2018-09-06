@@ -106,7 +106,7 @@ knp_paginator:
 
 easy_admin:
     list:
-        actions: ['edit', '-delete']
+        actions: ['edit']
     entities:
         User:
             class: AppBundle\Entity\User
