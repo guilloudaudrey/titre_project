@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\PostResponse;
+use AppBundle\Service\PostService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,6 +20,10 @@ use AppBundle\Entity\EvaluationPost;
  */
 class PostController extends Controller
 {
+    public function __construct(PostService $postService)
+    {
+        $this->postService = $postService;
+    }
 
 
     /**
@@ -83,7 +88,7 @@ class PostController extends Controller
      * @Route("/{id}", name="post_show")
      * @Method("GET")
      */
-    public function showAction(Post $post, $errormessage = null)
+    public function showAction(Post $post)
     {
         $deleteForm = $this->createDeleteForm($post);
 
@@ -101,7 +106,6 @@ class PostController extends Controller
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
             'postResponses' => $postResponses,
-            'errorMessage' => $errormessage,
             'postResponseByUser' => $postResponseByUser
         ));
     }
@@ -204,32 +208,21 @@ class PostController extends Controller
      */
     public function upVoteAction(Post $post){
 
-
-
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $score = $eval = $em->getRepository('AppBundle:EvaluationPost')->getByUser($user, $post);
         try {
+
             if ($score == null) {
-                //create new eval
-                $evalpost = new EvaluationPost();
-
-                // set value
-                $evalpost->setValue(1);
-                $evalpost->setUser($this->getUser());
-                $evalpost->setPost($post);
-
-                // flush
-                $em->persist($evalpost);
-                $em->flush();
-
+                $this->postService->postVoteUp($post, $user);
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             } else {
-                $score_object = $em->getRepository('AppBundle:EvaluationPost')->findOneById($score[0]->getId());
-                $em->remove($score_object);
-                $em->flush();
+                $this->postService->removePostVoteUp($score);
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
+
+            $this->postService->postVoteUp($score, $post, $user);
+
         } catch (PostClosedException $exception)
         {
             throw $exception;

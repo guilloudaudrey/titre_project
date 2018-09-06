@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div class="container">
+<div class="container" style="padding-bottom:60px">
 {% set _request_parameters = app.request.query.all|merge(_request_parameters|default({}))|merge({
     action: app.request.get('action'),
     entity: _entity_config.name,

@@ -391,6 +391,16 @@ a.post_link:active{
     margin-top: 20px;
 }
 
+.post_eval_container{
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.alert_no_errors, .alert_closed, .alert_answer_already{
+    margin-top: 10px;
+}
+
 .label.label-eval{
     font-size: 1em !important;
 

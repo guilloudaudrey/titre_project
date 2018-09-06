@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use AppBundle\Service\QuizService;
 use Symfony\Component\HttpFoundation\Response;
 
 class QuizController extends Controller {
@@ -20,11 +21,11 @@ class QuizController extends Controller {
     private $userManager;
     private $tokenStorage;
 
-    public function __construct(TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage, QuizService $quizService)
     {
         $this->tokenStorage = $tokenStorage;
+        $this->quizService = $quizService;
     }
-
 
     /**
      * Creates a new quiz.
@@ -58,18 +59,8 @@ class QuizController extends Controller {
      */
     public function giveProofreaderRole(Request $request){
 
-        $user_id = $this->getUser()->getId();
-        $em = $this->getDoctrine()->getManager();
-        $userRepository = $em->getRepository("AppBundle:User");
-        $user = $userRepository->find($user_id);
-        $user->addRole("ROLE_PROOFREADER");
-        $em->persist($user);
-        $em->flush();
+$this->quizService->addRoleProofreader($this->getUser());
 
-        //pour mettre à jour le nouveau rôle ajouté
-        $this->get('fos_user.user_manager')->updateUser($user);
-        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-        $this->get('security.token_storage')->setToken($token);
 
 
 

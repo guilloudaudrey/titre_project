@@ -61,13 +61,33 @@ services:
         tags:
             - { name: form.type, alias: app_user_registration }
 
-
     app.form.profile:
         class: AppBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
 
+    post_service:
+        class: AppBundle\Service\PostService
+        argument: ['@doctrine.orm.entity_manager']
+
     AppBundle\Controller\ProfileController:
         arguments:
             $formFactory: '@fos_user.profile.form.factory'
 
+    postresponse_service:
+        class: AppBundle\Service\PostResponseService
+        argument: ['@doctrine.orm.entity_manager']
+
+    quiz_service:
+        class: AppBundle\Service\QuizService
+        argument: ['@doctrine.orm.entity_manager', '@fos_user.user_manager', '@security.token_storage' ]
+
+    app_controller_post:
+        class: AppBundle\Controller\Front\PostController
+        arguments:
+            - '@post_service'
+
+    app_controller_post_reponse:
+        class: AppBundle\Controller\Front\PostResponseController
+        arguments:
+            - '@postresponse_service'

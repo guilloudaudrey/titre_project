@@ -8,6 +8,7 @@ use AppBundle\Event\PostResponseVoteEvent;
 use AppBundle\Exception\PostClosedException;
 use AppBundle\Exception\SamePostResponseUserEvalUserException;
 use AppBundle\Exception\SamePostUserEvalUserException;
+use AppBundle\Service\PostResponseService;
 use Doctrine\Common\EventArgs;
 use Doctrine\ORM\Events;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,22 +29,13 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class PostResponseController extends Controller
 {
-    /**
-     * Lists all postResponse entities.
-     *
-     * @Route("/", name="postresponse_index")
-     * @Method("GET")
-     */
-    public function indexAction()
+
+    public function __construct(PostResponseService $postResponseService)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $postResponses = $em->getRepository('AppBundle:PostResponse')->findAll();
-
-        return $this->render('postresponse/index.html.twig', array(
-            'postResponses' => $postResponses,
-        ));
+        $this->postResponseService = $postResponseService;
     }
+
+
 
     /**
      * @Route("/{id}/up", name="postresponse_up")
@@ -61,37 +53,19 @@ class PostResponseController extends Controller
         try {
 
             if ($eval == null) {
-                //create new eval
-                $evaluation = new Evaluation();
-                // set post response
-                $evaluation->setPostResponse($postResponse);
-                // set user
-                $evaluation->setUser($user);
-                $evaluation->setValue(1);
-                // flush
-                $em->persist($evaluation);
-                $em->flush();
-
+                $this->postResponseService->addVote($postResponse, $user, 1);
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // delete the evaluation if second up vote
             if ($eval[0]->getValue() == 1) {
-                $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-                //suppression de l'éval
-                $em->remove($eval_object);
-                $em->flush();
-
+                $this->postResponseService->removeVote($eval);
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // edit the value of the evaluation from -1 to 1
             if ($eval[0]->getValue() == -1) {
-                $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-                $eval_object->setValue(1);
-                $em->persist($eval_object);
-                $em->flush();
-
+                $this->postResponseService->editVote($eval, 1);
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
         }catch (SamePostResponseUserEvalUserException $exception){
@@ -129,41 +103,27 @@ class PostResponseController extends Controller
                 $this->get('event_dispatcher')->dispatch(Events::prePersist, $event);
 
                 if ($eval == null) {
-                //create new eval
-                $evaluation = new Evaluation();
+                    $this->postResponseService->addVote($postResponse, $user, -1);
+                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
 
-                // set post response
-                $evaluation->setPostResponse($postResponse);
+                }
 
-                // set user
-                $evaluation->setUser($user);
-                $evaluation->setValue(-1);
-
-                // flush
-                $em->persist($evaluation);
-                $em->flush();
-
-                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-            }
-
-            // delete the evaluation if second down vote
-            if ($eval[0]->getValue() == -1) {
-                $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-                //suppression de l'éval
-                $em->remove($eval_object);
-                $em->flush();
-
-                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-            }
+                // delete the evaluation if second down vote
+                if ($eval[0]->getValue() == -1) {
+                    $this->postResponseService->removeVote($eval);
+                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+                }
 
             // edit the value of the evaluation from 1 to -1
-            if ($eval[0]->getValue() == 1) {
-                $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-                $eval_object->setValue(-1);
-                $em->persist($eval_object);
-                $em->flush();
 
-                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+                if ($eval[0]->getValue() == 1) {
+                    $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
+                    $eval_object->setValue(-1);
+                    $em->persist($eval_object);
+                    $em->flush();
+
+
+                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
                 }
             } catch (SamePostResponseUserEvalUserException $exception){
                 throw $exception;
@@ -231,38 +191,7 @@ class PostResponseController extends Controller
             }
     }
 
-    /**
-     * Finds and displays a postResponse entity.
-     *
-     * @Route("/{id}", name="postresponse_show")
-     * @Method("GET")
-     */
-    public function showResponseAction(PostResponse $postResponse, Post $post)
-    {
-        $em = $this->getDoctrine()->getManager();
 
-                $postResponses = $em->getRepository('AppBundle:PostResponse')->findAll();
-
-                return $this->render('postresponse/index.html.twig', array(
-                    'postResponses' => $postResponses,
-                ));
-    }
-
-    /**
-     * Finds and displays a postResponse entity.
-     *
-     * @Route("/{id}", name="postresponse_show")
-     * @Method("GET")
-     */
-    public function showAction(PostResponse $postResponse)
-    {
-        $deleteForm = $this->createDeleteForm($postResponse);
-
-        return $this->render('postresponse/show.html.twig', array(
-            'postResponse' => $postResponse,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Displays a form to edit an existing postResponse entity.
