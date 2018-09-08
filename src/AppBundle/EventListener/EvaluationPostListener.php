@@ -41,7 +41,7 @@ class EvaluationPostListener
             $post = $entity->getPost();
 
             if ($post->getScore() >= 3) {
-
+                //UPDATE post SET status = 'noErrors' WHERE post.id = ?;
                 $post->setStatus('noErrors');
                 $this->em->persist($post);
                 $this->em->flush();

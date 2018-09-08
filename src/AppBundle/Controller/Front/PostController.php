@@ -36,6 +36,8 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
+        // sql request = SELECT * FROM post
         $postslist = $em->getRepository('AppBundle:Post')->findAll();
 
 
@@ -70,6 +72,7 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //INSERT INTO post (id, text, created_at, updated_at, user_id, category_id, comment, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?);
             $em->persist($post);
             $em->flush();
 
@@ -96,9 +99,11 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         $postResponseByUser = null;
-        
+
+        //SELECT * FROM post_response LEFT JOIN evaluation  ON post_response.id = evaluation.post_response_id WHERE post_response.post_id = ?
         $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
         if($this->getUser()) {
+            //SELECT * FROM post_response WHERE post_response.post_id = ? AND post_response.user_id = ?
             $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
         }
         return $this->render('post/show.html.twig', array(
@@ -126,8 +131,10 @@ class PostController extends Controller
         $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         $postResponseByUser = null;
 
+        //SELECT * FROM post_response LEFT JOIN evaluation  ON post_response.id = evaluation.post_response_id WHERE post_response.post_id = ?
         $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
         if($this->getUser()) {
+            //SELECT * FROM post_response WHERE post_response.post_id = ? AND post_response.user_id = ?
             $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
         }
         return $this->render('post/show_proofreader.html.twig', array(
@@ -153,6 +160,7 @@ class PostController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            //UPDATE post SET ? = ? WHERE post.id = ?;
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
@@ -178,6 +186,7 @@ class PostController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            //DELETE FROM post WHERE post.id = 16
             $em->remove($post);
             $em->flush();
         }
@@ -210,6 +219,7 @@ class PostController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
+        //SELECT * FROM evaluation_post WHERE evaluation_post.user_id = ? AND evaluation_post.post_id = ?
         $score = $eval = $em->getRepository('AppBundle:EvaluationPost')->getByUser($user, $post);
         try {
 

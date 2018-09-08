@@ -49,6 +49,7 @@ class PostResponseController extends Controller
         $user = $this->getUser();
         $post = $postResponse->getPost();
 
+        //SELECT * FROM evaluation WHERE evaluation.user_id = ? AND evaluation.post_response_id = ?
         $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
         try {
 
@@ -96,7 +97,8 @@ class PostResponseController extends Controller
             $user = $this->getUser();
             $post = $postResponse->getPost();
 
-            $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
+        //SELECT * FROM evaluation WHERE evaluation.user_id = ? AND evaluation.post_response_id = ?
+        $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postResponse);
 
             try{
                 $event = new Event($eval);
@@ -105,7 +107,6 @@ class PostResponseController extends Controller
                 if ($eval == null) {
                     $this->postResponseService->addVote($postResponse, $user, -1);
                     return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-
                 }
 
                 // delete the evaluation if second down vote
@@ -114,25 +115,13 @@ class PostResponseController extends Controller
                     return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
                 }
 
-            // edit the value of the evaluation from 1 to -1
-
+                // edit the value of the evaluation from 1 to -1
                 if ($eval[0]->getValue() == 1) {
-                    $eval_object = $em->getRepository('AppBundle:Evaluation')->findOneById($eval[0]->getId());
-                    $eval_object->setValue(-1);
-                    $em->persist($eval_object);
-                    $em->flush();
-
-
+                    $this->postResponseService->editVote($eval, -1);
                     return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
                 }
             } catch (SamePostResponseUserEvalUserException $exception){
                 throw $exception;
-               // $response = $this->forward('AppBundle\Controller\Front\PostController::showAction', array(
-                 //   'post' => $post,
-                   // 'errormessage' => "Vous ne pouvez pas vous auto-évaluer."
-                //));
-
-                //return $response;
             }
             catch (PostClosedException $exception)
             {
@@ -165,6 +154,8 @@ class PostResponseController extends Controller
             $post_user = $post->getUser();
             $postResponse->setUser($user);
             $em = $this->getDoctrine()->getManager();
+
+            //SELECT * FROM post_response WHERE post_response.post_id = ?  AND post_response.user_id = ?
             $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
 
             if(($user != $post_user) && ($post->getStatus() != 'closed') && (count($postResponseByUser) < 1)) {
@@ -173,6 +164,7 @@ class PostResponseController extends Controller
                         $postResponse->setPost($post);
 
                         $em = $this->getDoctrine()->getManager();
+                        //INSERT INTO post_response (id, text, created_at, updated_at, user_id, post_id, comment) VALUES (?, ?, ?, ?, ?, ?, ?);
                         $em->persist($postResponse);
                         $em->flush();
 
@@ -192,7 +184,6 @@ class PostResponseController extends Controller
     }
 
 
-
     /**
      * Displays a form to edit an existing postResponse entity.
      *
@@ -206,6 +197,7 @@ class PostResponseController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            //UPDATE post_response SET ? = ? WHERE post_response.id = ?;
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('postresponse_edit', array('id' => $postResponse->getId()));
@@ -231,14 +223,14 @@ class PostResponseController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            //DELETE FROM postresponse WHERE `postresponse.id = ?
             $em->remove($postResponse);
             $em->flush();
         }
 
         return $this->redirectToRoute('post_proofreader_show', array('id' => $postResponse->getPost()->getId()));
     }
-
-
 
 
     /**

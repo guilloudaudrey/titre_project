@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,11 +21,13 @@ class QuizController extends Controller {
     private $formFactory;
     private $userManager;
     private $tokenStorage;
+    public $em;
 
-    public function __construct(TokenStorageInterface $tokenStorage, QuizService $quizService)
+    public function __construct(TokenStorageInterface $tokenStorage, QuizService $quizService, EntityManagerInterface $em)
     {
         $this->tokenStorage = $tokenStorage;
         $this->quizService = $quizService;
+        $this->em = $em;
     }
 
     /**
@@ -59,9 +62,7 @@ class QuizController extends Controller {
      */
     public function giveProofreaderRole(Request $request){
 
-$this->quizService->addRoleProofreader($this->getUser());
-
-
+        $this->quizService->addRoleProofreader($this->getUser());
 
 
         if($this->getTargetUrlFromSession($request->getSession()) != null) {

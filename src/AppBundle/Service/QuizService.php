@@ -18,17 +18,20 @@ class QuizService{
 
     public function addRoleProofreader($current_user){
 
+        //SELECT * FROM user t0 WHERE id = ?
         $user = $this->em->getRepository("AppBundle:User")->find($current_user->getId());
+
+        //UPDATE user SET roles ='?' WHERE user.id = ?
         $user->addRole("ROLE_PROOFREADER");
         $this->em->persist($user);
         $this->em->flush();
 
-        //pour mettre à jour le nouveau rôle ajouté
         $this->userManager->updateUser($user);
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->tokenStorage->setToken($token);
 
     }
+
 
 
 }

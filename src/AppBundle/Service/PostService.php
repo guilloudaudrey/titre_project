@@ -23,13 +23,15 @@ class PostService{
         $evalpost->setPost($post);
 
         // flush
+        //INSERT INTO evaluation_post (id, user_id, post_id, value, created_at) VALUES (:id, :user_id, :post_id, :value, :created_at);
         $this->em->persist($evalpost);
         $this->em->flush();
-
     }
 
     public function removePostVoteUp($score){
+        //SELECT * FROM evaluation_post WHERE id = ?
         $score_object = $this->em->getRepository('AppBundle:EvaluationPost')->findOneById($score[0]->getId());
+        //DELETE FROM evaluation_post WHERE evaluation_post.id = 1
         $this->em->remove($score_object);
         $this->em->flush();
     }

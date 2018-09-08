@@ -16,9 +16,8 @@ class PostResponseListener
 {
 
     /**
-     * On pre persist entity PostResponse
-     *
-     * @param PrePersistEventArgs $args
+     * @param LifecycleEventArgs $args
+     * @throws PostClosedException
      */
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -49,22 +48,17 @@ class PostResponseListener
     {
     
         $this->em = $args->getEntityManager();
-        
                 $entity = $args->getEntity();
-
                 if ($entity instanceof PostResponse){
-
                     $this->setUpdatedAt($entity);
                 } 
     }
 
     public function setCreatedAt(PostResponse $postResponse){
-
         $postResponse->setCreatedAt(new \DateTime());
     }
 
     public function setUpdatedAt(PostResponse $postResponse){
-
         $postResponse->setUpdatedAt(new \DateTime());
     }
 

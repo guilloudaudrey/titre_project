@@ -53,11 +53,11 @@ class ProfileController extends Controller
         $postResponsesList = $user->getPostResponses();
         $responsesToPostList = [];
         $em = $this->getDoctrine()->getManager();
+
+        //SELECT * FROM post WHERE post.status = 'active' AND post.user_id = $user;
         $postsActive = $em->getRepository('AppBundle:Post')->findBy(array(
             'status' => 'active',
             'user' => $user->getId()));
-
-
 
 
         foreach($postslist as $post){

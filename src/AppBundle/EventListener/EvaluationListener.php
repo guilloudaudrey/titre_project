@@ -15,9 +15,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class EvaluationListener
 {
     /**
-     * On pre persist entity evaluation
-     *
-     * @param PrePersistEventArgs $args
+     * @param LifecycleEventArgs $args
+     * @throws PostClosedException
+     * @throws SamePostResponseUserEvalUserException
+     * @throws SamePostUserEvalUserException
      */
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -42,10 +43,12 @@ class EvaluationListener
                 throw new PostClosedException('vous ne pouvez plus évaluer cette réponse');
             }
         }
-
-
     }
 
+    /**
+     * @param LifecycleEventArgs $args
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function postPersist(LifecycleEventArgs $args)
     {
         $this->em = $args->getEntityManager();

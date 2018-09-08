@@ -12,7 +12,6 @@ class PostControllerTest extends WebTestCase {
         $client->request('GET', '/post/');
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
-
     }
 
     public function testShowPost(){
@@ -32,9 +31,6 @@ class PostControllerTest extends WebTestCase {
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 
-    public function testPostingWithoutBeingLogin(){
-        $post = new Post();
-        $this->expectException('LogicException');
-    }
+
 
 }

@@ -41,7 +41,7 @@ class UserListener{
                     $this->targetDirectory,
                     $fileName
                 );
-
+                //UPDATE user SET avatar_filename = ? WHERE user.id = ?;
                 $entity->setAvatarFilename($fileName);
                 $this->em->persist($entity);
                 $this->em->flush();
