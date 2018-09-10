@@ -21,6 +21,18 @@ class PostControllerTest extends WebTestCase {
         $this->assertSame(200, $client->getResponse()->getStatusCode());
     }
 
+    public function testNewPost(){
+        $client = static ::createClient();
+        $client->request('GET', '/post/new');
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
+    }
+
+    public function testEditPost(){
+        $client = static ::createClient();
+        $client->request('GET', '/post/7/edit');
+        $this->assertSame(302, $client->getResponse()->getStatusCode());
+    }
+
 
     public function testClickingPost()
     {

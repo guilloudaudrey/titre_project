@@ -152,6 +152,7 @@ class PostController extends Controller
      *
      * @Route("/{id}/edit", name="post_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_PROOFREADER')")
      */
     public function editAction(Request $request, Post $post)
     {
