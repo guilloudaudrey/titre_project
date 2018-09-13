@@ -32,7 +32,7 @@ self.addEventListener("install", function (event) {
 
 var cache_name = 'gih-cache';
 var cached_urls = [
-
+    '/',
 ];
 
 self.addEventListener('install', function(event) {

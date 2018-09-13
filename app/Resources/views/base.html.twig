@@ -16,6 +16,7 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
+
     </head>
     <body>
     {% block javascripts %}
@@ -23,20 +24,17 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src = "https://www.gstatic.com/charts/loader.js"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
-        <script>
-
-
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.register('{{ asset('service-worker.js') }}')
-                        .then(function (registration) {
-                            console.log('Registration successful, scope is:', registration.scope);
-                        })
-                        .catch(function (error) {
-                            console.log('Service worker registration failed, error:', error);
-                        });
-                }
-
-        </script>
+        <!--<script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('{{ asset('service-worker.js') }}')
+                    .then(function (registration) {
+                        console.log('Registration successful, scope is:', registration.scope);
+                    })
+                    .catch(function (error) {
+                        console.log('Service worker registration failed, error:', error);
+                    });
+            }
+        </script>-->
         <script>
 
             function activatePlacesSearch() {

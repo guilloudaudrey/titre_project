@@ -16,7 +16,6 @@ use AppBundle\Entity\EvaluationPost;
 /**
  * Post controller.
  *
- * @Route("post")
  */
 class PostController extends Controller
 {
@@ -55,7 +54,7 @@ class PostController extends Controller
     /**
      * Creates a new post entity.
      *
-     * @Route("/new", name="post_new")
+     * @Route("/post/new", name="post_new")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
@@ -88,7 +87,7 @@ class PostController extends Controller
     /**
      * Finds and displays a post entity.
      *
-     * @Route("/{id}", name="post_show")
+     * @Route("/post/{id}", name="post_show")
      * @Method("GET")
      */
     public function showAction(Post $post)
@@ -118,7 +117,7 @@ class PostController extends Controller
     /**
      * Finds and displays a post entity.
      *
-     * @Route("/proofreader/{id}", name="post_proofreader_show")
+     * @Route("/post/proofreader/{id}", name="post_proofreader_show")
      * @Method("GET")
      * @Security("has_role('ROLE_PROOFREADER')")
      */
@@ -150,7 +149,7 @@ class PostController extends Controller
     /**
      * Displays a form to edit an existing post entity.
      *
-     * @Route("/{id}/edit", name="post_edit")
+     * @Route("/post/{id}/edit", name="post_edit")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_PROOFREADER')")
      */
@@ -177,7 +176,7 @@ class PostController extends Controller
     /**
      * Deletes a post entity.
      *
-     * @Route("/{id}", name="post_delete")
+     * @Route("/post/{id}", name="post_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Post $post)
@@ -212,7 +211,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/{id}/up", name="post_up")
+     * @Route("/post/{id}/up", name="post_up")
      * @Method("GET")
      * @Security("has_role('ROLE_PROOFREADER')")
      */

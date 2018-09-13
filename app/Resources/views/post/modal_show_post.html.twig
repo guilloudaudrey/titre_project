@@ -11,11 +11,11 @@
 
             <div class="modal-body modal_post_show">
                 <p>
-                    <a href="{{ path('post_show', { 'id': post.id }) }}" class="btn btn-default">Consulter</a>
+                    <a href="{{ path('post_show', { 'id': post.id }) }}" class="btn btn-default post_consult">Consulter</a>
                 </p>
                 <p class="ou_modal">OU</p>
                 <p>
-                    <a href="{{ path('post_proofreader_show', { 'id': post.id }) }}" class="btn btn-info">Poster une réponse</a>
+                    <a href="{{ path('post_proofreader_show', { 'id': post.id }) }}" class="btn btn-info post_contrib">Poster une réponse</a>
                 </p>
             </div>
         </div>
