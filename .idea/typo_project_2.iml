@@ -5,7 +5,6 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/src/AppBundle" isTestSource="false" packagePrefix="AppBundle\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bin/.phpunit" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/components/jquery" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/cache" />
@@ -31,7 +30,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/jms/serializer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-components" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-paginator-bundle" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/kriswallsmith/assetic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/oyejorge/less.php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pagerfanta/pagerfanta" />
@@ -48,7 +46,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensio/generator-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensiolabs/security-checker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/assetic-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/monolog-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/phpunit-bridge" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-apcu" />
@@ -60,7 +57,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-util" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/swiftmailer-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/symfony" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/twbs/bootstrap" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/extensions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/twig" />
     </content>
