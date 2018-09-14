@@ -16,8 +16,7 @@ class PostResponseVoteEvent extends Event{
     }
 
     public function getPostResponse(){
-        var_dump('aaaa');
-        die;
+
         return $this->postResponse;
     }
 

@@ -30,10 +30,10 @@
                                 </li>
                             {% endif %}
                         <li class="user_username_menu"><a>{{  app.user.username }}</a></li>
-                        <li><a href="{{ path('fos_user_profile_show') }}" >Mon profil</a></li>
+                        <li><a href="{{ path('fos_user_profile_show') }}" class="profile_link">Mon profil</a></li>
                         {% if 'ROLE_ADMIN' in app.user.roles %}  %}
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
+                                <a class="dropdown-toggle admin_link" data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ path('easyadmin') }}">Utilisateurs</a></li>
                                     <li><a href="/admin/?action=list&entity=Post">Posts</a></li>
