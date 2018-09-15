@@ -16,6 +16,7 @@ use AppBundle\Entity\EvaluationPost;
 /**
  * Post controller.
  *
+ *@Route()
  */
 class PostController extends Controller
 {

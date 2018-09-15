@@ -189,18 +189,20 @@ class PostResponseController extends Controller
      *
      * @Route("/{id}/edit", name="postresponse_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_PROOFREADER')")
      */
     public function editAction(Request $request, PostResponse $postResponse)
     {
         $deleteForm = $this->createDeleteForm($postResponse);
         $editForm = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
         $editForm->handleRequest($request);
+        $post = $postResponse->getPost();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             //UPDATE post_response SET ? = ? WHERE post_response.id = ?;
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('postresponse_edit', array('id' => $postResponse->getId()));
+            return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
         }
 
         return $this->render('postresponse/edit.html.twig', array(

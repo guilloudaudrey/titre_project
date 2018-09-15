@@ -15,10 +15,17 @@ class QuizControllerTest extends WebTestCase{
     }
 
     public function testCreateQuizAnswerAuth(){
-        $client = static::createClient();
+        $client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'aaa',
+            'PHP_AUTH_PW'   => 'aaa',
+        ));
         $crawler = $client->request('GET', '/quizanswer/new');
 
-        $this->assertSame(302, $client->getResponse()->getStatusCode());
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
+        $this->assertGreaterThan(
+            0,
+            $crawler->filter('html:contains("rôle")')->count()
+        );
 
     }
 
