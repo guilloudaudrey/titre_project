@@ -1,4 +1,5 @@
 //service-worker.js
+
 /**
 var version = 'v1::';
 
@@ -12,9 +13,7 @@ self.addEventListener("install", function (event) {
                 .then(function (cache) {
                     return cache.addAll([
                         '/',
-                        'http://localhost:8000/',
-                        'http://localhost:8000/post',
-                        'http://localhost:8000/assets/css/main.css'
+                        '/service-worker.js'
 
                     ]);
                 })
@@ -28,11 +27,12 @@ self.addEventListener("install", function (event) {
         console.log(error);
     }
 });
- **/
 
-var cache_name = 'gih-cache';
+**/
+
+var cache_name = 'typo';
 var cached_urls = [
-    '/',
+
 ];
 
 self.addEventListener('install', function(event) {
@@ -82,3 +82,32 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
+
+
+/**
+
+self.addEventListener('install', function(event) {
+    console.log('Installed service-worker.js', event);
+});
+
+self.addEventListener('activate', function(event) {
+    console.log('Activated service-worker.js\', event);\n' +
+        '});.js', event);
+});
+
+
+var cacheName = 'typo';
+var filesToCache = [
+
+];
+self.addEventListener('install', function(event) {
+    event.waitUntil(
+        caches.open(cacheName)
+            .then(function(cache) {
+                console.info('[sw.js] cached all files');
+                return cache.addAll(filesToCache);
+            })
+    );
+});
+**/
+
