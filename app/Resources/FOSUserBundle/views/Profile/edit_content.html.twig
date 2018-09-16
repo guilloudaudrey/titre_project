@@ -1,11 +1,17 @@
 
 
-{% extends "@FOSUser/layout.html.twig" %}
 
-{% block content %}
+
+{% block fos_user_content %}
 
     {% trans_default_domain 'FOSUserBundle' %}
 <div class="container edit_info_user_container">
+        <div class="container">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Modification de votre profil</h1>
+                </div>
+                <div class="panel-body">
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
     <div class="form-group">
         {{ form_label(form.username)}}
@@ -27,5 +33,8 @@
             <input class="btn btn-info" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
         </div>
     {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
 </div>
 {% endblock %}
