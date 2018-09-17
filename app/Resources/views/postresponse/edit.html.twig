@@ -4,19 +4,25 @@
     <div class="container container_post_response_edit">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h1 class="panel-title">Postresponse edit</h1>
+                <h1 class="panel-title">Modification de votre réponse</h1>
             </div>
             <div class="panel-body">
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
+                {{ form_start(edit_form) }}
+                <div class="form-group">
+                    <label for="text">Réponse</label>
+                    {{ form_widget(edit_form.text) }}
+                </div>
+                <div class="form-group">
+                    <label for="comment">Commentaire</label>
+                    {{ form_widget(edit_form.comment) }}
+                </div>
+                {{ form_widget(edit_form) }}
                 <div class="buttons_edit_post_response">
                     <input class="btn btn-info" type="submit" value="Modifier" />
                 </div>
-    {{ form_end(edit_form) }}
-
-
+                {{ form_end(edit_form) }}
             </div>
-    </div>
+        </div>
         <a class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': postResponse.getPost().getId() }) }}">Annuler</a>
     </div>
 {% endblock %}

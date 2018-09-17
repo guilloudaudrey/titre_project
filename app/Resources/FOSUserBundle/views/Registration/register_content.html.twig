@@ -1,41 +1,47 @@
 {% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 <div class="col-lg-12" >
-<div class=" register_container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
-    <div class="panel panel-info ">
-        <div class="panel-heading">
-            <h3 class="panel-title">Inscription</h3>
-        </div>
-        <div class="panel-body">
-
-                {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-
-            <div class="form-group">
-                {{ form_label(form.email)}}
-                {{ form_widget(form.email)}}
+    <div class=" register_container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+        <div class="panel panel-info ">
+            <div class="panel-heading">
+                <h3 class="panel-title">Inscription</h3>
             </div>
+            <div class="panel-body">
 
-            <div class="form-group">
-                {{ form_label(form.username)}}
-                {{ form_widget(form.username)}}
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    {{ form_widget(form.email)}}
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Pseudo</label>
+                    {{ form_widget(form.username)}}
+                </div>
+
+                <div class="form-group">
+                    <label for="plainPassword">Mot de passe</label>
+                    {{ form_widget(form.plainPassword.first) }}
+                    <label for="plainPassword">Répéter le mot de passe</label>
+                    {{ form_widget(form.plainPassword.second) }}
+                </div>
+                <div class="form-group">
+                    <label for="avatar_filename">Avatar</label>
+                    {{ form_widget(form.avatar_filename)}}
+                </div>
+
+                <div class="form-group">
+                    <label for="avatar_filename">Ville</label>
+                    {{ form_widget(form.city, { 'id': 'city_input'})}}
+                </div>
+
+
+                <div>
+                    <input class="btn btn-info centered" type="submit" value="Inscription" />
+                </div>
+                {{ form_end(form) }}
             </div>
-
-            <div class="form-group">
-                {{ form_widget(form.plainPassword)}}
-                {{ form_row(form.avatar_filename)}}
-            </div>
-
-            <div class="form-group">
-                {{ form_label(form.city) }}
-                {{ form_widget(form.city, { 'id': 'city_input'})}}
-            </div>
-
-
-            <div>
-                <input class="btn btn-info centered" type="submit" value="{{ 'registration.submit'|trans }}" />
-            </div>
-            {{ form_end(form) }}
         </div>
     </div>
-</div>
 </div>
