@@ -32,6 +32,11 @@ self.addEventListener("install", function (event) {
 
 var cache_name = 'typo';
 var cached_urls = [
+    '/',
+    './profile',
+    './register',
+
+
 
 ];
 

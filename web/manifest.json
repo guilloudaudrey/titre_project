@@ -1,10 +1,10 @@
 {
   "name": "My PWA",
   "short_name": "PWA",
-  "start_url": ".",
+  "start_url": "./app.php",
   "icons": [
     {
-      "src": "./images/blue.png",
+      "src": "./images/logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
