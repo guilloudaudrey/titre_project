@@ -231,7 +231,7 @@ class PostResponseController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('post_proofreader_show', array('id' => $postResponse->getPost()->getId()));
+        //return $this->redirectToRoute('post_proofreader_show', array('id' => $postResponse->getPost()->getId()));
     }
 
 
