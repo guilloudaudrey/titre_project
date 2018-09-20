@@ -6,13 +6,15 @@
             <div class="row index_create_post_button" >
                 <!--<div class="banner_div" style="height: 280px;  background-image:url('{{ asset('images/banner/note.jpg') }}')">-->
                 <div class="banner_div" style="height: 280px;  background-color: #5bc0de">
-
-                    <!--<img class="image_note" src="{{ asset('images/banner/note.png') }}">-->
+                    <img class="img_banner_group_2 hidden-sm hidden-xs" src="{{ asset('images/discussion.png') }}">
+                    <img class="img_banner_group hidden-xs" src="{{ asset('images/discussion.png') }}">
+                    <!--<img class="img_banner" src="{{ asset('images/search.png') }}">-->
                     <div class="text_banner">
                         <p class="text_p">Une hésitation sur votre orthographe ? <br>Demandez à la communauté <span class="typo_word">
                                 typo</span><br>de vous relire !</p>
 
                     </div>
+                    <img class="img_banner_group_2 hidden-md hidden-sm hidden-xs" src="{{ asset('images/discussion2.png') }}">
                 </div>
             </div>
 
@@ -29,10 +31,11 @@
                         {% include 'post/modal_show_post.html.twig' %}
                     {% endfor %}
                 </div>
+            </div>
                 <div class="row">
                     <div class="text-center">{{ knp_pagination_render(posts) }}</div>
                 </div>
-            </div>
+
         </div>
     </div>
 

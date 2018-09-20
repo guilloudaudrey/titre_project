@@ -192,7 +192,7 @@ text-align: center;
 
 
 .banner{
-    height: 190px;
+    height: 200px;
     margin-bottom: 40px;
     background-size: cover;
     image-orientation: flip;
@@ -201,22 +201,48 @@ text-align: center;
 }
 
 .banner_div{
-    background-size: cover;
+ display: flex;
+    overflow: hidden;
+justify-content: center;
+}
+
+.img_banner{
+    height: 250px;
+    object-fit: contain;
+
+}
+
+.img_banner_group{
+    height: 290px;
+    opacity: 0.6;
+
+}
+
+.paper_plane{
+    height: 30px;
+}
+
+.img_banner_group_2{
+    height: 290px;
+    opacity: 0.2;
+
 }
 
 .text_banner{
     color: white;
-    padding-top: 65px;
+    padding-top: 95px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 1.9em;
+    font-weight: bold;
     z-index: 100;
-    position: absolute;
     right: 200px;
 
     line-height: 1.6em;
 }
 
 .text_p{
-
+font-weight: normal;
 }
 
 .image_note{

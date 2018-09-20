@@ -33,6 +33,7 @@ framework:
         log: true
 
 
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
@@ -140,4 +141,5 @@ easy_admin:
                     - comment
                     - user
                     - post
+
 
