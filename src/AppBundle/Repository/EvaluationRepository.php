@@ -3,7 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\User;
-use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\PostAnswer;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
@@ -15,11 +15,11 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
 class EvaluationRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getByUser(User $user, PostResponse $postResponse) {
+    public function getByUser(User $user, PostAnswer $postAnswer) {
         $query = $this->createQueryBuilder('ev')
             ->where('ev.user = :user')
-            ->andWhere('ev.post_response = :postResponse')
-            ->setParameter('postResponse', $postResponse)
+            ->andWhere('ev.post_answer = :postAnswer')
+            ->setParameter('postAnswer', $postAnswer)
             ->setParameter('user', $user)
             ->orderBy('ev.createdAt', 'ASC')
             ->getQuery();

@@ -1,7 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="container container_post_response_edit">
+    <div class="container container_post_answer_edit">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h1 class="panel-title">Modification de votre réponse</h1>
@@ -17,12 +17,12 @@
                     {{ form_widget(edit_form.comment) }}
                 </div>
                 {{ form_widget(edit_form) }}
-                <div class="buttons_edit_post_response">
+                <div class="buttons_edit_post_answer">
                     <input class="btn btn-info" type="submit" value="Modifier" />
                 </div>
                 {{ form_end(edit_form) }}
             </div>
         </div>
-        <a class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': postResponse.getPost().getId() }) }}">Annuler</a>
+        <a class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': postAnswer.getPost().getId() }) }}">Annuler</a>
     </div>
 {% endblock %}

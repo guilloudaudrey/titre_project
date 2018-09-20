@@ -147,8 +147,7 @@
 
 {% endblock main %}
 
-{% block javascripts %}
-    {{ parent() }}
+
 
     <script type="text/javascript">
         $(function() {
@@ -198,6 +197,6 @@
             $('#main').find('table tbody').highlight($.merge([_search_query], _search_query.split(' ')));
         </script>
     {% endif %}
-{% endblock %}
+
 </div>
 {% endblock %}

@@ -28,16 +28,16 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Réponses</h3>
             </div>
-            {% if postResponses is empty %}
+            {% if postAnswers is empty %}
                 <div class="panel-body">
                     <p>Aucune réponse</p>
                 </div>
                 {% else %}
 
-            {% for postResponse in postResponses%}
+            {% for postAnswer in postAnswers%}
                 <div class="panel-body">
-                    <a href="{{ path('post_show', { 'id': postResponse.post.id }) }}" >{{ postResponse.text[:50] }}...</a>
-                    {{ postResponse.createdAt|date('Y-m-d') }}
+                    <a href="{{ path('post_show', { 'id': postAnswer.post.id }) }}" >{{ postAnswer.text[:50] }}...</a>
+                    {{ postAnswer.createdAt|date('Y-m-d') }}
                 </div>
             {% endfor %}
             {% endif %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\Front;
+namespace AppBundle\Controller;
 
 
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,10 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use AppBundle\Service\QuizService;
+use AppBundle\Service\ProofreaderRoleService;
 use Symfony\Component\HttpFoundation\Response;
 
-class QuizController extends Controller {
+class ProofreaderRoleController extends Controller {
 
     private $eventDispatcher;
     private $formFactory;
@@ -23,7 +23,7 @@ class QuizController extends Controller {
     private $tokenStorage;
     public $em;
 
-    public function __construct(TokenStorageInterface $tokenStorage, QuizService $quizService, EntityManagerInterface $em)
+    public function __construct(TokenStorageInterface $tokenStorage, ProofreaderRoleService $quizService, EntityManagerInterface $em)
     {
         $this->tokenStorage = $tokenStorage;
         $this->quizService = $quizService;

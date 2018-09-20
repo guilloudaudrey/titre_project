@@ -3,7 +3,7 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\Evaluation;
 use AppBundle\Exception\PostClosedException;
-use AppBundle\Exception\SamePostResponseUserEvalUserException;
+use AppBundle\Exception\SamePostAnswerUserEvalUserException;
 use AppBundle\Exception\SamePostUserEvalUserException;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -17,7 +17,7 @@ class EvaluationListener
     /**
      * @param LifecycleEventArgs $args
      * @throws PostClosedException
-     * @throws SamePostResponseUserEvalUserException
+     * @throws SamePostAnswerUserEvalUserException
      * @throws SamePostUserEvalUserException
      */
     public function prePersist(LifecycleEventArgs $args)
@@ -28,18 +28,18 @@ class EvaluationListener
         if ($entity instanceof Evaluation){
             $this->setCreatedAt($entity);
 
-            $postresponse_user = $entity->getPostResponse()->getUser();
-            $post_user = $entity->getPostResponse()->getPost()->getUser();
+            $postanswer_user = $entity->getPostAnswer()->getUser();
+            $post_user = $entity->getPostAnswer()->getPost()->getUser();
 
-            if ($postresponse_user == $entity->getUser()){
-               throw new SamePostResponseUserEvalUserException('vous ne pouvez pas vous auto-évaluer');
+            if ($postanswer_user == $entity->getUser()){
+               throw new SamePostAnswerUserEvalUserException('vous ne pouvez pas vous auto-évaluer');
             }
 
             if ($post_user == $entity->getUser()){
                 throw new SamePostUserEvalUserException('vous ne pouvez pas évaluer des réponses à votre question');
             }
 
-            if($entity->getPostResponse()->getPost()->getStatus() == 'closed' or $entity->getPostResponse()->getPost()->getStatus() =='noErrors'){
+            if($entity->getPostAnswer()->getPost()->getStatus() == 'closed' or $entity->getPostAnswer()->getPost()->getStatus() =='noErrors'){
                 throw new PostClosedException('vous ne pouvez plus évaluer cette réponse');
             }
         }
@@ -57,11 +57,11 @@ class EvaluationListener
         if ($entity instanceof Evaluation){
             $this->setCreatedAt($entity);
 
-            $postresponse = $entity->getPostResponse();
-            $post = $postresponse->getPost();
-            $evaluations = $postresponse->getEvaluations();
+            $postanswer = $entity->getPostAnswer();
+            $post = $postanswer->getPost();
+            $evaluations = $postanswer->getEvaluations();
 
-            if ($postresponse->getScore() >= 3){
+            if ($postanswer->getScore() >= 3){
 
                 $post->setStatus('closed');
                 $this->em->persist($post);

@@ -42,9 +42,9 @@ class User extends BaseUser
     private $posts;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="user", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostAnswer", mappedBy="user", cascade={"remove"})
      */
-    private $post_responses;
+    private $post_answers;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="user", cascade={"remove"})
@@ -146,37 +146,37 @@ class User extends BaseUser
     }
 
     /**
-     * Add postResponse
+     * Add postAnswer
      *
-     * @param \AppBundle\Entity\PostResponse $postResponse
+     * @param \AppBundle\Entity\PostAnswer $postAnswer
      *
      * @return User
      */
-    public function addPostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    public function addPostAnswer(\AppBundle\Entity\PostAnswer $postAnswer)
     {
-        $this->post_responses[] = $postResponse;
+        $this->post_answers[] = $postAnswer;
 
         return $this;
     }
 
     /**
-     * Remove postResponse
+     * Remove postAnswer
      *
-     * @param \AppBundle\Entity\PostResponse $postResponse
+     * @param \AppBundle\Entity\PostAnswer $postAnswer
      */
-    public function removePostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    public function removePostAnswer(\AppBundle\Entity\PostAnswer $postAnswer)
     {
-        $this->post_responses->removeElement($postResponse);
+        $this->post_answers->removeElement($postAnswer);
     }
 
     /**
-     * Get postResponses
+     * Get postAnswers
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPostResponses()
+    public function getPostAnswers()
     {
-        return $this->post_responses;
+        return $this->post_answers;
     }
 
 

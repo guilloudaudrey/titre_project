@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class QuizService{
+class ProofreaderRoleService{
 
     public function __construct(EntityManagerInterface $em, UserManagerInterface $userManager, TokenStorageInterface $tokenStorage)
     {

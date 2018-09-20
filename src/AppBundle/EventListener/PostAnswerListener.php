@@ -2,7 +2,7 @@
 namespace AppBundle\EventListener;
 
 use AppBundle\AppBundle;
-use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\PostAnswer;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\EventDispatcher\Event;
@@ -12,7 +12,7 @@ use AppBundle\Exception\PostClosedException;
 
 
 
-class PostResponseListener
+class PostAnswerListener
 {
 
     /**
@@ -24,7 +24,7 @@ class PostResponseListener
         $this->em = $args->getEntityManager();
         $entity = $args->getEntity();
 
-        if ($entity instanceof PostResponse){
+        if ($entity instanceof PostAnswer){
             $this->setCreatedAt($entity);
 
             $post_user = $entity->getPost()->getUser();
@@ -40,7 +40,7 @@ class PostResponseListener
     }
 
         /**
-     * On pre update entity PostResponse
+     * On pre update entity PostAnswer
      *
      * @param PreUpdateEventArgs $args
      */
@@ -49,17 +49,17 @@ class PostResponseListener
     
         $this->em = $args->getEntityManager();
                 $entity = $args->getEntity();
-                if ($entity instanceof PostResponse){
+                if ($entity instanceof PostAnswer){
                     $this->setUpdatedAt($entity);
                 } 
     }
 
-    public function setCreatedAt(PostResponse $postResponse){
-        $postResponse->setCreatedAt(new \DateTime());
+    public function setCreatedAt(PostAnswer $postAnswer){
+        $postAnswer->setCreatedAt(new \DateTime());
     }
 
-    public function setUpdatedAt(PostResponse $postResponse){
-        $postResponse->setUpdatedAt(new \DateTime());
+    public function setUpdatedAt(PostAnswer $postAnswer){
+        $postAnswer->setUpdatedAt(new \DateTime());
     }
 
 

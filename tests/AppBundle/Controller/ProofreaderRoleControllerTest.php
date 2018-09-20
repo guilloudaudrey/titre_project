@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\AppBundle\Controller\Front;
+namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class QuizControllerTest extends WebTestCase{
+class ProofreaderRoleControllerTest extends WebTestCase{
 
     public function testCreateQuizAnswer(){
         $client = static::createClient();

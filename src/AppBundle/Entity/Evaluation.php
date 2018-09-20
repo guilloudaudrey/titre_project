@@ -42,10 +42,10 @@ class Evaluation
     private $user;
 
         /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PostResponse", inversedBy="evaluations")
-     * @ORM\JoinColumn(name="post_response_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PostAnswer", inversedBy="evaluations")
+     * @ORM\JoinColumn(name="post_answer_id", referencedColumnName="id")
      */
-    private $post_response;
+    private $post_answer;
 
     /**
      * Get id
@@ -130,27 +130,27 @@ class Evaluation
     }
 
     /**
-     * Set postResponse
+     * Set postAnswer
      *
-     * @param \AppBundle\Entity\PostResponse $postResponse
+     * @param \AppBundle\Entity\PostAnswer $postAnswer
      *
      * @return Evaluation
      */
-    public function setPostResponse(\AppBundle\Entity\PostResponse $postResponse = null)
+    public function setPostAnswer(\AppBundle\Entity\PostAnswer $postAnswer = null)
     {
-        $this->post_response = $postResponse;
+        $this->post_answer = $postAnswer;
 
         return $this;
     }
 
     /**
-     * Get postResponse
+     * Get postAnswer
      *
-     * @return \AppBundle\Entity\PostResponse
+     * @return \AppBundle\Entity\PostAnswer
      */
-    public function getPostResponse()
+    public function getPostAnswer()
     {
-        return $this->post_response;
+        return $this->post_answer;
     }
 
     public function __toString() {

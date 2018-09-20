@@ -139,7 +139,7 @@ footer {
 
 }
 
-.avatar_post_response_author{
+.avatar_post_answer_author{
     margin: auto;
     margin-bottom: 22px;
     height: 60px;
@@ -164,7 +164,7 @@ footer {
     background-size: cover;
 }
 
-.row_post_response{
+.row_post_answer{
     display: flex;
     align-items: flex-end;
 }
@@ -372,15 +372,15 @@ a.post_link:active{
 /*show
  */
 
-.buttons_edit_post_response{
+.buttons_edit_post_answer{
     display: flex;
 }
 
-.button_delete_post_response{
+.button_delete_post_answer{
     margin-left: 5px;
 }
 
-.container_post_responses{
+.container_post_answers{
     padding-bottom: 50px;
 }
 
@@ -397,11 +397,11 @@ a.post_link:active{
     margin-top: 60px;
 }
 
-.container_post_response_edit{
+.container_post_answer_edit{
     margin-top: 60px;
 }
 
-.container_new_post_response{
+.container_new_post_answer{
     margin-top: 60px;
 }
 
@@ -491,12 +491,12 @@ margin-top: 60px;
     background-color: lightblue !important;
 }
 
-.panel_footer_postresponse{
+.panel_footer_postanswer{
     display: flex;
     justify-content: space-between;
 }
 
-.panel_footer_postresponse_author{
+.panel_footer_postanswer_author{
     font-family: "Homemade Apple";
     color: #5bc0de;
     font-weight: bold;

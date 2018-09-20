@@ -1,15 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div class="container container_post_responses" style="padding-bottom:60px">
+    <div class="container container_post_answers" style="padding-bottom:60px">
         {% include('post/panel_user_question.html.twig') %}
         {% if post.status == "closed" %}
             <div class="alert alert-success" role="alert">Une solution a été apportée !</div>
         {% endif %}
-        <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
+        <h2>{{ postAnswers|length }} {% if postAnswers|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
         <hr class="my-4">
-        {% for postResponse in postResponses %}
-            {% include 'postresponse/post_response_ensemble.html.twig' %}
+        {% for postAnswer in postAnswers %}
+            {% include 'postanswer/post_answer_ensemble.html.twig' %}
         {% endfor %}
     </div>
 {% endblock %}

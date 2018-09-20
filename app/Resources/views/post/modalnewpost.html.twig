@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
-                {{ form_start(form, {'action': path('postresponse_new', {id: post.id}), 'method': 'POST'}) }}
+                {{ form_start(form, {'action': path('postanswer_new', {id: post.id}), 'method': 'POST'}) }}
                 {{ form_widget(form) }}
                 <input type="submit" value="Create" />
                 {{ form_end(form) }}

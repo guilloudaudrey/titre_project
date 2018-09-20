@@ -9,6 +9,16 @@
                 <div class="panel-body">
                     <!--<div class="panel panel-default card-question">-->
                     <p>{{ post.text }}</p>
+                    <div style="display: flex" class="pull-right">
+                        {% if postAnswers|length < 1 %}
+                            {% if post.user == app.user %}
+                                <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
+                                <!-- Trigger the modal with a button -->
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
+                                {% include 'post/modal_delete_post.html.twig' %}
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="panel-footer panel-footer-question">
                     <div >Posté le {{ post.createdAt|date('y-m-d à H:i') }}</div>

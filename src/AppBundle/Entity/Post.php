@@ -75,9 +75,9 @@ class Post
     private $post_evaluations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostResponse", mappedBy="post", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\PostAnswer", mappedBy="post", cascade={"remove"})
      */
-    private $post_responses;
+    private $post_answers;
 
     /**
      * Get id
@@ -214,43 +214,43 @@ class Post
      */
     public function __construct()
     {
-        $this->post_responses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->post_answers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add postResponse
+     * Add postAnswer
      *
-     * @param \AppBundle\Entity\PostResponse $postResponse
+     * @param \AppBundle\Entity\PostAnswer $postAnswer
      *
      * @return Post
      */
-    public function addPostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    public function addPostAnswer(\AppBundle\Entity\PostAnswer $postAnswer)
     {
-        $this->post_responses[] = $postResponse;
+        $this->post_answers[] = $postAnswer;
 
         return $this;
     }
 
     /**
-     * Remove postResponse
+     * Remove postAnswer
      *
-     * @param \AppBundle\Entity\PostResponse $postResponse
+     * @param \AppBundle\Entity\PostAnswer $postAnswer
      */
-    public function removePostResponse(\AppBundle\Entity\PostResponse $postResponse)
+    public function removePostAnswer(\AppBundle\Entity\PostAnswer $postAnswer)
     {
-        $this->post_responses->removeElement($postResponse);
+        $this->post_answers->removeElement($postAnswer);
     }
 
     /**
-     * Get postResponses
+     * Get postAnswers
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPostResponses()
+    public function getPostAnswers()
     {
 
 
-        return $this->post_responses;
+        return $this->post_answers;
     }
 
     /**

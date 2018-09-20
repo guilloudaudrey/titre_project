@@ -3,14 +3,14 @@
 namespace tests\AppBundle\Entity;
 
 use AppBundle\Entity\Evaluation;
-use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\PostAnswer;
 use PHPUnit\Framework\TestCase;
 
 class PostResponseTest extends TestCase
 {
 
     public function testgetScore(){
-        $postResponse = new PostResponse();
+        $postResponse = new PostAnswer();
         $evaluation = new Evaluation();
         $evaluation->setValue(1);
         $evaluation2 = new Evaluation();

@@ -131,8 +131,8 @@ easy_admin:
                     - comment
                     - user
                     - category
-        PostResponse:
-            class: AppBundle\Entity\PostResponse
+        PostAnswer:
+            class: AppBundle\Entity\PostAnswer
             list:
                 title: "Réponses"
             form:

@@ -18,11 +18,13 @@
                             <div class="panel-body">
                                 <p>{{ post.text }}</p>
                                 <div style="display: flex" class="pull-right">
-                                    {% if postResponses|length < 1 %}
+                                    {% if postAnswers|length < 1 %}
+                                        {% if post.user == app.user %}
                                         <a  style="margin-right: 5px" class="btn btn-default btn-sm" href="{{ path('post_edit', { 'id': post.id }) }}">Modifier</a>
                                         <!-- Trigger the modal with a button -->
                                         <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Supprimer</button>
                                         {% include 'post/modal_delete_post.html.twig' %}
+                                            {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
@@ -43,12 +45,12 @@
 
             {% if post.status != 'closed' and post.status != 'noErrors' %}
                 {% if app.user != post.user %}
-                    {% if postResponseByUser is empty %}
+                    {% if postAnswerByUser is empty %}
                         <div class="container_button_no_errors">
                             <a class="btn btn-default " href="{{ path('post_up', {id : post.id}) }}"><span class="glyphicon glyphicon-eye-open"></span> Il n'y a pas d'erreurs</a>
                         </div>
                         <div class="container_button_create_post">
-                        <a class="btn btn-info " href="{{ path('postresponse_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
+                        <a class="btn btn-info " href="{{ path('postanswer_new', {id : post.id}) }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle réponse</a>
                         </div>
                     {% else %}
                         <div class="alert alert-warning alert_answer_already" role="alert">Vous avez répondu à cette demande.</div>
@@ -62,32 +64,32 @@
                 {% endif %}
             {% endif %}
 
-        <h2>{{ postResponses|length }} {% if postResponses|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
+        <h2>{{ postAnswers|length }} {% if postAnswers|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
         <hr class="my-4">
 
-            {% for postResponse in postResponses %}
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row_post_response">
+            {% for postAnswer in postAnswers %}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row_post_answer">
                     <div class="col-md-1 col-sm-1 col-xs-2">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            {% if postResponse.score >= 3 %}
+                            {% if postAnswer.score >= 3 %}
                                 <span class="glyphicon glyphicon-ok" ></span>
                             {% endif %}
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 vote_buttons">
                             {% if post.status != "closed" and post.status != "noErrors" %}
                                 <div class=" voteup">
-                                    {% if app.user != post.user and app.user != postResponse.user %}
-                                        <a href="{{ url('postresponse_up',{id: postResponse.id }) }}"><span id="plus{{ postResponse.getId() }}" class="glyphicon glyphicon-plus blue-none"></span></a>
+                                    {% if app.user != post.user and app.user != postAnswer.user %}
+                                        <a href="{{ url('postanswer_up',{id: postAnswer.id }) }}"><span id="plus{{ postAnswer.getId() }}" class="glyphicon glyphicon-plus blue-none"></span></a>
                                     {% endif %}
                                 </div>
                             {% endif %}
                                 <span class="label label-info">
-                                    {{ postResponse.score }}
+                                    {{ postAnswer.score }}
                                 </span>
                             {% if post.status != "closed" and post.status != "noErrors" %}
                                 <div class=" votedown">
-                                    {% if app.user != post.user and app.user != postResponse.user %}
-                                        <a href="{{ url('postresponse_down',{id: postResponse.id }) }}"><span id="minus{{ postResponse.getId() }}" class="glyphicon glyphicon-minus"></span></a>
+                                    {% if app.user != post.user and app.user != postAnswer.user %}
+                                        <a href="{{ url('postanswer_down',{id: postAnswer.id }) }}"><span id="minus{{ postAnswer.getId() }}" class="glyphicon glyphicon-minus"></span></a>
                                     {% endif %}
                                 </div>
                             {% endif %}
@@ -96,30 +98,30 @@
 
                     <div class="col-md-10 col-sm-10 col-xs-10">
                         <div class="panel panel-default card_answer">
-                            {% include 'postresponse/prototype-post-response-show.html.twig' with {postResponse: postResponse} only %}
+                            {% include 'postanswer/prototype-post-answer-show.html.twig' with {postAnswer: postAnswer} only %}
                         </div>
                     </div>
                     <div class="col-md-1 col-sm-1 hidden-xs ">
-                        <div class="avatar_post_response_author" style="background-image:url('{{asset('/avatars/'~postResponse.user.getAvatarFilename()) }}')"></div>
+                        <div class="avatar_post_answer_author" style="background-image:url('{{asset('/avatars/'~postAnswer.user.getAvatarFilename()) }}')"></div>
                     </div>
                 </div>
             {% endfor %}
     </div>
 
     <script>
-        {% for postResponse in postResponses %}
+        {% for postAnswer in postAnswers %}
             {% for evaluation in app.user.getEvaluations() %}
                 {% if evaluation.getValue == 1 %}
-                    {% if evaluation.getPostResponse().getId() == postResponse.getId() %}
+                    {% if evaluation.postAnswer().getId() == postAnswer.getId() %}
                         $(document).ready(function() {
-                                $('#plus{{ postResponse.getId }}').css('cssText', 'color: lightblue !important');
+                                $('#plus{{ postAnswer.getId }}').css('cssText', 'color: lightblue !important');
                         })
 
                     {% endif %}
                 {% else %}
-                    {% if evaluation.getPostResponse().getId() == postResponse.getId() %}
+                    {% if evaluation.getPostAnswer().getId() == postAnswer.getId() %}
                     $(document).ready(function() {
-                        $('#minus{{ postResponse.getId }}').css('cssText', 'color: lightblue !important');
+                        $('#minus{{ postAnswer.getId }}').css('cssText', 'color: lightblue !important');
                     })
 
                     {% endif %}

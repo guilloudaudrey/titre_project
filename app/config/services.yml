@@ -37,11 +37,11 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
-    AppBundle\EventListener\PostResponseListener:
+    AppBundle\EventListener\PostAnswerListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
-            - { name: kernel.event.listener, event: post_response_vote, method: beforeForm }
+            - { name: kernel.event.listener, event: post_answer_vote, method: beforeForm }
     AppBundle\EventListener\EvaluationListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
@@ -74,20 +74,20 @@ services:
         arguments:
             $formFactory: '@fos_user.profile.form.factory'
 
-    postresponse_service:
-        class: AppBundle\Service\PostResponseService
+    postanswer_service:
+        class: AppBundle\Service\PostAnswerService
         argument: ['@doctrine.orm.entity_manager']
 
     quiz_service:
-        class: AppBundle\Service\QuizService
+        class: AppBundle\Service\ProofreaderRoleService
         argument: ['@doctrine.orm.entity_manager', '@fos_user.user_manager', '@security.token_storage' ]
 
     app_controller_post:
-        class: AppBundle\Controller\Front\PostController
+        class: AppBundle\Controller\PostController
         arguments:
             - '@post_service'
 
-    app_controller_post_reponse:
-        class: AppBundle\Controller\Front\PostResponseController
+    app_controller_post_answer:
+        class: AppBundle\Controller\PostAnswerController
         arguments:
-            - '@postresponse_service'
+            - '@postanswer_service'

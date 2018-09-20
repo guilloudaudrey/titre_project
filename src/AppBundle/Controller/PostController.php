@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Controller\Front;
+namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Entity\Post;
-use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\PostAnswer;
 use AppBundle\Service\PostService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -95,23 +95,23 @@ class PostController extends Controller
     {
         $deleteForm = $this->createDeleteForm($post);
 
-        $postResponse = new Postresponse();
+        $postAnswer = new PostAnswer();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
-        $postResponseByUser = null;
+        $form = $this->createForm('AppBundle\Form\PostAnswerType', $postAnswer);
+        $postAnswerByUser = null;
 
-        //SELECT * FROM post_response LEFT JOIN evaluation  ON post_response.id = evaluation.post_response_id WHERE post_response.post_id = ?
-        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
+        //SELECT * FROM post_answer LEFT JOIN evaluation  ON post_answer.id = evaluation.post_answer WHERE post_answer.post_id = ?
+        $postAnswers = $em->getRepository('AppBundle:PostAnswer')->getByPostWithEvaluation($post);
         if($this->getUser()) {
-            //SELECT * FROM post_response WHERE post_response.post_id = ? AND post_response.user_id = ?
-            $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
+            //SELECT * FROM post_answer WHERE post_answer.post_id = ? AND post_answer.user_id = ?
+            $postAnswerByUser = $em->getRepository('AppBundle:PostAnswer')->getByPostandByUser($post, $this->getUser());
         }
         return $this->render('post/show.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
-            'postResponses' => $postResponses,
-            'postResponseByUser' => $postResponseByUser
+            'postAnswers' => $postAnswers,
+            'postAnswerByUser' => $postAnswerByUser
         ));
     }
 
@@ -126,24 +126,24 @@ class PostController extends Controller
     {
         $deleteForm = $this->createDeleteForm($post);
 
-        $postResponse = new Postresponse();
+        $postAnswer = new PostAnswer();
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm('AppBundle\Form\PostResponseType', $postResponse);
-        $postResponseByUser = null;
+        $form = $this->createForm('AppBundle\Form\PostAnswerType', $postAnswer);
+        $postAnswerByUser = null;
 
-        //SELECT * FROM post_response LEFT JOIN evaluation  ON post_response.id = evaluation.post_response_id WHERE post_response.post_id = ?
-        $postResponses = $em->getRepository('AppBundle:PostResponse')->getByPostWithEvaluation($post);
+        //SELECT * FROM post_answer LEFT JOIN evaluation  ON post_answer.id = evaluation.post_answer WHERE post_answer.post_id = ?
+        $postAnswers = $em->getRepository('AppBundle:PostAnswer')->getByPostWithEvaluation($post);
         if($this->getUser()) {
-            //SELECT * FROM post_response WHERE post_response.post_id = ? AND post_response.user_id = ?
-            $postResponseByUser = $em->getRepository('AppBundle:PostResponse')->getByPostandByUser($post, $this->getUser());
+            //SELECT * FROM post_answer WHERE post_answer.post_id = ? AND post_answer.user_id = ?
+            $postAnswerByUser = $em->getRepository('AppBundle:PostAnswer')->getByPostandByUser($post, $this->getUser());
         }
         return $this->render('post/show_proofreader.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
             'form' => $form->createView(),
-            'postResponses' => $postResponses,
+            'postAnswers' => $postAnswers,
             'errorMessage' => $errormessage,
-            'postResponseByUser' => $postResponseByUser
+            'postAnswerByUser' => $postAnswerByUser
         ));
     }
 

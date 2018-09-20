@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PostResponse
+ * PostAnswer
  *
- * @ORM\Table(name="post_response")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PostResponseRepository")
+ * @ORM\Table(name="post_answer")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostAnswerRepository")
  */
-class PostResponse
+class PostAnswer
 {
     /**
      * @var int
@@ -43,19 +43,19 @@ class PostResponse
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="post_responses")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="post_answers")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id") 
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="post_responses")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post", inversedBy="post_answers")
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id") 
      */
     private $post;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="post_response", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Evaluation", mappedBy="post_answer", cascade={"remove"})
      */
     private $evaluations;
 
@@ -91,7 +91,7 @@ class PostResponse
      *
      * @param string $text
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setText($text)
     {
@@ -115,7 +115,7 @@ class PostResponse
      *
      * @param \DateTime $createdAt
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setCreatedAt($createdAt)
     {
@@ -139,7 +139,7 @@ class PostResponse
      *
      * @param \DateTime $updatedAt
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -163,7 +163,7 @@ class PostResponse
      *
      * @param \AppBundle\Entity\User $user
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setUser(\AppBundle\Entity\User $user = null)
     {
@@ -187,7 +187,7 @@ class PostResponse
      *
      * @param \AppBundle\Entity\Post $post
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setPost(\AppBundle\Entity\Post $post = null)
     {
@@ -218,7 +218,7 @@ class PostResponse
      *
      * @param \AppBundle\Entity\Evaluation $evaluation
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function addEvaluation(\AppBundle\Entity\Evaluation $evaluation)
     {
@@ -252,7 +252,7 @@ class PostResponse
      *
      * @param string $comment
      *
-     * @return PostResponse
+     * @return PostAnswer
      */
     public function setComment($comment)
     {

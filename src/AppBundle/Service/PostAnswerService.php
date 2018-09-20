@@ -5,18 +5,18 @@ namespace AppBundle\Service;
 use AppBundle\Entity\Evaluation;
 use Doctrine\ORM\EntityManagerInterface;
 
-class PostResponseService{
+class PostAnswerService{
 
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
-    public function addVote($postResponse, $user, $value){
+    public function addVote($postAnswer, $user, $value){
         //create new eval
         $evaluation = new Evaluation();
         // set post response
-        $evaluation->setPostResponse($postResponse);
+        $evaluation->setPostAnswer($postAnswer);
         // set user
         $evaluation->setUser($user);
         $evaluation->setValue($value);

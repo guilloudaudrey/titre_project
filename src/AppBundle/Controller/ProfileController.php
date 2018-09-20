@@ -50,7 +50,7 @@ class ProfileController extends Controller
         }
 
         $postslist = $user->getPosts();
-        $postResponsesList = $user->getPostResponses();
+        $postAnswersList = $user->getPostAnswers();
         $responsesToPostList = [];
         $em = $this->getDoctrine()->getManager();
 
@@ -61,7 +61,7 @@ class ProfileController extends Controller
 
 
         foreach($postslist as $post){
-            $responsesToPostList[] = $post->getPostResponses();
+            $responsesToPostList[] = $post->getPostAnswers();
         }
 
 
@@ -78,8 +78,8 @@ class ProfileController extends Controller
             6/*nbre d'éléments par page*/
         );
 
-        $postResponses = $this->get('knp_paginator')->paginate(
-            $postResponsesList,
+        $postAnswers = $this->get('knp_paginator')->paginate(
+            $postAnswersList,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
             6/*nbre d'éléments par page*/
         );
@@ -87,7 +87,7 @@ class ProfileController extends Controller
         return $this->render('@FOSUser/Profile/show.html.twig', array(
             'user' => $user,
             'posts' => $posts,
-            'postResponses' => $postResponses,
+            'postAnswers' => $postAnswers,
             'reponsesToPost' => $responsesToPost,
             'postsActive' => $postsActive
         ));

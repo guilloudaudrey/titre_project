@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class PostResponseType extends AbstractType
+class PostAnswerType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -25,7 +25,7 @@ class PostResponseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\PostResponse'
+            'data_class' => 'AppBundle\Entity\PostAnswer'
         ));
     }
 
@@ -34,7 +34,7 @@ class PostResponseType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_postresponse';
+        return 'appbundle_postanswer';
     }
 
 

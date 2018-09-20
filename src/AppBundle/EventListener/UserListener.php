@@ -3,7 +3,7 @@
 
 namespace AppBundle\EventListener;
 
-use AppBundle\Entity\PostResponse;
+use AppBundle\Entity\PostAnswer;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
