@@ -19,6 +19,7 @@ class PostType extends AbstractType
             ->add('text',  TextareaType::class, array(
                 'attr' => array('cols' => '5', 'rows' => '4')))
             ->add('comment',  TextareaType::class, array(
+                'required' => false,
                 'attr' => array('cols' => '5', 'rows' => '4')))
             ->add('category');
     }/**

@@ -1,8 +1,9 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-<div class="container container_full_page" style="padding-bottom:60px">
+<div class="container container_full_page full_page_login" style="padding-bottom:60px">
     {{ include('@FOSUser/Security/login_content.html.twig') }}
+    <img alt="image login" class="img_login" src="{{ asset('images/id-card.png') }}">
 </div>
 {% endblock fos_user_content %}
 

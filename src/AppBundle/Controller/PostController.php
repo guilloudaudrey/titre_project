@@ -36,11 +36,10 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-
         // sql request = SELECT * FROM post
         $postslist = $em->getRepository('AppBundle:Post')->findAll();
 
-
+        // pagination
         $posts  = $this->get('knp_paginator')->paginate(
             $postslist,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,
@@ -100,7 +99,7 @@ class PostController extends Controller
         $form = $this->createForm('AppBundle\Form\PostAnswerType', $postAnswer);
         $postAnswerByUser = null;
 
-        //SELECT * FROM post_answer LEFT JOIN evaluation  ON post_answer.id = evaluation.post_answer WHERE post_answer.post_id = ?
+        //SELECT * FROM post_answer LEFT JOIN evaluation  ON post_answer.id = evaluation.post_answer_id WHERE post_answer.post_id = ?
         $postAnswers = $em->getRepository('AppBundle:PostAnswer')->getByPostWithEvaluation($post);
         if($this->getUser()) {
             //SELECT * FROM post_answer WHERE post_answer.post_id = ? AND post_answer.user_id = ?

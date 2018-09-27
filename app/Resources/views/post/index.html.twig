@@ -5,16 +5,15 @@
 
             <div class="row index_create_post_button" >
                 <!--<div class="banner_div" style="height: 280px;  background-image:url('{{ asset('images/banner/note.jpg') }}')">-->
-                <div class="banner_div" style="height: 280px;  background-color: #5bc0de">
-                    <img class="img_banner_group_2 hidden-sm hidden-xs" src="{{ asset('images/discussion.png') }}">
-                    <img class="img_banner_group hidden-xs" src="{{ asset('images/discussion.png') }}">
-                    <!--<img class="img_banner" src="{{ asset('images/search.png') }}">-->
+                <div class="banner_div">
+                    <img alt="image bannière" class="img_banner_group_2 hidden-sm hidden-xs" src="{{ asset('images/discussion.png') }}">
+                    <img alt="image bannière" class="img_banner_group hidden-xs" src="{{ asset('images/discussion.png') }}">
                     <div class="text_banner">
                         <p class="text_p">Une hésitation sur votre orthographe ? <br>Demandez à la communauté <span class="typo_word">
                                 typo</span><br>de vous relire !</p>
 
                     </div>
-                    <img class="img_banner_group_2 hidden-md hidden-sm hidden-xs" src="{{ asset('images/discussion2.png') }}">
+                    <img alt="image bannière" class="img_banner_group_2 hidden-md hidden-sm hidden-xs" src="{{ asset('images/discussion2.png') }}">
                 </div>
             </div>
 
@@ -22,7 +21,7 @@
         <div class="container main_container_index">
             <div class="row" >
                 <div class="row buttons_action">
-                    <a class="btn btn-info " href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
+                    <a class="btn btn-info btn_new_post" href="{{ path('post_new') }}"><span class="glyphicon glyphicon-pencil"></span> Poster une nouvelle demande</a>
                 </div>
                 <div>
                     <hr>
@@ -42,7 +41,7 @@
 <script>
     {% for post in posts|sort|reverse %}
     {% if post.status == "closed" or post.status =="noErrors" %}
-    $(document).ready(function() {
+    $(window).load(function() {
         $('.question-sign{{ post.getId }}').css('cssText', 'color: #5bc0de !important');
     })
     {% endif %}
@@ -50,3 +49,4 @@
 </script>
 
 {% endblock %}
+   {% block javascripts %}{% endblock %}

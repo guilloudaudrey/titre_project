@@ -1,6 +1,6 @@
 {
-  "name": "My PWA",
-  "short_name": "PWA",
+  "name": "Typo",
+  "short_name": "typo",
   "start_url": "./app.php",
   "icons": [
     {

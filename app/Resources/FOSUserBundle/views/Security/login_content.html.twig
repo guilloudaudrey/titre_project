@@ -2,7 +2,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 login_container"  >
-
     <div class="panel panel-info ">
         <div class="panel-heading panel-heading-login">
             <h1 class="panel-title">Connectez-vous</h1>
@@ -15,27 +14,25 @@
                 {% if csrf_token %}
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                 {% endif %}
-
-                <div class="input-group">
+                <div class="form-group">
                     <label for="username">Pseudo</label>
                     <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label for="password">Mot de passe</label>
                     <input class="form-control" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
                 </div>
-                <div class="input-group">
-                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                <label for="remember_me"> Se souvenir de moi</label>
+                <div class="form-group">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me"> Se souvenir de moi</label>
                 </div>
                 <div>
-                <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="Connexion" />
+                    <input class="btn btn-info" type="submit" id="_submit" name="_submit" value="Connexion" />
                 </div>
-
             </form>
         </div>
         <div class="panel-footer">
-        <p>Ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a></p>
+            <p>Ou <a href="{{ path('fos_user_registration_register') }}">inscrivez-vous</a></p>
         </div>
     </div>
 </div>

@@ -30,11 +30,14 @@ self.addEventListener("install", function (event) {
 
 **/
 
+/**
+
 var cache_name = 'typo';
 var cached_urls = [
     '/',
-    './profile',
-    './register',
+    '/profile',
+    '/register',
+    '/login'
 
 
 
@@ -54,7 +57,7 @@ self.addEventListener('activate', function(event) {
         caches.keys().then(function(cacheNames) {
             return Promise.all(
                 cacheNames.map(function(cacheName) {
-                    if (cacheName.startsWith('pages-cache-') && staticCacheName !== cacheName) {
+                    if (cacheName. ('typo')) {
                         return caches.delete(cacheName);
                     }
                 })
@@ -73,9 +76,7 @@ self.addEventListener('fetch', function(event) {
             }
             console.log('Network request for ', event.request.url);
             return fetch(event.request).then(function(response) {
-                if (response.status === 404) {
-                    return caches.match('fourohfour.html');
-                }
+
                 return caches.open(cached_urls).then(function(cache) {
                     cache.put(event.request.url, response.clone());
                     return response;
@@ -88,31 +89,73 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
+**/
 
-/**
-
-self.addEventListener('install', function(event) {
-    console.log('Installed service-worker.js', event);
-});
-
-self.addEventListener('activate', function(event) {
-    console.log('Activated service-worker.js\', event);\n' +
-        '});.js', event);
-});
-
-
-var cacheName = 'typo';
+var cacheName = 'blog-1';
+var dataCacheName = 'data-blog-1';
 var filesToCache = [
+    '/app.php',
+
+
+
 
 ];
-self.addEventListener('install', function(event) {
-    event.waitUntil(
-        caches.open(cacheName)
-            .then(function(cache) {
-                console.info('[sw.js] cached all files');
-                return cache.addAll(filesToCache);
-            })
+
+self.addEventListener('install', function(e) {
+    console.log('[ServiceWorker] Install');
+    e.waitUntil(
+        caches.open(cacheName).then(function(cache) {
+            console.log('[ServiceWorker] Caching app shell');
+            return cache.addAll(filesToCache);
+        })
+
     );
 });
-**/
+self.addEventListener('activate', function(e) {
+    console.log('[ServiceWorker] Activate');
+    e.waitUntil(
+        caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+                if (key !== cacheName && key !== dataCacheName) {
+                    console.log('[ServiceWorker] Removing old cache', key);
+                    return caches.delete(key);
+                }
+            }));
+        })
+    );
+    return self.clients.claim();
+});
+
+self.addEventListener('fetch', function(e) {
+    console.log('[ServiceWorker] Fetch', e.request.url);
+    var dataUrl = '/api';
+    if (e.request.url.indexOf(dataUrl) > -1) {
+        /*
+         * When the request URL contains dataUrl, the app is asking for fresh
+         * weather data. In this case, the service worker always goes to the
+         * network and then caches the response. This is called the "Cache then
+         * network" strategy:
+         * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
+         */
+        e.respondWith(
+            caches.open(dataCacheName).then(function(cache) {
+                return fetch(e.request).then(function(response){
+                    cache.put(e.request.url, response.clone());
+                    return response;
+                });
+            })
+        );
+    } else {
+        /*
+         * The app is asking for app shell files. In this scenario the app uses the
+         * "Cache, falling back to the network" offline strategy:
+         * https://jakearchibald.com/2014/offline-cookbook/#cache-falling-back-to-network
+         */
+        e.respondWith(
+            caches.match(e.request).then(function(response) {
+                return response || fetch(e.request);
+            })
+        );
+    }
+});
 

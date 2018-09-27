@@ -38,7 +38,6 @@ class PostAnswerController extends Controller
     }
 
 
-
     /**
      * @Route("/{id}/up", name="postanswer_up")
      * @Method("GET")
