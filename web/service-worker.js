@@ -94,7 +94,7 @@ self.addEventListener('fetch', function(event) {
 var cacheName = 'blog-1';
 var dataCacheName = 'data-blog-1';
 var filesToCache = [
-    '/app.php',
+    './app.php',
 
 
 
