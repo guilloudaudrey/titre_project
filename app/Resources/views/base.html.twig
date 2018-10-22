@@ -16,16 +16,16 @@
             <link href="https://fonts.googleapis.com/css?family=Cuprum" rel="stylesheet">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
-    <script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     {% block body %}{% endblock %}
-    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src = "https://www.gstatic.com/charts/loader.js"></script>
-    <!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>-->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3fJqZzceDzewlxrQz4ppuWDcrK6JaXzA&libraries=places&callback=activatePlacesSearch"></script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('{{ asset('service-worker.js') }}')
