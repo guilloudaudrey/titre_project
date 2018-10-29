@@ -37,7 +37,7 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // sql request = SELECT * FROM post
-        $postslist = $em->getRepository('AppBundle:Post')->findAll();
+        $postslist = $em->getRepository('AppBundle:Post')->findAllDescByDate();
 
         // pagination
         $posts  = $this->get('knp_paginator')->paginate(

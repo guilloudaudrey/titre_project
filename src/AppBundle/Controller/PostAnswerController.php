@@ -56,18 +56,21 @@ class PostAnswerController extends Controller
 
             if ($eval == null) {
                 $this->postAnswerService->addVote($postAnswer, $user, 1);
+                //return new Response('success');
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // delete the evaluation if second up vote
             if ($eval[0]->getValue() == 1) {
                 $this->postAnswerService->removeVote($eval);
+                //return new Response('success');
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // edit the value of the evaluation from -1 to 1
             if ($eval[0]->getValue() == -1) {
                 $this->postAnswerService->editVote($eval, 1);
+                //return new Response('success');
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
         }catch (SamePostAnswerUserEvalUserException $exception){
@@ -82,7 +85,7 @@ class PostAnswerController extends Controller
             throw $exception;
         }
 
-
+        //return new Response('error');
         return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
     }
 

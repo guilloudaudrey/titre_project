@@ -8,7 +8,13 @@
             <div class="user_question">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 avatar_pseudo_container">
-                        <div class="avatar_post_author" style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
+                        {% if post.user.getAvatarFilename() is not null %}
+                            <div class="avatar_post_author " style="background-image:url('{{asset('/avatars/'~post.user.getAvatarFilename()) }}')"></div>
+                        {% else %}
+                            <button class="avatar_post_letter">
+                                {{ post.user.getFirstLetterOfUserName() }}
+                            </button>
+                        {% endif %}
                         <div class="avatar_pseudo">{{ post.user }}</div>
                     </div>
 
@@ -102,7 +108,14 @@
                         </div>
                     </div>
                     <div class="col-md-1 col-sm-1 hidden-xs ">
+                        {% if postAnswer.user.getAvatarFilename() is not null %}
                         <div class="avatar_post_answer_author" style="background-image:url('{{asset('/avatars/'~postAnswer.user.getAvatarFilename()) }}')"></div>
+                        {% else %}
+                            <button class="avatar_post_answer_letter">
+                                {{ post.user.getFirstLetterOfUserName() }}
+                            </button>
+                        {% endif %}
+
                     </div>
                 </div>
             {% endfor %}

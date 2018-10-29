@@ -12,6 +12,14 @@ use AppBundle\Entity\Post;
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
 
+    public function findAllDescByDate()
+    {
+        $query = $this->createQueryBuilder('pr')->
+        orderBy('pr.createdAt', 'DESC')->
+        getQuery();
+
+        return $query->execute();
+    }
 
 
 }

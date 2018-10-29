@@ -1,7 +1,12 @@
 <h2>Statistiques</h2>
 <div class="charts col-lg-12">
+
+        {% if  user.getPosts|length > 0 or user.getPostAnswers|length > 0  %}
         <div class="col-lg-3 col-xs-12 col-sm-5" id="chart_div"></div>
+        {% endif %}
+    {% if  user.getPosts|length > 0 %}
         <div class="col-lg-3 col-xs-12 col-sm-5" id="chart2_div"></div>
+        {% endif %}
 </div>
 
 <script>

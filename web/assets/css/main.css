@@ -158,6 +158,21 @@ footer {
     background-size: cover;
 }
 
+.avatar_post_answer_letter{
+    margin: auto;
+    margin-bottom: 22px;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    border: yellow 1px solid;
+    background-repeat: no-repeat;
+    background-color: yellow;
+    background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 2em;
+    color: #222;
+}
+
 
 .avatar_post_author{
     margin: auto;
@@ -169,6 +184,21 @@ footer {
     background-repeat: no-repeat;
     background-color: white;
     background-size: cover;
+}
+
+.avatar_post_letter{
+    margin: auto;
+    margin-bottom: 5px;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    border: yellow 1px solid;
+    background-repeat: no-repeat;
+    background-color: yellow;
+    background-size: cover;
+    font-family: 'Homemade Apple', cursive;
+    font-size: 2em;
+    color: #222;
 }
 
 .row_post_answer{
@@ -511,6 +541,8 @@ margin-top: 60px;
 
 .avatar_pseudo_container{
     margin-top: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .panel-footer-question{
