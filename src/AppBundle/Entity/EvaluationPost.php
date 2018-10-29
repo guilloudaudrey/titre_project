@@ -194,4 +194,8 @@ class EvaluationPost
     {
         return $this->post;
     }
+
+    public function __toString() {
+        return 'eval post';
+    }
 }

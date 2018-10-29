@@ -42,8 +42,8 @@ class PostController extends Controller
         // pagination
         $posts  = $this->get('knp_paginator')->paginate(
             $postslist,
-            $request->query->get('page', 1)/*le numéro de la page à afficher*/,
-            8/*nbre d'éléments par page*/
+            $request->query->get('page', 1)/*page number*/,
+            8/*number of elements per page*/
         );
 
         return $this->render('post/index.html.twig', array(

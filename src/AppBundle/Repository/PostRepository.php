@@ -12,4 +12,6 @@ use AppBundle\Entity\Post;
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
+
 }
