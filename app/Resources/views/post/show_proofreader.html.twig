@@ -85,7 +85,7 @@
                             {% if post.status != "closed" and post.status != "noErrors" %}
                                 <div class=" voteup">
                                     {% if app.user != post.user and app.user != postAnswer.user %}
-                                        <a href="{{ url('postanswer_up',{id: postAnswer.id }) }}"><span id="plus{{ postAnswer.getId() }}" class="glyphicon glyphicon-plus blue-none"></span></a>
+                                        <a href="{{ url('postanswer_up',{id: postAnswer.id }) }}"><span id="plus{{ postAnswer.getId() }}" class="glyphicon glyphicon-plus blue-none upvote"></span></a>
                                     {% endif %}
                                 </div>
                             {% endif %}
@@ -112,7 +112,7 @@
                         <div class="avatar_post_answer_author" style="background-image:url('{{asset('/avatars/'~postAnswer.user.getAvatarFilename()) }}')"></div>
                         {% else %}
                             <button class="avatar_post_answer_letter">
-                                {{ post.user.getFirstLetterOfUserName() }}
+                                {{ postAnswer.user.getFirstLetterOfUserName() }}
                             </button>
                         {% endif %}
 
@@ -141,6 +141,16 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(document).on('click', ".upvote", function(e){
+                console.log('You have clicked');
+
+            });
+        });
+
     </script>
 
 

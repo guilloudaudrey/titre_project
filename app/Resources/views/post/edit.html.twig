@@ -14,6 +14,10 @@
                 {{ form_end(edit_form) }}
             </div>
         </div>
-        <a  class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': post.id }) }}">Annuler</a>
+        {% if app.user.roles|length == 1 %}
+            <a  class="btn btn-default" href="{{ path('post_show', { 'id': post.id }) }}">Annuler</a>
+        {% else %}
+            <a  class="btn btn-default" href="{{ path('post_proofreader_show', { 'id': post.id }) }}">Annuler</a>
+        {% endif %}
     </div>
 {% endblock %}

@@ -25,9 +25,10 @@
             <div class="avatar_post_answer_author" style="background-image:url('{{asset('/avatars/'~postAnswer.user.getAvatarFilename()) }}')"></div>
         {% else %}
             <button class="avatar_post_answer_letter">
-                {{ post.user.getFirstLetterOfUserName() }}
+                {{ postAnswer.user.getFirstLetterOfUserName() }}
             </button>
         {% endif %}
         <!--<div class="avatar_pseudo" style="text-align: center">{{ postAnswer.user }}</div>-->
     </div>
 </div>
+

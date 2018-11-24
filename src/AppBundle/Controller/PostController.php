@@ -136,6 +136,9 @@ class PostController extends Controller
             //SELECT * FROM post_answer WHERE post_answer.post_id = ? AND post_answer.user_id = ?
             $postAnswerByUser = $em->getRepository('AppBundle:PostAnswer')->getByPostandByUser($post, $this->getUser());
         }
+
+
+
         return $this->render('post/show_proofreader.html.twig', array(
             'post' => $post,
             'delete_form' => $deleteForm->createView(),
@@ -151,7 +154,7 @@ class PostController extends Controller
      *
      * @Route("/post/{id}/edit", name="post_edit")
      * @Method({"GET", "POST"})
-     * @Security("has_role('ROLE_PROOFREADER')")
+     * @Security("has_role('ROLE_USER')")
      */
     public function editAction(Request $request, Post $post)
     {
@@ -163,7 +166,11 @@ class PostController extends Controller
             //UPDATE post SET ? = ? WHERE post.id = ?;
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+            if(count($this->getUser()->getRoles()) == 1) {
+                return $this->redirectToRoute('post_show', array('id' => $post->getId()));
+            }else{
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+            }
         }
 
         return $this->render('post/edit.html.twig', array(

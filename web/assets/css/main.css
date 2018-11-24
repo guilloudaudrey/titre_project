@@ -8,13 +8,11 @@ html, body{
 .big_container{
     min-height:100%;
     position:relative;
-
 }
 
 
 .container_full_page{
     height: 100%;
-
 }
 
 footer {
@@ -57,7 +55,6 @@ footer {
 .navbar{
     margin-bottom: 20px;
     padding-top: 5px;
-
 }
 
 .vote_buttons{
@@ -143,7 +140,6 @@ footer {
 
 .user_username_menu a{
     color: lightblue !important;
-
 }
 
 .avatar_post_answer_author{
@@ -232,7 +228,6 @@ footer {
     background-size: cover;
     image-orientation: flip;
     margin-bottom: 100px;
-
 }
 
 .banner_div{
@@ -246,13 +241,11 @@ footer {
 .img_banner{
     height: 250px;
     object-fit: contain;
-
 }
 
 .img_banner_group{
     height: 290px;
     opacity: 0.6;
-
 }
 
 .paper_plane{
@@ -262,7 +255,6 @@ footer {
 .img_banner_group_2{
     height: 290px;
     opacity: 0.2;
-
 }
 
 .text_banner{
@@ -278,7 +270,7 @@ footer {
 }
 
 .text_p{
-font-weight: normal;
+    font-weight: normal;
 }
 
 .image_note{
@@ -286,9 +278,7 @@ font-weight: normal;
     position: absolute;
     right: 50px;
     top: -600px;
-
     z-index: 1;
-
 }
 
 .typo_word{
@@ -302,7 +292,6 @@ font-weight: normal;
     font-family: 'Homemade Apple', cursive;
     font-size: 3em !important;
     color: lightblue !important;
-
 }
 
 /*index
@@ -338,7 +327,6 @@ font-weight: normal;
     text-align: right;
     margin-bottom: 30px;
     border-bottom: lightgray solid 2px;
-
 }
 
 .date_and_user{
@@ -355,12 +343,10 @@ font-weight: normal;
 
 a.post_link:hover{
     text-decoration: none;
-
 }
 
 a.post_link:active{
     text-decoration: none;
-
 }
 
 
@@ -417,7 +403,6 @@ a.post_link:active{
     background-color: #5bc0de !important;
     border-color: #5bc0de !important;
     color: white !important;
-
 }
 
 /*show
@@ -439,7 +424,6 @@ a.post_link:active{
     background: #EDEFF1;
     border-radius: 6px;
     padding: 10px;
-
     margin: 0;
     margin-bottom: 10px;
 }
@@ -480,12 +464,15 @@ a.post_link:active{
 
 .label.label-eval{
     font-size: 1em !important;
-
 }
 
 .label_eval_post{
     font-size: 1.3em !important;
     background-color: lightgrey !important;
+}
+
+.container_answers{
+    background-color: yellow;
 }
 
 .voteup{
@@ -603,6 +590,7 @@ margin-top: 50px;
 .footer a {
     color: #78828D
 }
+
 .supportLi h4 {
     font-size: 20px;
     font-weight: lighter;
@@ -610,7 +598,6 @@ margin-top: 50px;
     margin-bottom: 0 !important;
     padding-bottom: 0;
 }
-
 
 .social li {
     background: none repeat scroll 0 0 #B5B5B5;
@@ -663,7 +650,6 @@ font-weight: bold;
     justify-content: space-between;
 }
 
-
 /**proofreader status**/
 
 .proofreader_confirmation_panel{
@@ -698,6 +684,5 @@ font-weight: bold;
         background-size: cover;
         image-orientation: flip;
         margin-bottom: 50px;
-
     }
 }

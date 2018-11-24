@@ -9,7 +9,9 @@
         <h2>{{ postAnswers|length }} {% if postAnswers|length > 1 %}réponses {% else %}réponse {% endif %}</h2>
         <hr class="my-4">
         {% for postAnswer in postAnswers %}
+            <div class="container_answers">
             {% include 'postanswer/post_answer_ensemble.html.twig' %}
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

@@ -50,7 +50,6 @@ class ProofreaderRoleController extends Controller {
         if ($session->has($key)) {
             return $session->get($key);
         }
-
         return null;
     }
 
@@ -65,15 +64,11 @@ class ProofreaderRoleController extends Controller {
         $this->quizService->addRoleProofreader($this->getUser());
 
 
-        if($this->getTargetUrlFromSession($request->getSession()) != null) {
+ /**       if($this->getTargetUrlFromSession($request->getSession()) != null) {
             return $this->redirect($this->getTargetUrlFromSession($request->getSession()));
 
-        }else{
+        }else{**/
             return $this->redirect($request->headers->get('referer'));
-        }
-
-
-
+        //}
     }
-
 }

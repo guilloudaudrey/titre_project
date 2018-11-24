@@ -45,6 +45,7 @@ class PostAnswerController extends Controller
      */
     public function upVoteAction(PostAnswer $postAnswer){
 
+        // entity manager
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
@@ -53,39 +54,38 @@ class PostAnswerController extends Controller
         //SELECT * FROM evaluation WHERE evaluation.user_id = ? AND evaluation.post_answer = ?
         $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postAnswer);
         try {
-
+            // if no eval add one vote
             if ($eval == null) {
                 $this->postAnswerService->addVote($postAnswer, $user, 1);
-                //return new Response('success');
+                //redirect to the same page
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // delete the evaluation if second up vote
             if ($eval[0]->getValue() == 1) {
                 $this->postAnswerService->removeVote($eval);
-                //return new Response('success');
+                //redirect to the same page
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
             // edit the value of the evaluation from -1 to 1
             if ($eval[0]->getValue() == -1) {
                 $this->postAnswerService->editVote($eval, 1);
-                //return new Response('success');
+                //redirect to the same page
                 return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
-        }catch (SamePostAnswerUserEvalUserException $exception){
+            // if the user who posts the answer and the user who posts the evaluation are the same, throw an exception
+        } catch (SamePostAnswerUserEvalUserException $exception) {
             throw $exception;
-        }
-        catch (PostClosedException $exception)
-        {
+            // if the post is closed throw new exception
+        } catch (PostClosedException $exception) {
             throw $exception;
-        }
-        catch (SamePostUserEvalUserException $exception)
-        {
+            // if the user who posts the post and the user who post the evaluation are the same, throw an exception
+        } catch (SamePostUserEvalUserException $exception) {
             throw $exception;
         }
 
-        //return new Response('error');
+        //redirect to the same page
         return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
     }
 
@@ -96,48 +96,43 @@ class PostAnswerController extends Controller
      */
     public function downVoteAction(PostAnswer $postAnswer){
 
+        //entity manager
+        $em = $this->getDoctrine()->getManager();
 
-            $em = $this->getDoctrine()->getManager();
-            $user = $this->getUser();
-            $post = $postAnswer->getPost();
+        $user = $this->getUser();
+        $post = $postAnswer->getPost();
 
         //SELECT * FROM evaluation WHERE evaluation.user_id = ? AND evaluation.post_answer = ?
         $eval = $em->getRepository('AppBundle:Evaluation')->getByUser($user, $postAnswer);
+        try{
+            $event = new Event($eval);
+            $this->get('event_dispatcher')->dispatch(Events::prePersist, $event);
 
-            try{
-                $event = new Event($eval);
-                $this->get('event_dispatcher')->dispatch(Events::prePersist, $event);
-
-                if ($eval == null) {
-                    $this->postAnswerService->addVote($postAnswer, $user, -1);
-                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-                }
-
-                // delete the evaluation if second down vote
-                if ($eval[0]->getValue() == -1) {
-                    $this->postAnswerService->removeVote($eval);
-                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-                }
-
-                // edit the value of the evaluation from 1 to -1
-                if ($eval[0]->getValue() == 1) {
-                    $this->postAnswerService->editVote($eval, -1);
-                    return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
-                }
-            } catch (SamePostAnswerUserEvalUserException $exception){
-                throw $exception;
-            }
-            catch (PostClosedException $exception)
-            {
-                throw $exception;
+            if ($eval == null) {
+                $this->postAnswerService->addVote($postAnswer, $user, -1);
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
-            catch (SamePostUserEvalUserException $exception)
-            {
-                throw $exception;
+            // delete the evaluation if second down vote
+            if ($eval[0]->getValue() == -1) {
+                $this->postAnswerService->removeVote($eval);
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
             }
 
-            return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+            // edit the value of the evaluation from 1 to -1
+            if ($eval[0]->getValue() == 1) {
+                $this->postAnswerService->editVote($eval, -1);
+                return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
+            }
+        }
+        catch (SamePostAnswerUserEvalUserException $exception) {
+            throw $exception;
+        } catch (PostClosedException $exception) {
+            throw $exception;
+        } catch (SamePostUserEvalUserException $exception) {
+            throw $exception;
+        }
+        return $this->redirectToRoute('post_proofreader_show', array('id' => $post->getId()));
     }
 
     /**
