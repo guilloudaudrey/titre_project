@@ -126,7 +126,10 @@ class PostController extends Controller
         $deleteForm = $this->createDeleteForm($post);
 
         $postAnswer = new PostAnswer();
+
+        //entity manager
         $em = $this->getDoctrine()->getManager();
+
         $form = $this->createForm('AppBundle\Form\PostAnswerType', $postAnswer);
         $postAnswerByUser = null;
 
@@ -136,8 +139,6 @@ class PostController extends Controller
             //SELECT * FROM post_answer WHERE post_answer.post_id = ? AND post_answer.user_id = ?
             $postAnswerByUser = $em->getRepository('AppBundle:PostAnswer')->getByPostandByUser($post, $this->getUser());
         }
-
-
 
         return $this->render('post/show_proofreader.html.twig', array(
             'post' => $post,
@@ -166,6 +167,7 @@ class PostController extends Controller
             //UPDATE post SET ? = ? WHERE post.id = ?;
             $this->getDoctrine()->getManager()->flush();
 
+            // if user as only tthe user role
             if(count($this->getUser()->getRoles()) == 1) {
                 return $this->redirectToRoute('post_show', array('id' => $post->getId()));
             }else{

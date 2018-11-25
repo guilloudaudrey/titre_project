@@ -43,15 +43,6 @@ class ProofreaderRoleController extends Controller {
         return $this->render('quizanswer/new.html.twig');
     }
 
-    private function getTargetUrlFromSession(SessionInterface $session)
-    {
-        $key = sprintf('_security.%s.target_path', $this->tokenStorage->getToken()->getProviderKey());
-
-        if ($session->has($key)) {
-            return $session->get($key);
-        }
-        return null;
-    }
 
 
     /**
@@ -63,12 +54,6 @@ class ProofreaderRoleController extends Controller {
 
         $this->quizService->addRoleProofreader($this->getUser());
 
-
- /**       if($this->getTargetUrlFromSession($request->getSession()) != null) {
-            return $this->redirect($this->getTargetUrlFromSession($request->getSession()));
-
-        }else{**/
-            return $this->redirect($request->headers->get('referer'));
-        //}
+        return $this->redirect($request->headers->get('referer'));
     }
 }

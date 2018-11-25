@@ -29,10 +29,12 @@ class PostAnswerListener
 
             $post_user = $entity->getPost()->getUser();
 
+            // if the author of the post is the same as the one of the answer
             if ($post_user == $entity->getUser()){
                 throw new Exception('Vous ne pouvez pas répondre à votre propre message');
             }
 
+            // if the post is closed or has no errors
             if($entity->getPost()->getStatus() == 'closed' or $entity->getPost()->getStatus() == 'noErrors'){
                 throw new PostClosedException('vous ne pouvez plus répondre cette demande');
             }

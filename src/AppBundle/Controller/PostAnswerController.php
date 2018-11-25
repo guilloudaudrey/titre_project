@@ -152,6 +152,8 @@ class PostAnswerController extends Controller
             $user = $this->getUser();
             $post_user = $post->getUser();
             $postAnswer->setUser($user);
+
+            //entity manager
             $em = $this->getDoctrine()->getManager();
 
             //SELECT * FROM post_answer WHERE post_answer.post_id = ?  AND post_answer.user_id = ?
@@ -162,7 +164,6 @@ class PostAnswerController extends Controller
                     if ($form->isSubmitted() && $form->isValid()) {
                         $postAnswer->setPost($post);
 
-                        $em = $this->getDoctrine()->getManager();
                         //INSERT INTO post_answer (id, text, created_at, updated_at, user_id, post_id, comment) VALUES (?, ?, ?, ?, ?, ?, ?);
                         $em->persist($postAnswer);
                         $em->flush();

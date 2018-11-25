@@ -52,6 +52,8 @@ class ProfileController extends Controller
         $postslist = $user->getPosts();
         $postAnswersList = $user->getPostAnswers();
         $responsesToPostList = [];
+
+        //entity manager
         $em = $this->getDoctrine()->getManager();
 
         //SELECT * FROM post WHERE post.status = 'active' AND post.user_id = $user;
@@ -64,7 +66,7 @@ class ProfileController extends Controller
             $responsesToPostList[] = $post->getPostAnswers();
         }
 
-
+        //pagination
         $responsesToPost  = $this->get('knp_paginator')->paginate(
             $responsesToPostList,
             $request->query->get('page', 1)/*le numéro de la page à afficher*/,

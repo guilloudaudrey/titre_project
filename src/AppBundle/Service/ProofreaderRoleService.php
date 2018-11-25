@@ -26,6 +26,7 @@ class ProofreaderRoleService{
         $this->em->persist($user);
         $this->em->flush();
 
+        // new UsernamePasswordToken
         $this->userManager->updateUser($user);
         $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
         $this->tokenStorage->setToken($token);

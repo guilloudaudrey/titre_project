@@ -31,14 +31,17 @@ class EvaluationListener
             $postanswer_user = $entity->getPostAnswer()->getUser();
             $post_user = $entity->getPostAnswer()->getPost()->getUser();
 
+            // if the user who posts the answer is the same as the one who posts the evaluation
             if ($postanswer_user == $entity->getUser()){
                throw new SamePostAnswerUserEvalUserException('vous ne pouvez pas vous auto-évaluer');
             }
 
+            // if the author of the post is the same as the one of the evaluation
             if ($post_user == $entity->getUser()){
                 throw new SamePostUserEvalUserException('vous ne pouvez pas évaluer des réponses à votre question');
             }
 
+            // if the post is closed
             if($entity->getPostAnswer()->getPost()->getStatus() == 'closed' or $entity->getPostAnswer()->getPost()->getStatus() =='noErrors'){
                 throw new PostClosedException('vous ne pouvez plus évaluer cette réponse');
             }
@@ -61,16 +64,14 @@ class EvaluationListener
             $post = $postanswer->getPost();
             $evaluations = $postanswer->getEvaluations();
 
+            // if the answer as 3 or more as a score
             if ($postanswer->getScore() >= 3){
 
                 $post->setStatus('closed');
                 $this->em->persist($post);
                 $this->em->flush();
-
             }
         }
-
-
     }
 
     public function setCreatedAt(Evaluation $evaluation){

@@ -7,8 +7,6 @@ use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-
-
 class EvaluationPostListener
 {
     /**
@@ -24,6 +22,7 @@ class EvaluationPostListener
         if ($entity instanceof EvaluationPost){
             $this->setCreatedAt($entity);
 
+            // if the post is closed or has no error
             if($entity->getPost()->getStatus() == 'noErrors' or $entity->getPost()->getStatus() == 'closed'){
                 throw new PostClosedException('vous ne pouvez plus évaluer cette demande');
             }
@@ -40,6 +39,7 @@ class EvaluationPostListener
 
             $post = $entity->getPost();
 
+            // if the post has a score of 3 or more
             if ($post->getScore() >= 3) {
                 //UPDATE post SET status = 'noErrors' WHERE post.id = ?;
                 $post->setStatus('noErrors');

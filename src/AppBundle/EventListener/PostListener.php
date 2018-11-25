@@ -18,12 +18,11 @@ class PostListener
     public function prePersist(LifecycleEventArgs $args)
     {
         $this->em = $args->getEntityManager();
+        $entity = $args->getEntity();
         
-                $entity = $args->getEntity();
-        
-                if ($entity instanceof Post){
-                $this->setCreatedAt($entity);
-                }
+        if ($entity instanceof Post){
+            $this->setCreatedAt($entity);
+        }
     }
 
         /**
@@ -34,14 +33,11 @@ class PostListener
     public function preUpdate(LifecycleEventArgs $args)
     {
         $this->em = $args->getEntityManager();
-        
-                $entity = $args->getEntity();
+        $entity = $args->getEntity();
 
-                if ($entity instanceof Post){
-                    $this->setUpdatedAt($entity);
-                } 
-
-
+        if ($entity instanceof Post){
+            $this->setUpdatedAt($entity);
+        }
     }
 
     public function setCreatedAt(Post $post){
